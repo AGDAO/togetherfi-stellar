@@ -1,5 +1,7 @@
 # TogetherFi × Stellar — Soroban Contracts
 
+[![Tests](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml/badge.svg)](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml)
+
 Two Soroban smart contracts deployed on Stellar testnet as part of the
 [TogetherFi](https://togetherfi.io) Stellar Community Fund grant application.
 

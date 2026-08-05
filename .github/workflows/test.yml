@@ -1,0 +1,41 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    name: cargo test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        contract:
+          - contracts/campaign_escrow
+          - contracts/reputation_anchor
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust 1.81
+        uses: dtolnay/rust-toolchain@1.81
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ${{ matrix.contract }}/target
+          key: ${{ runner.os }}-cargo-${{ matrix.contract }}-${{ hashFiles(format('{0}/Cargo.toml', matrix.contract)) }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-${{ matrix.contract }}-
+
+      - name: Run tests — ${{ matrix.contract }}
+        working-directory: ${{ matrix.contract }}
+        run: cargo test
