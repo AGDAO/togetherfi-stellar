@@ -3,7 +3,7 @@
 use super::*;
 use soroban_sdk::{
     testutils::{Address as _, Ledger},
-    Env, String, Symbol, Vec,
+    Env, IntoVal, String, Symbol, Vec,
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -191,12 +191,14 @@ fn test_unauthorized_anchor_fails() {
     // No mock_all_auths — require_auth() checks are now strict
     let contract_id2 = env2.register_contract(None, ReputationAnchor);
     let contract2 = ReputationAnchorClient::new(&env2, &contract_id2);
+    // Objects cannot cross Env instances — generate creator inside env2.
+    let creator_env2 = Address::generate(&env2);
 
     // Calling anchor_score on an uninitialized contract (no initialize called)
     // fails with NotInitialized before auth is even checked.
     let result = contract2.try_anchor_score(
         &1_u64,
-        &creator,
+        &creator_env2,
         &500_u32,
         &Symbol::new(&env2, "silver"),
         &String::from_str(&env2, "0xabc"),

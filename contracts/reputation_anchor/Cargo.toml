@@ -17,6 +17,9 @@ soroban-sdk = "21.7.6"
 [dev-dependencies]
 soroban-sdk = { version = "21.7.6", features = ["testutils"] }
 
+[patch.crates-io]
+soroban-env-host = { path = "../../soroban-env-host-patch" }
+
 [profile.release]
 opt-level = "z"
 overflow-checks = true
