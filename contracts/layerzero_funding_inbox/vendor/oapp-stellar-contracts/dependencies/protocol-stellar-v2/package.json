@@ -1,0 +1,60 @@
+{
+  "name": "@layerzerolabs/protocol-stellar-v2",
+  "version": "1.2.55",
+  "private": false,
+  "license": "LZBL-1.3",
+  "files": [
+    "endpoint-v2",
+    "layerzero-views",
+    "message-libs",
+    "upgrader",
+    "workers",
+    "Cargo.toml",
+    "rust-toolchain.toml",
+    "rustfmt.toml",
+    "clippy.toml"
+  ],
+  "dependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "1.2.55",
+    "@layerzerolabs/common-utils-stellar-contracts": "1.2.55"
+  },
+  "devDependencies": {
+    "@layerzerolabs/vm-tooling-stellar": "1.2.55",
+    "@layerzerolabs/build-utils-rust": "1.2.55"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "externalRepoConfig": {
+    "targets": [
+      "audit-external",
+      "everdawn-externalization",
+      "gasolina-audit",
+      "lz-labs-sidecar",
+      "monorepo-external",
+      "onesig-client"
+    ]
+  },
+  "implicitDependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "workspace:*",
+    "@layerzerolabs/common-utils-stellar-contracts": "workspace:*"
+  },
+  "scripts": {
+    "build": "pnpm package:source && pnpm exec lz-tool extra stellar verifiable-build --stellar-version 25.1.0 --archive .artifacts/.incoming/contracts-source.zip --package endpoint-v2:endpoint-v2/Cargo.toml --package uln302:message-libs/uln-302/Cargo.toml --package treasury:message-libs/treasury/Cargo.toml --package simple-message-lib:message-libs/simple-message-lib/Cargo.toml --package blocked-message-lib:message-libs/blocked-message-lib/Cargo.toml --package layerzero-views:layerzero-views/Cargo.toml --package upgrader:upgrader/Cargo.toml --package executor:workers/executor/Cargo.toml --package executor-helper:workers/executor-helper/Cargo.toml --package executor-fee-lib:workers/executor-fee-lib/Cargo.toml --package dvn:workers/dvn/Cargo.toml --package dvn-fee-lib:workers/dvn-fee-lib/Cargo.toml --package price-feed:workers/price-feed/Cargo.toml",
+    "build:contracts": "pnpm resolve-dependencies && pnpm exec lz-tool stellar contract build",
+    "build:contracts:native": "pnpm resolve-dependencies && pnpm exec lz-tool --docker-platform native stellar contract build",
+    "build:native": "pnpm build:contracts:native",
+    "build:verifiable": "pnpm run build",
+    "clean": "rm -rf ./dependencies ./target ./node_modules ./.artifacts*",
+    "format": "pnpm exec lz-tool --script \"cargo fmt\" stellar",
+    "format:check": "pnpm exec lz-tool --script \"cargo fmt -- --check\" stellar",
+    "lint": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo fmt -- --check && cargo clippy --all-targets -- -D warnings\" stellar",
+    "lint:fix": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo clippy --all-targets --fix --allow-dirty --allow-staged && cargo fmt\" stellar",
+    "package:source": "pnpm resolve-dependencies && pnpm exec lz-tool extra stellar package-source --output .artifacts/.incoming/contracts-source.zip",
+    "resolve-dependencies": "pnpm exec build-utils-rust resolve",
+    "test": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo nextest run\" stellar",
+    "test:snapshot:check": "pnpm exec turbo-snapshot check",
+    "test:snapshot:update": "pnpm exec turbo-snapshot update"
+  }
+}

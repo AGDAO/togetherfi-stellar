@@ -1,0 +1,27 @@
+{
+  "name": "mofo-robinhood-drop",
+  "version": "1.0.0",
+  "description": "MOFO ERC-721 OpenSea/SeaDrop collection tooling for Robinhood Chain",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "test:layerzero-clean": "bash scripts/test-layerzero-clean.sh",
+    "test:mofo": "npx hardhat test test/MOFORobinhoodDrop.test.js",
+    "test:sale-reporter": "node --test test/OpenSeaSaleReporter.test.js",
+    "report:opensea-sales": "node scripts/report-opensea-sales.js",
+    "health:sale-reporter": "node scripts/check-sale-reporter-health.js",
+    "deploy:robinhood": "npx hardhat run scripts/deploy-mofo-robinhood-drop.js --network robinhood"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "@openzeppelin/contracts": "5.0.1",
+    "@openzeppelin/contracts-upgradeable": "5.0.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.9.2",
+    "hardhat": "^2.19.4"
+  },
+  "devDependencies": {
+    "@layerzerolabs/oft-evm": "4.0.1",
+    "chai": "^6.2.2"
+  }
+}

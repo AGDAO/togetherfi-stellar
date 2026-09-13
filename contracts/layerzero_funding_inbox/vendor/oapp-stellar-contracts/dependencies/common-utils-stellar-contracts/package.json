@@ -1,0 +1,47 @@
+{
+  "name": "@layerzerolabs/common-utils-stellar-contracts",
+  "version": "1.2.55",
+  "private": false,
+  "license": "MIT",
+  "files": [
+    "src",
+    "Cargo.toml",
+    "rust-toolchain.toml",
+    "rustfmt.toml",
+    "clippy.toml"
+  ],
+  "dependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "1.2.55"
+  },
+  "devDependencies": {
+    "@layerzerolabs/build-utils-rust": "1.2.55",
+    "@layerzerolabs/vm-tooling-stellar": "1.2.55"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "externalRepoConfig": {
+    "targets": [
+      "audit-external",
+      "everdawn-externalization",
+      "gasolina-audit",
+      "lz-labs-sidecar",
+      "monorepo-external",
+      "onesig-client"
+    ]
+  },
+  "implicitDependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "workspace:*"
+  },
+  "scripts": {
+    "build": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo build\" stellar",
+    "clean": "rm -rf ./dependencies ./target ./node_modules",
+    "format": "pnpm exec lz-tool --script \"cargo fmt\" stellar",
+    "format:check": "pnpm exec lz-tool --script \"cargo fmt -- --check\" stellar",
+    "lint": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo fmt -- --check && cargo clippy --all-targets -- -D warnings\" stellar",
+    "lint:fix": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo clippy --all-targets --fix --allow-dirty --allow-staged && cargo fmt\" stellar",
+    "resolve-dependencies": "pnpm exec build-utils-rust resolve",
+    "test": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo nextest run --features testutils\" stellar"
+  }
+}

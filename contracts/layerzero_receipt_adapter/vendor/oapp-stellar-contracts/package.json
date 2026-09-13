@@ -1,0 +1,55 @@
+{
+  "name": "@layerzerolabs/oapp-stellar-contracts",
+  "version": "1.2.55",
+  "private": false,
+  "license": "MIT",
+  "files": [
+    "src",
+    "Cargo.toml",
+    "rust-toolchain.toml",
+    "rustfmt.toml",
+    "clippy.toml"
+  ],
+  "dependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "1.2.55",
+    "@layerzerolabs/common-utils-stellar-contracts": "1.2.55",
+    "@layerzerolabs/oapp-macros-stellar-contracts": "1.2.55",
+    "@layerzerolabs/protocol-stellar-v2": "1.2.55"
+  },
+  "devDependencies": {
+    "@layerzerolabs/build-utils-rust": "1.2.55",
+    "@layerzerolabs/vm-tooling-stellar": "1.2.55"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "externalRepoConfig": {
+    "targets": [
+      "audit-external",
+      "everdawn-externalization",
+      "monorepo-external",
+      "onesig-client"
+    ]
+  },
+  "implicitDependencies": {
+    "@layerzerolabs/common-utils-macros-stellar-contracts": "workspace:*",
+    "@layerzerolabs/common-utils-stellar-contracts": "workspace:*",
+    "@layerzerolabs/oapp-macros-stellar-contracts": "workspace:*",
+    "@layerzerolabs/protocol-stellar-v2": "workspace:*"
+  },
+  "scripts": {
+    "build": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo build --release\" stellar",
+    "clean": "rm -rf ./dependencies ./target ./node_modules",
+    "format": "pnpm exec lz-tool --script \"cargo fmt\" stellar",
+    "format:check": "pnpm exec lz-tool --script \"cargo fmt -- --check\" stellar",
+    "lint": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo fmt -- --check && cargo clippy --all-targets -- -D warnings\" stellar",
+    "lint:fix": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo clippy --all-targets --fix --allow-dirty --allow-staged && cargo fmt\" stellar",
+    "resolve-dependencies": "pnpm exec build-utils-rust resolve",
+    "test": "pnpm test:non-ui && pnpm test:ui",
+    "test:non-ui": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo nextest run -E 'not test(/^ui_/)'\" stellar",
+    "test:snapshot:check": "pnpm exec turbo-snapshot check",
+    "test:snapshot:update": "pnpm exec turbo-snapshot update",
+    "test:ui": "pnpm resolve-dependencies && pnpm exec lz-tool --script \"cargo nextest run -E 'test(/^ui_/)'\" stellar"
+  }
+}

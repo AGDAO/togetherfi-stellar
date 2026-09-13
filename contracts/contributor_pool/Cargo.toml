@@ -1,0 +1,31 @@
+[workspace]
+
+[package]
+name = "contributor-pool"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.81"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = "21.7.6"
+
+[dev-dependencies]
+soroban-sdk = { version = "21.7.6", features = ["testutils"] }
+
+[patch.crates-io]
+soroban-env-host = { path = "../../soroban-env-host-patch" }
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true

@@ -1,0 +1,38 @@
+[package]
+name = "togetherfi-stellar-layerzero-receipt-adapter"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.90"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+# This is deliberately a separate Cargo package.  The escrow packages in the
+# parent directory target soroban-sdk 21.x and Rust 1.81; do not add this crate
+# to that workspace or share its lockfile.
+[dependencies]
+soroban-sdk = { version = "=25.1.1", features = ["hazmat-address", "hazmat-crypto"] }
+oapp = { path = "vendor/oapp-stellar-contracts" }
+endpoint-v2 = { path = "vendor/oapp-stellar-contracts/dependencies/protocol-stellar-v2/endpoint-v2", default-features = false, features = ["library"] }
+utils = { path = "vendor/oapp-stellar-contracts/dependencies/common-utils-stellar-contracts" }
+common-macros = { path = "vendor/oapp-stellar-contracts/dependencies/common-utils-macros-stellar-contracts" }
+oapp-macros = { path = "vendor/oapp-stellar-contracts/dependencies/oapp-macros-stellar-contracts" }
+
+[dev-dependencies]
+soroban-sdk = { version = "=25.1.1", features = ["hazmat-address", "hazmat-crypto", "testutils"] }
+endpoint-v2 = { path = "vendor/oapp-stellar-contracts/dependencies/protocol-stellar-v2/endpoint-v2", default-features = false, features = ["testutils"] }
+utils = { path = "vendor/oapp-stellar-contracts/dependencies/common-utils-stellar-contracts", features = ["testutils"] }
+common-macros = { path = "vendor/oapp-stellar-contracts/dependencies/common-utils-macros-stellar-contracts" }
+oapp-macros = { path = "vendor/oapp-stellar-contracts/dependencies/oapp-macros-stellar-contracts" }
+
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true

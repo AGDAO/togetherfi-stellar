@@ -1,5 +1,17 @@
 # TogetherFi × Stellar — Soroban Contracts
 
+## Grant preparation status
+
+The Campaign Escrow v2 source in this working tree is implemented and locally
+tested but **has not been deployed**. No deployment is authorized as part of
+this grant-preparation work. The contract IDs and transactions below document
+the earlier v1 testnet baseline only; they are existing evidence and must not be
+claimed as new grant-funded delivery.
+
+This release is derived from upstream baseline commit
+`6fd30883bf8c305eb8dd8a8a8fabe7226171332b`, recorded in `UPSTREAM_COMMIT`.
+See `RELEASE.md` for release scope, attribution, responsibility, and AI-assistance disclosure.
+
 [![Tests](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml/badge.svg)](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml)
 
 Two Soroban smart contracts deployed on Stellar testnet as part of the
@@ -7,7 +19,10 @@ Two Soroban smart contracts deployed on Stellar testnet as part of the
 
 ---
 
-## Deployed contracts (Stellar testnet)
+## Existing v1 deployed contracts (Stellar testnet, historical)
+
+The addresses and transactions below are **v1 historical evidence only**.
+They are not the v2 implementation and do not describe a new deployment.
 
 | Contract | Address |
 |---|---|
@@ -16,29 +31,77 @@ Two Soroban smart contracts deployed on Stellar testnet as part of the
 
 ---
 
-## Campaign Escrow (`contracts/campaign_escrow`)
+## Campaign Escrow v2 (`contracts/campaign_escrow`) — not deployed
 
 Holds USDC for a TogetherFi creator campaign and releases it atomically on
 completion with the platform's fixed payout split:
 
 | Recipient | Share |
 |---|---|
-| Creator wallet | 82.5% |
-| Platform treasury | 10.0% |
-| Revenue share pool | 5.0% + rounding dust |
-| Referrer wallet | 2.5% (folds to pool if no referrer) |
+| Creator wallet | 82% |
+| Platform treasury | 10% |
+| MOFO contributor pool | 5% |
+| Community contributor pool | 2% |
+| Verified referrer wallet | 1% (mandatory; activation fails without one) |
 
 ### Functions
 
 | Function | Caller | Action |
 |---|---|---|
-| `initialize(admin, usdc_token, platform_treasury, revenue_pool, default_referrer)` | admin | One-time setup |
-| `fund(id, brand, amount)` | brand signs | Transfer USDC brand → contract |
-| `complete(id, creator, referrer)` | admin only | Release with split atomically |
-| `refund(id)` | admin only | Return full balance to brand |
+| `initialize(governance, settlement, token, service_treasury, nft_pool, revenue_pool)` | governance | One-time setup |
+| `fund(campaign_id, sponsor, amount)` | sponsor signs | Transfer USDC sponsor → contract |
+| `activate(campaign_id, creator, referrer, terms_hash)` | stored sponsor | Commit payout destinations and terms |
+| `complete(campaign_id, operation_version)` | settlement authority | Release with split atomically |
+| `refund_expired(campaign_id)` | anyone after expiry | Return full balance to stored sponsor |
 | `get_campaign(id)` | anyone | Read campaign state |
 
-### Verified testnet transactions
+The two pool addresses are fixed at escrow initialization. They must be
+dedicated `Contributor Pool` deployments for the same token. Only the fixed
+5% and 2% campaign allocations may enter those pools through authenticated,
+one-time campaign credits. Every campaign requires a verified referrer; there
+is no fallback recipient for the `1%` referrer leg.
+
+Campaign funding is at least 100 base units (`0.0000100` for a 7-decimal
+asset), which ensures every fixed 5% / 2% / 1% payout leg is nonzero.
+
+## Contributor Pool (`contracts/contributor_pool`) — not deployed
+
+Deploy **two separately initialized instances**: one for the 5% MOFO
+contributor allocation and one for the 2% community contributor allocation.
+An escrow completion transfers its respective pool allocation to that
+instance. The pool contract cannot choose a recipient or sweep money to an
+operator:
+
+- `publish_manifest(...)` requires both governance and an independent
+  eligibility authority to authorize the same transaction.
+- The manifest stores an immutable policy hash, manifest hash, exact
+  recipients, exact base-unit amounts, and claim expiry. One manifest is
+  capped at 64 recipients; publish separate cycles rather than truncating a
+  candidate set.
+- Each recipient must authorize their own `claim(manifest_id,index)`.
+- An allocation cannot be claimed twice. Claims are bounded by the actual
+  token balance and all outstanding manifest liabilities.
+- A direct token transfer is never allocatable reward funding. The configured
+  Campaign Escrow must authenticate each campaign's one-time credit after its
+  matching 5% or 2% transfer, and the escrow refuses pool addresses whose
+  configured escrow or token do not match.
+- After expiry, `expire_manifest` releases only the unclaimed reservation to
+  the pool's carry-forward balance; it makes no transfer to governance.
+- Governance and eligibility authority must always be distinct addresses;
+  neither can publish a recipient manifest alone.
+- Claim expiry is limited to 30 days. Refreshing a manifest's TTL refreshes
+  every allocation as well, and a scheduled TTL touch is required while a
+  claim window remains active.
+
+Off-chain eligibility must be revalidated from auditable evidence before the
+two authorities publish: MOFO recipients need verified ownership and
+campaign-promotion evidence; community recipients need verified qualifying
+content and all required UTC check-ins. Missing or ambiguous evidence fails
+closed. The canonical manifest serialization and SHA-256 policy/manifest
+hashes are documented by the application and must be independently reviewed
+before any deployment.
+
+### Existing v1 testnet transactions
 
 | Step | Transaction hash |
 |---|---|
@@ -57,9 +120,10 @@ Split verified on-chain: 82.5% creator / 10% platform treasury / 5% revenue pool
 ## Reputation Anchor (`contracts/reputation_anchor`)
 
 Stores creator TogetherScores permanently on Stellar as the authoritative
-on-chain identity record. Each entry includes an `arbitrum_tx_hash` field
-as cross-chain proof, linking the Stellar anchor to the originating Arbitrum
-Stylus transaction.
+on-chain identity record. The historical contract schema names one optional
+external reference field `arbitrum_tx_hash`. That field is application metadata,
+not authenticated evidence for either the financially inert receipt channel or
+the allowlisted OFT sponsor-funding route.
 
 ### Functions
 
@@ -78,7 +142,7 @@ pub struct ScoreRecord {
     pub creator:          Address, // Stellar G-key
     pub score:            u32,    // 0–1000 (TogetherScore v2)
     pub tier:             Symbol, // "bronze" | "silver" | "gold"
-    pub arbitrum_tx_hash: String, // cross-chain proof — originating Arbitrum tx
+    pub arbitrum_tx_hash: String, // historical optional external reference
     pub anchored_at:      u64,   // unix timestamp (ledger time)
 }
 ```
@@ -87,16 +151,97 @@ pub struct ScoreRecord {
 
 Emitted by `anchor_score` on every call. Indexed by `(profile_id, score, tier, anchored_at, arbitrum_tx_hash)`. Any Stellar explorer can verify the anchor on-chain.
 
-### Verified testnet transactions
+## LayerZero Receipt Adapter (`contracts/layerzero_receipt_adapter`) — not deployed
 
-| Step | Transaction hash |
-|---|---|
-| WASM upload | `c5638580d9a661639d3dbcc8a23f86b51a769ee4da8f927246d07ece35281755` |
-| Contract create | `05a0cc73f05f824615e92df8d4a67afe5f8866ec5c37a1841b59a034c00fa646` |
-| Initialize | `d27a0fcf50cf4ca9bd1a3ac5bf64a686aef9b5006d3f71ae669378c4292b2483` |
-| Test anchor (profile_id=1, score=750, tier=gold) | `c4fd49bef8164216ef5be5841c108c23b5a1fadb2e2b8d50de497d75b73e27e7` |
+The LayerZero V2 adapter is an optional informational messaging component. It
+publishes versioned, domain-separated receipts only after a Stellar campaign has
+already reached a final native state. The Soroban Campaign Escrow remains the
+sole authority for funding, completion, refunds, payout splits, and contributor
+credits.
 
-Verify: https://stellar.expert/explorer/testnet/tx/c4fd49bef8164216ef5be5841c108c23b5a1fadb2e2b8d50de497d75b73e27e7
+- Receipt messages are financially inert: they carry no campaign principal and
+  are not the OFT sponsor-funding route.
+- A send or delivery failure cannot change a successful Stellar settlement.
+- Inbound messages cannot call the escrow, release or refund funds, select
+  recipients, or allocate contributor balances.
+- The configured Endpoint V2 and exact remote peer are authenticated.
+- Message GUIDs and campaign operation identities are rejected when replayed or
+  duplicated; any inbound receipt nonce check is scoped to its source path.
+- The peer receiver on Arbitrum stores receipt metadata only and has no
+  value-moving methods.
+
+The adapter is isolated from the existing Soroban SDK 21 contracts because the
+pinned official LayerZero Stellar OApp package uses Soroban SDK 25.1.1 and Rust
+1.90.0. This avoids weakening or silently upgrading the deployment-compatible
+Rust 1.81 build boundary for Campaign Escrow, Contributor Pool, and Reputation
+Anchor. No LayerZero contract ID, Endpoint address, peer address, or live
+delivery is claimed in this repository. The adapter is implemented and locally
+tested, but is not deployed or live; no real cross-chain transaction evidence
+is currently claimed.
+
+The separate `layerzero_funding_inbox` package implements the optional
+allowlisted OFT sponsor-funding route. OFT delivery goes into that inbox as a
+pending liability, not campaign funds. The exact sponsor must claim the
+liability and then submit a separate native `CampaignEscrow::fund` transaction.
+Neither OFT delivery nor a financially inert receipt invokes the escrow.
+
+The receipt adapter and funding inbox are implementation artifacts only. They
+are not an audit or a production-readiness claim, and no real cross-chain
+transaction evidence is presented here.
+
+## LayerZero Funding Inbox (`contracts/layerzero_funding_inbox`) — not deployed
+
+The optional bridge funding path is a separate Soroban package. It uses the
+official LayerZero Stellar 1.2.55 `ILayerZeroComposer` interface, authenticates
+the actual compose executor, and accepts only the configured local OFT, exact
+Arbitrum source EID/peer from the official OFT envelope, configured
+bridge-asset domain, and configured Stellar escrow/asset domain. It stores
+versioned funding intents and binds delivery provenance to the pinned official
+configured OFT, authenticated compose executor, exact source peer, and
+Endpoint queue cleared through official `clear_compose`. The pinned official
+LayerZero Stellar dependency tree contains the OApp/Endpoint composer surface
+but no official Stellar OFT package/API or per-GUID credited amount or
+receiver-side transfer hook, so the configured token balance is only a
+defense-in-depth check that held liabilities do not exceed balance; ambient transfers are
+indistinguishable from OFT transfers to the receiver. A compromised OFT can
+lie about `amount_ld`, which requires route pause and immutable inbox/OFT
+replacement. GUID/index duplicates, campaign operation duplicates,
+malformed or unqueued messages, wrong-domain messages, unsupported assets,
+expired instructions, insufficient received amounts, and balance deficits are
+rejected. Source OFT nonces are retained as authenticated evidence in each
+intent; because they are path-scoped, gaps and out-of-order execution are
+valid.
+Instance and persistent intent/replay storage receive explicit TTL extensions
+on entrypoints, reads, and writes. If archival nevertheless occurs, the
+committed sponsor restores the intent key in the transaction footprint and
+calls `restore_intent` with the original sponsor reference before claiming or
+cancelling.
+
+The admin-authenticated pause stops new compose liabilities and claims while
+leaving sponsor cancellation and expired recovery available. The immutable
+inbox requires a replacement deployment and explicit versioned migration for
+schema, trust boundary, route, or pause-policy changes; no balance sweep or
+migration is authorized here. An independent reviewer must assess whether
+this configured-OFT trust-boundary treatment closes the delivery-provenance
+finding, given that no Soroban receiver can distinguish ambient fungible
+transfers from official OFT transfers, before real funds are accepted.
+
+The inbox deliberately does not call Campaign Escrow. A bridge message proves
+the authenticated source path, but cannot provide the Soroban sponsor
+authorization needed by `CampaignEscrow::fund` or establish the original
+funder needed by its refund invariant. Automatic funding would weaken those
+guarantees. Instead, the exact sponsor must authorize an inbox `claim` (or
+`cancel`); after claiming, the sponsor performs a separate native
+`CampaignEscrow::fund` call. Expired pending liabilities can be released
+permissionlessly only to the exact committed sponsor; no owner recovery
+address exists. Bridge messages cannot complete/refund campaigns or allocate
+contributor pools.
+
+The installed package metadata was checked before implementation: there is no
+official Stellar OFT package in `node_modules`, only the OApp/endpoint/composer
+surface. No OFT interface is fabricated. See the funding inbox README for the
+payload and lifecycle details. The package has its own SDK 25.1.1/Rust 1.90
+toolchain and is not part of the SDK 21/Rust 1.81 deployment boundary.
 
 ---
 
@@ -104,7 +249,9 @@ Verify: https://stellar.expert/explorer/testnet/tx/c4fd49bef8164216ef5be5841c108
 
 ### Toolchain requirement — CRITICAL
 
-**Must compile with Rust 1.81. Rust 1.82+ produces WASM that soroban-sdk 21.x / stellar-cli 27 rejects at deploy-time:**
+Campaign Escrow, Contributor Pool, and Reputation Anchor **must compile with
+Rust 1.81**. Rust 1.82+ produces WASM that soroban-sdk 21.x / stellar-cli 27
+rejects at deploy-time:
 
 ```
 HostError: Error(WasmVm, InvalidAction)
@@ -123,6 +270,14 @@ cargo +1.81 build --target wasm32-unknown-unknown --release
 # Reputation Anchor
 cd contracts/reputation_anchor
 cargo +1.81 build --target wasm32-unknown-unknown --release
+
+# Contributor Pool
+cd contracts/contributor_pool
+cargo +1.81 build --target wasm32-unknown-unknown --release
+
+# LayerZero Receipt Adapter (isolated official SDK 25 toolchain)
+cd contracts/layerzero_receipt_adapter
+cargo +1.90 build --target wasm32v1-none --release
 ```
 
 ### Running tests
@@ -135,6 +290,14 @@ cargo test
 # Reputation Anchor (6 tests)
 cd contracts/reputation_anchor
 cargo test
+
+# Contributor Pool
+cd contracts/contributor_pool
+cargo test
+
+# LayerZero Receipt Adapter
+cd contracts/layerzero_receipt_adapter
+cargo +1.90 test
 ```
 
 ### Deploying (stellar-cli 27)
@@ -162,7 +325,17 @@ contracts/
     Cargo.toml
     src/
       lib.rs    — contract implementation
-      test.rs   — 6 integration tests
+      test.rs   — integration tests
+  contributor_pool/
+    Cargo.toml
+    src/
+      lib.rs     — immutable contributor manifest and self-claim implementation
+      test.rs    — pool lifecycle and replay-protection tests
+  layerzero_receipt_adapter/
+    Cargo.toml
+    src/
+      lib.rs     — optional LayerZero V2 final-state receipt OApp
+      test.rs    — authentication, replay, ordering, and payload tests
 LICENSE
 README.md
 ```
