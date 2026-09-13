@@ -13,7 +13,7 @@ It intentionally excludes the private application repository, backend and databa
 
 ## Upstream baseline and provenance
 
-The exact public upstream baseline is commit [`6fd30883bf8c305eb8dd8a8a8fabe7226171332b`](https://github.com/AGDAO/togetherfi-stellar/commit/6fd30883bf8c305eb8dd8a8a8fabe7226171332b). `UPSTREAM_COMMIT` records the same value. Current v2, Contributor Pool, Funding Inbox, receipt-adapter, and EVM LayerZero work was developed after that baseline and is released in the immutable commit that contains this file.
+The exact public upstream baseline is commit [`6fd30883bf8c305eb8dd8a8a8fabe7226171332b`](https://github.com/AGDAO/togetherfi-stellar/commit/6fd30883bf8c305eb8dd8a8a8fabe7226171332b). `UPSTREAM_COMMIT` records the same value. Current v2, Contributor Pool, Funding Inbox, receipt-adapter, and EVM LayerZero work was developed after that baseline. The immutable source snapshot is commit [`0493b2cee72f52d38872152d26bf320d1281ef78`](https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78); the release metadata commit versions this statement and the evidence package without changing that source tree.
 
 Vendored LayerZero provenance and versions are recorded in package lockfiles, Cargo lockfiles, vendored package metadata, and `evm-layerzero/contracts/vendor/layerzero-v2/PROVENANCE.md`. Vendored code remains subject to its upstream notices and licenses.
 

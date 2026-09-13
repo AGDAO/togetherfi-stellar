@@ -31,13 +31,13 @@ implementation detail.
 
 | Item | Verified repository evidence |
 |---|---|
-| Soroban source-of-record candidate | `https://github.com/AGDAO/togetherfi-stellar` |
-| Documented visibility | The tracked plan calls this a public repository; this report does not independently verify GitHub account settings. |
-| Documented branch | `main` is present in the tracked source URL (`.../tree/main/...`). A release should still pin an immutable commit. |
+| Public source repository | `https://github.com/AGDAO/togetherfi-stellar` |
+| Independently checked visibility | Anonymous HTTPS returned HTTP 200 for the repository and immutable commit on 13 September 2026; the unauthenticated GitHub API returned the same full commit hash and message. |
+| Immutable current-source commit | `https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78` |
 | Working-tree source | `contracts/togetherfi-stellar/` in this application repository, with `UPSTREAM_COMMIT` set to `6fd30883bf8c305eb8dd8a8a8fabe7226171332b`. |
 | Application repository URL | None is locally documented in the reviewed files. Do not infer or publish a URL from local remotes. |
-| Provenance caveat | A URL in a local document is evidence of documented provenance, not independent proof of ownership, visibility, current branch contents, or deployment. Use a pinned commit, reproducible build, and source/WASM match for release evidence. |
-| Current public-source gap | The reviewed evidence does not establish that the current v2 Escrow, Contributor Pool, Funding Inbox, or receipt-adapter working-tree source is available at a publicly accessible immutable commit. `UPSTREAM_COMMIT` pins an earlier baseline only. Publishing or attributably releasing the current source and recording its immutable commit remain required evidence steps. |
+| Release provenance | `RELEASE.md` records the exact upstream baseline, MIT license, founder responsibility and maintenance statement, commit attribution boundary, AI-assistance disclosure, release scope, and exclusions. |
+| Public-source status | The current v2 Escrow, Contributor Pool, Funding Inbox, receipt adapter, selected EVM LayerZero boundary source, tests, lockfiles, and vendored dependencies are published at the immutable commit above. `UPSTREAM_COMMIT` remains the earlier baseline, not the current release commit. |
 
 The local Git remote list contains private/internal Replit remotes. They are
 deliberately not reproduced here. Git author names below are the names recorded in
@@ -411,10 +411,10 @@ contract ID is asserted by this dossier.
 
 Provide the minimum independently useful set:
 
-1. Once released and independently accessible, the public Soroban repository URL
-   and immutable commit containing the current v2, Contributor Pool, Funding
-   Inbox, and receipt-adapter source. The current evidence does not yet establish
-   that public commit.
+1. The independently accessible public repository and immutable source commit:
+   `https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78`.
+   It contains the current v2, Contributor Pool, Funding Inbox, receipt-adapter,
+   and selected EVM LayerZero boundary source.
 2. Selected source paths for v2 escrow, Contributor Pool, Reputation Anchor,
    Funding Inbox, and receipt adapter; license and build commands.
 3. This accuracy statement, architecture/custody diagram, authorization matrix,
@@ -525,8 +525,9 @@ approval as a mainnet technical gate.
 ### A. Verified facts
 
 - The local repository contains the listed Soroban, EVM, and backend components.
-- `https://github.com/AGDAO/togetherfi-stellar` is the only exact public repository
-  URL documented in the reviewed source set.
+- `https://github.com/AGDAO/togetherfi-stellar` and immutable source commit
+  `0493b2cee72f52d38872152d26bf320d1281ef78` were independently accessible
+  without authentication on 13 September 2026.
 - Historical v1 Stellar IDs and transactions are documented, while current v2 and
   LayerZero route deployments are not.
 - The local v2 CreatorFi split is 82/10/5/2/1 with integer base-unit accounting.
@@ -587,7 +588,7 @@ private infrastructure credentials.
 ### H. Recommended remaining grant deliverables
 
 Independent review and any resulting new remediation for the implemented escrow
-and pool scope; reproducible public release, fresh deployment, and source
+and pool scope; reproducible builds from the public release, fresh deployment, and source
 verification; asset and sponsor-wallet integration; completion of remaining
 chain-isolated settlement and confirmation behavior; a reviewed, officially
 supported testnet route if it becomes available; monitoring/recovery drill; and
