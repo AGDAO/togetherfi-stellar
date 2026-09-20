@@ -451,7 +451,7 @@ application codebase.
 
 ## 10. Completed versus remaining grant-eligible work
 
-### Already completed — not to be funded retroactively
+### Already completed (not to be funded retroactively)
 
 - Existing Arbitrum CreatorFi/SocialFi foundation and historical EVM settlement
   work.
@@ -468,7 +468,7 @@ Completed means implementation/repository evidence only. It does not mean
 deployed, live, or production-ready, and none should be presented as a new
 retroactive funding request.
 
-### Remaining work — candidate grant deliverables
+### Remaining work for candidate grant deliverables
 
 Only the following repository-supported work belongs in a new scope:
 

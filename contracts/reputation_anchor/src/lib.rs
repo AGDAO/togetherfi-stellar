@@ -1,4 +1,4 @@
-//! TogetherFi Reputation Anchor — Soroban smart contract.
+//! TogetherFi Reputation Anchor Soroban smart contract.
 //!
 //! Stores creator TogetherScores natively on Stellar. Each creator's score is
 //! keyed by `profile_id` (the TogetherFi database id) and linked back to the
@@ -11,11 +11,11 @@
 //! one independent entry per `profile_id` in Soroban persistent storage.
 //!
 //! Lifecycle:
-//!   1. `initialize`         — one-time setup, sets the admin signer.
-//!   2. `anchor_score`       — admin-only, upserts a score for a profile_id.
+//!   1. `initialize`: one-time setup that sets the admin signer.
+//!   2. `anchor_score`: admin-only score upsert for a profile_id.
 //!                             Emits `ScoreAnchored` event. Updates on re-anchor.
-//!   3. `get_score`          — public read, returns the full ScoreRecord.
-//!   4. `get_scores_batch`   — public batch read, for the verifiability dashboard.
+//!   3. `get_score`: public read that returns the full ScoreRecord.
+//!   4. `get_scores_batch`: public batch read for the verifiability dashboard.
 //!
 //! Admin is the TogetherFi backend signer (same keypair used by the campaign
 //! escrow contract). Only the admin can write scores; reads are open to all.
@@ -51,7 +51,7 @@ pub struct ScoreRecord {
     pub score: u32,
     /// Human-readable tier: "bronze", "silver", or "gold".
     pub tier: Symbol,
-    /// Arbitrum One tx hash from ScoreAnchor.anchor() call — cross-chain proof.
+    /// Arbitrum One tx hash from ScoreAnchor.anchor(), used as cross-chain proof.
     /// Full 66-char "0x..." string. Empty string when anchored Stellar-only.
     pub arbitrum_tx_hash: String,
     /// Unix timestamp (seconds) at the ledger when this anchor was written.
@@ -129,7 +129,7 @@ impl ReputationAnchor {
             .persistent()
             .set(&DataKey::Score(profile_id), &record);
 
-        // ScoreAnchored event — indexed by (profile_id, score, tier).
+        // ScoreAnchored event, indexed by (profile_id, score, tier).
         // The dashboard listener and the grant verifier both watch for this.
         env.events().publish(
             (symbol_short!("rep"), symbol_short!("anchored")),

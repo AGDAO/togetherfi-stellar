@@ -88,7 +88,7 @@ pub enum RbacStorage {
 
 /// Trait for contracts with role-based access control.
 ///
-/// Extends `Auth` — the authorizer replaces the traditional admin and can grant/revoke
+/// Extends `Auth`. The authorizer replaces the traditional admin and can grant/revoke
 /// any role. Each role can also have an admin role for hierarchical control.
 #[contract_trait]
 pub trait RoleBasedAccessControl: Auth {

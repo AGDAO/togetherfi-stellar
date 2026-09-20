@@ -147,7 +147,7 @@ fn test_batch_read() {
     let mut ids: Vec<u64> = Vec::new(&s.env);
     ids.push_back(1_u64);
     ids.push_back(7_u64);
-    ids.push_back(99_u64); // not anchored — silently skipped
+    ids.push_back(99_u64); // not anchored, so it is silently skipped
 
     let batch = s.contract.get_scores_batch(&ids);
 
@@ -188,10 +188,10 @@ fn test_unauthorized_anchor_fails() {
 
     // Construct a fresh env with NO auth mocking. Re-register so state is clean.
     let env2 = Env::default();
-    // No mock_all_auths — require_auth() checks are now strict
+    // No mock_all_auths. require_auth() checks are now strict.
     let contract_id2 = env2.register_contract(None, ReputationAnchor);
     let contract2 = ReputationAnchorClient::new(&env2, &contract_id2);
-    // Objects cannot cross Env instances — generate creator inside env2.
+    // Objects cannot cross Env instances. Generate the creator inside env2.
     let creator_env2 = Address::generate(&env2);
 
     // Calling anchor_score on an uninitialized contract (no initialize called)
@@ -205,7 +205,7 @@ fn test_unauthorized_anchor_fails() {
     );
     assert!(result.is_err(), "should fail on uninitialized contract");
 
-    // Now initialize env2 contract — but DON'T mock admin's auth for the
+    // Now initialize the env2 contract, but DON'T mock admin's auth for the
     // subsequent anchor_score call. The contract's stored admin is `admin2`,
     // and without mocking admin2's auth the require_auth() will fail.
     let admin2 = Address::generate(&env2);
@@ -220,7 +220,7 @@ fn test_unauthorized_anchor_fails() {
     }]);
     contract2.initialize(&admin2);
 
-    // Now try anchor_score with NO auth mocked — must fail
+    // Now try anchor_score with NO auth mocked. This must fail.
     let creator2 = Address::generate(&env2);
     let result2 = contract2.try_anchor_score(
         &1_u64,

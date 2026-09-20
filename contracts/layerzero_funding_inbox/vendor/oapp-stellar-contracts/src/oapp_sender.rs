@@ -17,9 +17,9 @@ pub const SENDER_VERSION: u64 = 1;
 /// This prevents the common mistake of forgetting to authorize the fee payer.
 ///
 /// # Variants
-/// - `Unverified` — Safe default. `__lz_send` will call `require_auth()` on the address.
+/// - `Unverified`: safe default. `__lz_send` will call `require_auth()` on the address.
 ///   Use this when the caller has **not** already authorized the fee payer.
-/// - `Verified` — Caller asserts that `require_auth()` has already been called.
+/// - `Verified`: caller asserts that `require_auth()` has already been called.
 ///   Use this to avoid a duplicate `require_auth()` node in the Soroban auth tree
 ///   (e.g., when the same address was already authorized as the message sender).
 #[contracttype]
@@ -27,7 +27,7 @@ pub const SENDER_VERSION: u64 = 1;
 pub enum FeePayer {
     /// The fee payer has **not** been authorized yet.
     /// `__lz_send` will call `fee_payer.require_auth()` before transferring fees.
-    /// This is the safe default — use this if unsure.
+    /// This is the safe default. Use this if unsure.
     Unverified(Address),
 
     /// The fee payer has **already** been authorized by the caller via `require_auth()`.

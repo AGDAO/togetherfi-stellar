@@ -111,7 +111,7 @@ fn gen_accessor_methods(enum_name: &Ident, variant: &Variant) -> TokenStream {
     let accessor = config.kind.accessor();
     let value_type = &config.value_type;
 
-    // Auto TTL extension call — emitted after reads/writes for persistent storage.
+    // Auto TTL extension call, emitted after reads/writes for persistent storage.
     // `Option<TokenStream>` integrates directly with `quote!` (None emits nothing).
     let extend_ttl = config.auto_ttl.then(|| {
         quote! { utils::ttl_configurable::extend_persistent_ttl(env, &key); }
@@ -130,7 +130,7 @@ fn gen_accessor_methods(enum_name: &Ident, variant: &Variant) -> TokenStream {
         None => quote! { #accessor.has(&key) },
     };
 
-    // TTL extender method — only for persistent/temporary storage (instance has no per-key TTL).
+    // TTL extender method for persistent or temporary storage (instance has no per-key TTL).
     let ttl_extender_method = (config.kind != StorageKind::Instance).then(|| {
         quote! {
             pub fn #ttl_extender(#params, threshold: u32, extend_to: u32) {
