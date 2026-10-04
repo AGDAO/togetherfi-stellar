@@ -1,13 +1,13 @@
-# Escrow v2 testnet acceptance — authorized, configuration pending
+# Escrow v2 testnet acceptance — deployed, quorum completion pending
 
-No command in this checklist has been executed as a deployment. No v2 ID,
-multisig configuration, explorer transaction, or independent review is claimed.
-Historical v1 IDs and transactions remain historical only.
+V2 and both contributor pools are deployed and initialized on testnet. Role-account
+configuration and disabled setup-key rejections are verified. Quorum completion,
+real expiry refund and independent review are not claimed. Historical v1 IDs
+remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
 The owner permits the architecture team's requested testnet validation. This is
-testnet-only authorization, not mainnet or real-funds approval. Deployment remains
-blocked on the actual public signer/account configuration, not on a new request
-for grant approval.
+testnet-only authorization, not mainnet or real-funds approval. Supplied signing
+wallets are strictly testnet-only; mainnet requires different owner-provided wallets.
 
 ## Selected signer policy
 
@@ -26,7 +26,8 @@ this quorum. No private keys should be provided in chat.
 
 - Retain the owner's testnet-only authorization and identify the exact validation
   deployment in its manifest. Do not treat this as mainnet authorization.
-- Select the exact testnet asset/issuer/contract and seven-decimal base units.
+- Validation uses free native testnet XLM with seven decimals. The production
+  asset/issuer remains undecided; this fixture is not a USDC liquidity claim.
 - Name governance and settlement account custodians; choose independent settlement
   signers, weights, and quorum. A backend-controlled quorum does not solve single-key
   custody. Check the applicable Stellar account thresholds and Soroban authorization,
@@ -46,18 +47,18 @@ this quorum. No private keys should be provided in chat.
 
 | Evidence | Current status |
 |---|---|
-| Exact source commit, lockfile hashes, compiler/target, fresh WASM hashes | Generate in CI; bind to eventual deployment |
-| Successful CI run for exact deployed source | Pending |
-| Fresh contributor-pool instances and escrow v2 contract ID | Not deployed |
-| Initialized governance/settlement/pool/token bindings | Not configured |
-| Settlement signer weights and thresholds observed on-chain | Not configured |
-| Backend-only / insufficient-signature completion rejected; balances unchanged | Not exercised |
+| Exact source commit, lockfile hashes, compiler/target, fresh WASM hashes | Local inputs retained; all three RPC-retrieved WASMs match tested hashes |
+| Successful CI run for exact deployed source | Escrow/reputation source CI passed; expanded five-package CI pending permissions |
+| Fresh contributor-pool instances and escrow v2 contract ID | Deployed; IDs and confirmed transactions in evidence |
+| Initialized governance/settlement/pool/token bindings | Initialized and checked |
+| Settlement signer weights and thresholds observed on-chain | Both roles: 1/1/1 weights, 2/2/2 thresholds, setup master 0 |
+| Backend-only / insufficient-signature completion rejected; balances unchanged | Disabled setup key rejected with txBadAuth, balances unchanged; member 1-of-3 test pending |
 | Quorum-authorized completion succeeds with fixed 82/10/5/2/1 payout | Not exercised |
-| Sponsor funding and sponsor activation (approval) | Not exercised |
+| Sponsor funding and sponsor activation (approval) | Campaign 1 funded with 1 test XLM and activated; confirmed hashes recorded |
 | Admin alternative split and destination attempts rejected | Local tests/CI; retain any testnet rejection evidence |
-| Expiry/timeout boundary and refund to original sponsor | Not exercised |
+| Expiry/timeout boundary and refund to original sponsor | Campaign 2 funded; real expiry 3 November 2026 12:46:17 UTC; refund pending |
 | No double completion/refund and campaign liability reconciled | Not exercised |
-| README v2 ID and StellarExpert links for each accepted transaction | Pending deployment |
+| README v2 ID and StellarExpert links for each accepted transaction | IDs and confirmed deploy/init/handoff/fund/activate links supplied; completion/refund pending |
 
 Map the team's `approve` to sponsor-authorized `activate`, `release` to `complete`,
 and `timeout` to the expiry condition exercised by `refund_expired`. There is no
