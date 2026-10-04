@@ -1,0 +1,54 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.contract }} / Rust ${{ matrix.rust }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - contract: campaign_escrow
+            rust: "1.81.0"
+            target: wasm32-unknown-unknown
+          - contract: contributor_pool
+            rust: "1.81.0"
+            target: wasm32-unknown-unknown
+          - contract: reputation_anchor
+            rust: "1.81.0"
+            target: wasm32-unknown-unknown
+          - contract: layerzero_receipt_adapter
+            rust: "1.90.0"
+            target: wasm32v1-none
+          - contract: layerzero_funding_inbox
+            rust: "1.90.0"
+            target: wasm32v1-none
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+          targets: ${{ matrix.target }}
+      - name: Test and build locked source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/verify-contract.sh '${{ matrix.contract }}' '${{ matrix.rust }}' '${{ matrix.target }}'
+      - name: Retain test transcripts and WASM hashes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-${{ matrix.contract }}
+          path: evidence/current/${{ matrix.contract }}/
+          if-no-files-found: error
