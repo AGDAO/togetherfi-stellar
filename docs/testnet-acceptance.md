@@ -48,7 +48,7 @@ this quorum. No private keys should be provided in chat.
 | Evidence | Current status |
 |---|---|
 | Exact source commit, lockfile hashes, compiler/target, fresh WASM hashes | Local inputs retained; all three RPC-retrieved WASMs match tested hashes |
-| Successful CI run for exact deployed source | Escrow/reputation source CI passed; expanded five-package CI pending permissions |
+| Successful CI run for exact deployed source | Historical escrow/reputation CI passed; active expanded workflow now checks all five contract tests/builds plus Node approval guards. Latest result: [CI runs](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004) |
 | Fresh contributor-pool instances and escrow v2 contract ID | Deployed; IDs and confirmed transactions in evidence |
 | Initialized governance/settlement/pool/token bindings | Initialized and checked |
 | Settlement signer weights and thresholds observed on-chain | Both roles: 1/1/1 weights, 2/2/2 thresholds, setup master 0 |

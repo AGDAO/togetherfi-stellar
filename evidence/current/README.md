@@ -30,6 +30,10 @@ https://github.com/AGDAO/togetherfi-stellar/pull/1
 Public CI:
 https://github.com/AGDAO/togetherfi-stellar/actions/runs/37198273693
 
-The public run passed the two existing jobs (escrow and reputation); it is not
-five-package CI evidence. The five-package workflow is prepared but pending an
-authorized workflow-file update. No immutable release tag has been changed.
+The historical public run passed two jobs (escrow and reputation); it is not
+five-package CI evidence. The expanded workflow is now active on the review
+branch and includes five contract test/WASM-build jobs plus the Node guards.
+[Current results and CI-generated artifacts](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004)
+are distinct from these retained local transcripts. The receipt-adapter source
+was aligned with the locally validated version by removing unused `extern crate alloc`.
+No immutable release tag has been changed.

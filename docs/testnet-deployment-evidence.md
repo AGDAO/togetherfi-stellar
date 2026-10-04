@@ -77,9 +77,11 @@ RPC retrieval of all three deployed WASM files matched the locally tested hashes
 
 Core Rust source/lockfiles were not changed by deployment. The earlier verification
 remains 49 local native tests and five successful WASM builds, with two existing
-public CI jobs passing. Eight additional local Node tests check signer validation,
+historical public CI jobs passing. Eight additional local Node tests check signer validation,
 thresholds, disabled-master requirements, distinct signatures and contract IDs.
-Expanded five-package public CI remains pending workflow-write permission.
+The expanded public workflow is now active with all five package tests/builds
+and offline Node guards. See [current CI runs](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004)
+for the actual results and retained artifacts.
 
 The disabled governance setup key's role-rotation attempt and the disabled
 settlement setup key's completion attempt were rejected with `txBadAuth`.
@@ -112,7 +114,8 @@ ledger-confirmed failed transactions; their results are retained in the manifest
    expiry or relabel a shortened fixture as this deployed v2.
 3. Owner review is the only assigned review. If the architecture team requires
    independent review, that separate condition remains unmet.
-4. Apply the proposed expanded workflow with authorized workflow-write access.
+4. Expanded CI is installed using newly authorized workflow-write access;
+   retain its successful run separately from on-chain acceptance evidence.
 5. Final production asset, mainnet signers, operational custody and production
    launch require separate decisions; optional LayerZero components remain undeployed.
 

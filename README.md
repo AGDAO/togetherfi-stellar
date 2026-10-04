@@ -57,10 +57,12 @@ Direct tests in [campaign escrow tests](contracts/campaign_escrow/src/test.rs):
 
 The verification script uses Rust-compatible committed lockfiles (`--locked`),
 tests all five packages, and builds their WASM with pinned toolchains.
-The expanded workflow tests all five independently and retains verification
-artifacts. Applying that workflow to the public repository requires workflow-write
-permission; a non-executing copy is supplied as `docs/proposed-ci-workflow.yml`
-in the review PR. Until it is applied, public CI covers escrow and reputation only.
+The active expanded workflow tests and builds all five contracts independently,
+retains verification artifacts, and runs the offline Node approval guards.
+It is installed on the review branch using explicitly authorized workflow-write
+access. A reference copy is supplied as `docs/proposed-ci-workflow.yml`.
+See [current CI runs](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004)
+for the actual result; workflow configuration alone is not passing evidence.
 The previous CI and published lockfiles resolved newer edition-2024 dependencies
 incompatible with Rust 1.81, failing before contract tests ran. A configured workflow is not
 a passing run; use the linked Actions result as the current CI evidence.

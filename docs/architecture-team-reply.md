@@ -21,9 +21,12 @@ validation only, not mainnet deployment or a production-readiness claim.
   matched the tested builds. Eight deployed escrow/pool source and lockfile inputs
   matched the tested public commit. This comparison is limited to deployed core
   packages, not all five local packages.
-- The prepared [expanded CI workflow](proposed-ci-workflow.yml) covers all five
-  packages, but is not active: the connected credential cannot write Actions
-  workflows. Existing two-job CI must not be described as five-package coverage.
+- The [expanded CI workflow](../.github/workflows/test.yml) is now active:
+  five independent contract test/WASM-build jobs plus the Node approval guards.
+  [Current six-job CI results and artifacts](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004)
+  replace the previous permission blocker. The optional receipt adapter's
+  unused `extern crate alloc` was removed to fix its WASM allocator-link failure;
+  deployed escrow/pool Rust inputs were unchanged.
 
 ## Fixed economics and committed destinations
 
@@ -100,13 +103,12 @@ Completed implementation and validation will not be rebilled as future grant wor
 1. **Real timeout/refund proof:** campaign 2 reaches the unchanged 30-day expiry on
    **3 November 2026 at 12:46:17 UTC**. Its confirmed refund to the original fixture
    sponsor is still pending. We have not shortened the expiry or claimed it complete.
-2. **Expanded public CI:** an authorized maintainer must apply the prepared workflow.
-3. **Independent review:** no independent human escrow v2 reviewer is assigned.
+2. **Independent review:** no independent human escrow v2 reviewer is assigned.
    If that is required for acceptance, it remains unmet.
-4. **Availability disclosure:** approximately 17 hours/week is a proposed shared
+3. **Availability disclosure:** approximately 17 hours/week is a proposed shared
    allocation, not yet a confirmed commitment; weekly availability and parallel
    commitments still require my confirmation.
-5. **Production decisions:** final settlement asset/issuer, different mainnet signer
+4. **Production decisions:** final settlement asset/issuer, different mainnet signer
    addresses, operational custody/drills and launch authorization remain separate
    gates. Native testnet XLM is a validation fixture, not a final asset decision.
 

@@ -5,8 +5,10 @@ deployed on Stellar Testnet. Two-member completion, exact 82/10/5/2/1 payout and
 liability reconciliation are confirmed. Current proof supersedes historical
 deployment-pending statements below; see the public review PR
 https://github.com/AGDAO/togetherfi-stellar/pull/1 and its testnet evidence document.
-The real 30-day refund, expanded CI permissions and any required independent
-human review remain open. No mainnet or real-funds readiness is claimed.
+Expanded CI now covers five contract tests/builds plus the Node approval guards;
+see the current review-branch Actions run for actual results. The real 30-day
+refund and any required independent human review remain open.
+No mainnet or real-funds readiness is claimed.
 
 **Audience:** founder and architecture team  
 **Evidence cut-off:** repository state and tracked documentation reviewed 13 September 2026  

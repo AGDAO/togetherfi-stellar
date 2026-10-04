@@ -1,7 +1,5 @@
 #![no_std]
 
-extern crate alloc;
-
 use endpoint_v2::{MessagingFee, MessagingReceipt, Origin};
 use oapp::{
     oapp_core::{endpoint_client, get_peer_or_panic},
