@@ -140,7 +140,7 @@ the allowlisted OFT sponsor-funding route.
 pub struct ScoreRecord {
     pub profile_id:       u64,    // TogetherFi DB profile ID
     pub creator:          Address, // Stellar G-key
-    pub score:            u32,    // 0–1000 (TogetherScore v2)
+    pub score:            u32,    // 0-1000 (TogetherScore v2)
     pub tier:             Symbol, // "bronze" | "silver" | "gold"
     pub arbitrum_tx_hash: String, // historical optional external reference
     pub anchored_at:      u64,   // unix timestamp (ledger time)
@@ -344,4 +344,4 @@ README.md
 
 ## License
 
-MIT © 2024–2026 TogetherFi
+MIT © 2024-2026 TogetherFi
