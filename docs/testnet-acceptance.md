@@ -1,19 +1,45 @@
-# Escrow v2 testnet acceptance — pending authorization
+# Escrow v2 testnet acceptance — authorized, configuration pending
 
 No command in this checklist has been executed as a deployment. No v2 ID,
 multisig configuration, explorer transaction, or independent review is claimed.
 Historical v1 IDs and transactions remain historical only.
 
+The owner permits the architecture team's requested testnet validation. This is
+testnet-only authorization, not mainnet or real-funds approval. Deployment remains
+blocked on the actual public signer/account configuration, not on a new request
+for grant approval.
+
+## Selected signer policy
+
+Reuse the Arbitrum model's **2-of-3 approval policy**, implemented through native
+Stellar account signer weights and thresholds rather than an EVM contract.
+Ayoub Arbani and Draco are the first two proposed signer holders. The third
+holder is not selected yet and must actually be provisioned; it is not a
+placeholder or a third key held by the backend.
+
+Use three independently held Stellar signing keys, proposed weight 1 each and
+required quorum 2. Protect governance as well as settlement. Signer names and
+Arbitrum addresses are not Stellar G-account public keys and cannot configure
+this quorum. No private keys should be provided in chat.
+
 ## Required decisions
 
-- Confirm grant approval and obtain separate owner authorization before deployment.
-  Resolve the architecture team's requested pre-grant sequencing with the owner.
+- Retain the owner's testnet-only authorization and identify the exact validation
+  deployment in its manifest. Do not treat this as mainnet authorization.
 - Select the exact testnet asset/issuer/contract and seven-decimal base units.
 - Name governance and settlement account custodians; choose independent settlement
   signers, weights, and quorum. A backend-controlled quorum does not solve single-key
   custody. Check the applicable Stellar account thresholds and Soroban authorization,
   including signer/threshold changes and recovery paths.
+  Governance must also require independent authorization: a backend-only governance
+  key could otherwise propose a new backend-controlled settlement address and accept
+  that role using its own new key. Test insufficient-quorum role rotation as well as
+  insufficient-quorum settlement. No backend-held key combination may control either
+  required quorum, account reconfiguration, or recovery by itself.
 - Name the independent PR reviewer and record review of escrow v2 and configuration.
+  Draco's proposed signer role is not evidence that he independently reviewed the
+  PR. Confirm whether he authored the Soroban changes; a teammate can review a PR
+  independently of its author, but do not represent that as an external audit.
 
 ## Required evidence
 

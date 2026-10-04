@@ -3,8 +3,9 @@
 ## Grant preparation status
 
 The Campaign Escrow v2 source in this working tree is implemented and locally
-tested but **has not been deployed**. No deployment is authorized as part of
-this grant-preparation work. The contract IDs and transactions below document
+tested but **has not been deployed**. The owner permits the architecture team's
+requested testnet validation; actual signer/account configuration is pending.
+No mainnet deployment or real-funds activity is authorized. The IDs below document
 the earlier v1 testnet baseline only; they are existing evidence and must not be
 claimed as new grant-funded delivery.
 
@@ -21,10 +22,11 @@ Ayoub Arbani is the CEO/Developer and Soroban technical owner:
 [LinkedIn](https://linkedin.com/in/ayoub-arbani/).
 AI coding assistants produced most implementation under his direction.
 AI-assisted implementation and local review are not an independent human audit.
-The grant plan uses approximately 17 hours/week across remaining core Soroban
-work, not 17 hours per work package. Parallel commitments and a separate
-independent PR reviewer still require owner confirmation; no reviewer is named
-or represented as having approved escrow v2.
+The draft grant plan proposes approximately 17 hours/week across remaining core
+Soroban work, not 17 hours per work package. Actual weekly availability and parallel
+commitments still require owner confirmation. Draco is identified as a second
+team developer and proposed multisig signer, not yet as a confirmed independent
+Soroban PR reviewer; no completed human escrow v2 review is claimed.
 
 ## Architecture-team acceptance evidence
 
@@ -49,10 +51,16 @@ The previous CI and published lockfiles resolved newer edition-2024 dependencies
 incompatible with Rust 1.81, failing before contract tests ran. A configured workflow is not
 a passing run; use the linked Actions result as the current CI evidence.
 
-The selected settlement-control mechanism is a native Stellar account multisig.
+The selected settlement-control mechanism is a native Stellar account multisig
+with a **2-of-3** policy, matching the owner's Arbitrum model. Ayoub Arbani and
+Draco are the first two proposed signer holders; the third is still to select.
+Three independently held Stellar signing keys are required, not EVM addresses
+or three keys held by the backend.
 It is **not yet configured or verified on-chain**. Account signer weights,
 thresholds, separate custody, and below-quorum rejection/quorum success must be
 proved on testnet before claiming single-backend-key control has been removed.
+Governance custody must also be independently threshold-controlled so the backend
+cannot bypass settlement quorum by rotating the settlement role to its own key.
 See [testnet acceptance checklist](docs/testnet-acceptance.md).
 
 Arbitrum-triggered Stellar payments are **excluded from the current grant scope**.
