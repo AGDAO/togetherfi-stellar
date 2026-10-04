@@ -1,0 +1,77 @@
+Local/CI source verification only; no deployment or on-chain quorum proof.
+generated_at_utc=2026-10-04T11:14:24Z
+package=reputation_anchor
+toolchain=1.81.0
+target=wasm32-unknown-unknown
+rustc 1.81.0 (eeb90cda1 2024-09-04)
+cargo 1.81.0 (2dbb1af80 2024-08-20)
+d0890637bb805255e21e5ffc14fb694a5bee6f36989420aa41a5d32c1a8360af  Cargo.toml
+568a7a0a6273f7f631709cf71c2de103a87804c2e62b6945ab984e92a1792978  Cargo.lock
+653e08d9cd594057b7bf3332348c823a22faa002e4b2e8f886273eef9dcc785b  src/lib.rs
+331550c693b49d5a564c82e1dcabcade23ab27e6aee2c663db3fe6df406e0f15  src/test.rs
+$ cargo test --locked
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+  --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:19:20
+   |
+19 | use generic_array::ArrayLength;
+   |                    ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:159:27
+    |
+159 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:188:27
+    |
+188 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: `soroban-env-host` (lib) generated 3 warnings
+warning: unused variable: `creator`
+   --> src/test.rs:181:9
+    |
+181 |     let creator = Address::generate(&env);
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_creator`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: fields `contract_id` and `admin` are never read
+  --> src/test.rs:13:5
+   |
+11 | struct TestSetup<'a> {
+   |        --------- fields in this struct
+12 |     env: Env,
+13 |     contract_id: Address,
+   |     ^^^^^^^^^^^
+14 |     contract: ReputationAnchorClient<'a>,
+15 |     admin: Address,
+   |     ^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: `reputation-anchor` (lib test) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (target/debug/deps/reputation_anchor-a9b676e418601757)
+
+running 11 tests
+test test::test_batch_read_empty_input ... ok
+test test::test_double_initialize_fails ... ok
+test test::test_anchor_and_retrieve_score ... ok
+test test::test_invalid_score_out_of_range ... ok
+test test::test_max_score_accepted ... ok
+test test::test_score_not_found ... ok
+test test::test_batch_read ... ok
+test test::test_multiple_profiles_independent ... ok
+test test::test_zero_score_accepted ... ok
+test test::test_update_existing_score ... ok
+test test::test_unauthorized_anchor_fails ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.26s
+
+$ cargo build --locked --release --target wasm32-unknown-unknown
+    Finished `release` profile [optimized] target(s) in 0.17s
+561e7d41f915be881e8cc77dacfc0d712b3f2053295527a7a2467d77a26835a4  target/wasm32-unknown-unknown/release/reputation_anchor.wasm

@@ -1,7 +1,7 @@
 {
   "network": "testnet",
   "created_at": "2026-10-04T12:44:49.570Z",
-  "status": "deployed_and_locked_to_2_of_3; quorum_completion_pending",
+  "status": "quorum_completion_verified; real_30_day_refund_proof_pending",
   "review": "owner-only; no independent review claimed",
   "signers": {
     "Ayoub": "GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE",
@@ -168,6 +168,23 @@
       "status": "rejected_before_ledger",
       "result_xdr": "AAAAAAAl7Xv////6AAAAAA==",
       "reason": "txBadAuth"
+    },
+    {
+      "label": "one_of_three_member_completion_rejected",
+      "hash": "ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404",
+      "signed_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgX2CBAATJTvAAAAAQAAAAEAAAAAAAAAAAAAAABqw6oTAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAABaqYOARXqux56lo00CbgegZ4+XPf8EAdZTpZBiq2oCAAAAAAAAAAAFIwv9POs+XoglvfpvgLTp36NOJ2s6y/fz+kTSkbeh4HAAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAEAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAEAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAEAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAABAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEg/swAAAbAAAA+AAAAAAAF9eEAAAAAAXMK+PoAAABA8Ny7eeoyS57pLhGNh5Udp7AiUwiXUe4xHiR0ENIuYPMbA/jt1HWWPQIqoPS3rETdB2J2pi9bIZ1MdiKirRy3Ag==",
+      "status": "rejected_before_ledger",
+      "result_xdr": "AAAAAAX14WT////6AAAAAA==",
+      "reason": "txBadAuth"
+    },
+    {
+      "label": "two_of_three_completion_confirmed",
+      "hash": "ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404",
+      "signed_xdr": "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",
+      "status": "confirmed_success",
+      "ledger": 5019829,
+      "ledger_closed_at": "1791122732",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404"
     }
   ],
   "evidence": {
@@ -338,7 +355,91 @@
       }
     },
     "last_network_verification_utc": "2026-10-04T12:47:45.014Z",
-    "deployed_core_source_matches_public_commit": true
+    "deployed_core_source_matches_public_commit": true,
+    "one_of_three_rejection": {
+      "reason": "txBadAuth",
+      "type": "RPC ingestion rejection, not a confirmed ledger transaction"
+    },
+    "campaign_1_after_completion": {
+      "amount": "10000000",
+      "creator": "GBJDBP6TZ2Z6L2ECLPP2N6ALJ2O7UNHCO2Z2ZP37H6SE2KI3PIPAOEFC",
+      "expires_at": "1793709967",
+      "funded_at": "1791117967",
+      "operation_version": 1,
+      "referrer": "GAC2VGBYARL2V3DZ5JNDJUBG4B5AM6HZOPP7AQA5MU5FSBRKW2QCBAKI",
+      "sponsor": "GBAFTNVGOI6JBJH5TKYDIQGKFFKP2YZIHAPKQMHNML5ELEMHLGCUIEQG",
+      "status": [
+        "Completed"
+      ],
+      "terms_hash": {
+        "type": "Buffer",
+        "data": [
+          101,
+          115,
+          99,
+          114,
+          111,
+          119,
+          45,
+          118,
+          50,
+          45,
+          116,
+          101,
+          115,
+          116,
+          110,
+          101,
+          116,
+          45,
+          97,
+          99,
+          99,
+          101,
+          112,
+          116,
+          97,
+          110,
+          99,
+          101
+        ]
+      }
+    },
+    "accounting_after_completion": {
+      "escrow": {
+        "TotalLiability": "10000000"
+      },
+      "nft_pool": {
+        "TotalCredited": "500000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      },
+      "revenue_pool": {
+        "TotalCredited": "200000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      }
+    },
+    "liability_reconciled": "Only the funded 1-test-XLM expiry campaign remains owed",
+    "balances_after_completion": {
+      "creator": "100008200000",
+      "service": "99705159777",
+      "nft_pool": "500000",
+      "revenue_pool": "200000",
+      "referrer": "100000100000",
+      "escrow": "10000000"
+    },
+    "split_verified": "82/10/5/2/1, exact base-unit deltas",
+    "terminal_replay_checks": {
+      "repeat_completion": {
+        "type": "RPC simulation rejection; not a ledger transaction",
+        "error": "HostError: Error(Contract, #6)\n\nEvent log (newest first):\n   0: [Diagnostic Event] contract:CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ, topics:[error, Error(Contract, #6)], data:\"escalating Ok(ScErrorType::Contract) frame-exit"
+      },
+      "refund_after_completion": {
+        "type": "RPC simulation rejection; not a ledger transaction",
+        "error": "HostError: Error(Contract, #6)\n\nEvent log (newest first):\n   0: [Diagnostic Event] contract:CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ, topics:[error, Error(Contract, #6)], data:\"escalating Ok(ScErrorType::Contract) frame-exit"
+      }
+    }
   },
   "fixture_custody": "Sponsor, recipients, treasury and eligibility are test fixtures, not production custody.",
   "wasm_sha256": {
@@ -346,14 +447,17 @@
     "contributor_pool": "2f24a684373cfb2683912b1a85be0b8e4ac859fb64c15b14a52050579e99a865"
   },
   "approval": {
-    "status": "requires_two_member_wallet_signatures",
-    "hash": "eabbc540c1f2e864679f16b089037ed076cf72c1c15e3fd5bc0092641c9a837a",
-    "unsigned_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgAmFCcATJTvAAAAAQAAAAEAAAAAAAAAAAAAAABqw5wcAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAAAAAAAAAAAAAA=",
+    "status": "confirmed",
+    "hash": "ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404",
+    "unsigned_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgX2CBAATJTvAAAAAQAAAAEAAAAAAAAAAAAAAABqw6oTAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAABaqYOARXqux56lo00CbgegZ4+XPf8EAdZTpZBiq2oCAAAAAAAAAAAFIwv9POs+XoglvfpvgLTp36NOJ2s6y/fz+kTSkbeh4HAAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAEAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAEAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAEAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAABAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEg/swAAAbAAAA+AAAAAAAF9eEAAAAAAA==",
     "source": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
     "campaign_id": 1,
     "amount_base_units": "10000000",
     "expected_split": "82/10/5/2/1",
-    "signature_deadline_utc": "2026-10-05T12:46:20.000Z"
+    "signature_deadline_utc": "2026-10-05T13:45:55.000Z",
+    "signing_method": "Freighter official signing-only playground; do not re-simulate",
+    "fee_cap_test_xlm": "10.001",
+    "completion_ledger": 5019829
   },
   "source": {
     "repository": "https://github.com/AGDAO/togetherfi-stellar",
@@ -401,5 +505,17 @@
         "matched": true
       }
     ]
-  }
+  },
+  "approval_history": [
+    {
+      "status": "requires_two_member_wallet_signatures",
+      "hash": "eabbc540c1f2e864679f16b089037ed076cf72c1c15e3fd5bc0092641c9a837a",
+      "unsigned_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgAmFCcATJTvAAAAAQAAAAEAAAAAAAAAAAAAAABqw5wcAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAABAAAAAwAAAAEAAAAAAAAAAAAAAAA=",
+      "source": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
+      "campaign_id": 1,
+      "amount_base_units": "10000000",
+      "expected_split": "82/10/5/2/1",
+      "signature_deadline_utc": "2026-10-05T12:46:20.000Z"
+    }
+  ]
 }

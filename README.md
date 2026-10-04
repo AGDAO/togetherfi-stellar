@@ -5,13 +5,22 @@
 Campaign Escrow v2 and both dedicated contributor pools are **deployed and
 initialized on Stellar Testnet** for the architecture team's requested validation.
 Both role accounts have verified 2-of-3 configurations and disabled setup masters.
-Quorum-authorized completion is pending member signatures; no production readiness,
+Quorum-authorized completion is confirmed with two verified member signatures; no production readiness,
 mainnet deployment or real-funds activity is claimed or authorized.
 Historical v1 IDs remain separately labeled below.
 
 Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
 transactions, deployed WASM verification and pending acceptance gates.
 See [wallet signing instructions](docs/testnet-signing.md) for the quorum test.
+
+Confirmed lifecycle proofs:
+[v2 deployment](https://stellar.expert/explorer/testnet/tx/86f5b65bfb589121aa44e207922c18ce3fcc7a0422cd7dbb68dc8c8d593b3114),
+[2-of-3 handoff](https://stellar.expert/explorer/testnet/tx/9bb97971a294acc396362834eefdcc1cb96c2fe8916be8e8294a4bc482451d29),
+[sponsor funding](https://stellar.expert/explorer/testnet/tx/53c2e5ed884c8575507760640ed1d05749f22388418468ee28cafa6d674bc0e3),
+[sponsor activation/approval](https://stellar.expert/explorer/testnet/tx/8ecd390622067c25610596b0ce78101c5db6d956293119109b176225dc76b729).
+[Quorum-authorized release](https://stellar.expert/explorer/testnet/tx/ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404)
+is confirmed with exact 82/10/5/2/1 payout deltas and reconciled liability.
+The real 30-day timeout/refund proof remains pending.
 
 This working tree is pinned to upstream baseline commit
 `6fd30883bf8c305eb8dd8a8a8fabe7226171332b` in `UPSTREAM_COMMIT`.
@@ -31,6 +40,7 @@ commitments still require owner confirmation. Ayoub Arbani is the sole current
 reviewer as well as the implementation owner. Ace and King are security co-signers,
 not reviewers. Owner review is not independent review; no independent human
 escrow v2 review or external audit is claimed.
+[King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
 
 ## Architecture-team acceptance evidence
 
@@ -62,8 +72,9 @@ Three independently held Stellar signing keys are required, not EVM addresses
 or three keys held by the backend.
 Both account configurations are **verified on testnet**: signer weights 1/1/1,
 low/medium/high thresholds 2/2/2, setup master weight 0. Disabled setup-key attempts
-were rejected by the network. Actual member 1-of-3 rejection and 2-of-3 completion
-remain pending wallet signatures. Mainnet needs different owner-provided wallets.
+were rejected by the network. Actual member 1-of-3 rejection occurred at RPC
+ingestion, and 2-of-3 completion is ledger-confirmed. Mainnet needs different
+owner-provided wallets.
 Governance custody must also be independently threshold-controlled so the backend
 cannot bypass settlement quorum by rotating the settlement role to its own key.
 See [testnet acceptance checklist](docs/testnet-acceptance.md).
@@ -129,7 +140,7 @@ asset), which ensures every fixed 5% / 2% / 1% payout leg is nonzero.
 Both separate instances are deployed and initialized:
 - 5% MOFO: `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76`.
 - 2% community: `CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25`.
-Their first campaign credits await quorum-authorized completion.
+Their first authenticated campaign credits are confirmed: 0.05 and 0.02 test XLM.
 
 Deploy **two separately initialized instances**: one for the 5% MOFO
 contributor allocation and one for the 2% community contributor allocation.

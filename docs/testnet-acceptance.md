@@ -1,8 +1,8 @@
-# Escrow v2 testnet acceptance — deployed, quorum completion pending
+# Escrow v2 testnet acceptance — quorum completion confirmed
 
 V2 and both contributor pools are deployed and initialized on testnet. Role-account
-configuration and disabled setup-key rejections are verified. Quorum completion,
-real expiry refund and independent review are not claimed. Historical v1 IDs
+configuration, disabled setup-key rejections and quorum completion are verified.
+Real expiry refund and independent human review are not claimed. Historical v1 IDs
 remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
 The owner permits the architecture team's requested testnet validation. This is
@@ -52,13 +52,13 @@ this quorum. No private keys should be provided in chat.
 | Fresh contributor-pool instances and escrow v2 contract ID | Deployed; IDs and confirmed transactions in evidence |
 | Initialized governance/settlement/pool/token bindings | Initialized and checked |
 | Settlement signer weights and thresholds observed on-chain | Both roles: 1/1/1 weights, 2/2/2 thresholds, setup master 0 |
-| Backend-only / insufficient-signature completion rejected; balances unchanged | Disabled setup key rejected with txBadAuth, balances unchanged; member 1-of-3 test pending |
-| Quorum-authorized completion succeeds with fixed 82/10/5/2/1 payout | Not exercised |
+| Backend-only / insufficient-signature completion rejected; balances unchanged | Disabled setup key and actual member 1-of-3 rejected at RPC ingestion with txBadAuth; no payout |
+| Quorum-authorized completion succeeds with fixed 82/10/5/2/1 payout | Confirmed in ledger 5019829 with Ayoub and King signatures; exact deltas verified |
 | Sponsor funding and sponsor activation (approval) | Campaign 1 funded with 1 test XLM and activated; confirmed hashes recorded |
 | Admin alternative split and destination attempts rejected | Local tests/CI; retain any testnet rejection evidence |
 | Expiry/timeout boundary and refund to original sponsor | Campaign 2 funded; real expiry 3 November 2026 12:46:17 UTC; refund pending |
-| No double completion/refund and campaign liability reconciled | Not exercised |
-| README v2 ID and StellarExpert links for each accepted transaction | IDs and confirmed deploy/init/handoff/fund/activate links supplied; completion/refund pending |
+| No double completion/refund and campaign liability reconciled | Native tests and deployed-contract RPC simulations reject repeat completion/refund after completion with InvalidState; not failed ledger transactions. Remaining escrow liability exactly 1 test XLM |
+| README v2 ID and StellarExpert links for each accepted transaction | Deploy/init/handoff/fund/activate/complete links published; real expiry refund pending |
 
 Map the team's `approve` to sponsor-authorized `activate`, `release` to `complete`,
 and `timeout` to the expiry condition exercised by `refund_expired`. There is no

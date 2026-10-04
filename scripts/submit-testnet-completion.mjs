@@ -30,11 +30,23 @@ for (const role of ['governance', 'settlement']) {
 }
 const prior = manifest.transactions.find(entry =>
   entry.label === 'two_of_three_completion_confirmed' &&
-  entry.hash === manifest.approval.hash && entry.status === 'confirmed_success');
+  entry.hash === manifest.approval.hash);
 let result;
 if (prior) {
   result = await server.getTransaction(prior.hash);
-  if (result.status !== 'SUCCESS') throw new Error('Previously confirmed completion unavailable');
+  if (result.status === 'FAILED') throw new Error('Previously broadcast completion failed');
+  if (result.status !== 'SUCCESS') {
+    if (prior.status === 'confirmed_success') {
+      throw new Error('Previously confirmed completion unavailable; do not resubmit');
+    }
+    const frozen = TransactionBuilder.fromXDR(prior.signed_xdr, NETWORK);
+    if (frozen.hash().toString('hex') !== manifest.approval.hash ||
+        approvedSignatureCount(frozen, keys) < 2) {
+      throw new Error('Persisted completion envelope failed validation');
+    }
+    // A crash/unknown response must replay the exact saved signed bytes.
+    result = await submitPrepared(frozen, 'two_of_three_completion_confirmed', manifest, PATH);
+  }
 } else {
   // Preserve an actual member's single signature to prove 1-of-3 rejection.
   const one = TransactionBuilder.fromXDR(signed.toXDR(), NETWORK);
@@ -73,6 +85,26 @@ const raw = await basicTransaction(manifest.accounts.settlement, [
 const simulation = await server.simulateTransaction(raw);
 if (!rpc.Api.isSimulationSuccess(simulation)) throw new Error('Campaign read failed');
 manifest.evidence.campaign_1_after_completion = scValToNative(simulation.result.retval);
+if (manifest.evidence.campaign_1_after_completion.status[0] !== 'Completed') {
+  throw new Error('Campaign is not in the expected terminal Completed state');
+}
+const counters = {};
+for (const name of ['escrow', 'nft_pool', 'revenue_pool']) {
+  const ledger = await server.getLedgerEntries(new Contract(manifest.contracts[name].id).getFootprint());
+  if (ledger.entries.length !== 1) throw new Error('Contract instance unavailable: ' + name);
+  counters[name] = Object.fromEntries(
+    ledger.entries[0].val.contractData().val().instance().storage().map(entry => {
+      const key = scValToNative(entry.key());
+      return [Array.isArray(key) ? key[0] : key, scValToNative(entry.val())];
+    }).filter(([key]) => ['TotalLiability', 'TotalCredited', 'TotalPaid'].includes(key)));
+}
+if (counters.escrow.TotalLiability !== 10_000_000n ||
+    counters.nft_pool.TotalCredited !== 500_000n ||
+    counters.revenue_pool.TotalCredited !== 200_000n) {
+  throw new Error('Escrow liability or authenticated pool-credit counters do not reconcile');
+}
+manifest.evidence.accounting_after_completion = counters;
+manifest.evidence.liability_reconciled = 'Only the funded 1-test-XLM expiry campaign remains owed';
 manifest.evidence.balances_after_completion = after;
 manifest.evidence.split_verified = '82/10/5/2/1, exact base-unit deltas';
 manifest.approval.status = 'confirmed';

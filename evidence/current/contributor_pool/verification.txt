@@ -1,0 +1,66 @@
+Local/CI source verification only; no deployment or on-chain quorum proof.
+generated_at_utc=2026-10-04T11:14:21Z
+package=contributor_pool
+toolchain=1.81.0
+target=wasm32-unknown-unknown
+rustc 1.81.0 (eeb90cda1 2024-09-04)
+cargo 1.81.0 (2dbb1af80 2024-08-20)
+7dcfcd44ac7ea03761e4ad581cfc6bbcf8e5de7f1211aa1b634126ea1532f934  Cargo.toml
+d1a00c6a94980e0b574b0d39a21454f82d86f453a245d4b8a3f3f1cde9b06633  Cargo.lock
+7b3d5e6a18ae45cd3849324411b374c69ca79b7d08bc09566c938af99421d72b  src/lib.rs
+0e8471e019b0920c0da254bcdd4bd416b23a8e05fb9668397aaaac2a19d09e6f  src/test.rs
+$ cargo test --locked
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+  --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:19:20
+   |
+19 | use generic_array::ArrayLength;
+   |                    ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:159:27
+    |
+159 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:188:27
+    |
+188 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: `soroban-env-host` (lib) generated 3 warnings
+warning: use of deprecated method `soroban_sdk::Env::register_stellar_asset_contract`: use [Env::register_stellar_asset_contract_v2]
+  --> src/test.rs:37:24
+   |
+37 |     let token_id = env.register_stellar_asset_contract(token_admin.clone...
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated method `soroban_sdk::Env::register_stellar_asset_contract`: use [Env::register_stellar_asset_contract_v2]
+   --> src/test.rs:125:24
+    |
+125 |     let token_id = env.register_stellar_asset_contract(token_admin);
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `contributor-pool` (lib test) generated 2 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.42s
+     Running unittests src/lib.rs (target/debug/deps/contributor_pool-0047615ff640e527)
+
+running 8 tests
+test test::independent_authorities_cannot_be_collapsed_to_one_signer ... ok
+test test::insufficient_funds_and_duplicate_recipients_fail_closed ... ok
+test test::direct_token_transfers_never_become_allocatable_campaign_funding ... ok
+test test::claim_window_is_bounded_and_manifest_ids_cannot_be_reused ... ok
+test test::pause_and_role_rotation_do_not_allow_arbitrary_release ... ok
+test test::manifest_is_exact_immutable_and_claims_are_recipient_authorized ... ok
+test test::role_auth_and_claim_auth_are_enforced_without_blanket_auth ... ok
+test test::unclaimed_amount_carries_forward_after_expiry_without_any_transfer ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.65s
+
+$ cargo build --locked --release --target wasm32-unknown-unknown
+    Finished `release` profile [optimized] target(s) in 0.25s
+2f24a684373cfb2683912b1a85be0b8e4ac859fb64c15b14a52050579e99a865  target/wasm32-unknown-unknown/release/contributor_pool.wasm
