@@ -13,9 +13,9 @@ for grant approval.
 
 Reuse the Arbitrum model's **2-of-3 approval policy**, implemented through native
 Stellar account signer weights and thresholds rather than an EVM contract.
-Ayoub Arbani and Draco are the first two proposed signer holders. The third
-holder is not selected yet and must actually be provisioned; it is not a
-placeholder or a third key held by the backend.
+The selected signer holders are **Ayoub Arbani, Ace, and King**. Ace and King
+are security co-signers only, not PR reviewers. All three must have independently
+held Stellar signing keys; none may be a placeholder or an extra backend-held key.
 
 Use three independently held Stellar signing keys, proposed weight 1 each and
 required quorum 2. Protect governance as well as settlement. Signer names and
@@ -36,10 +36,11 @@ this quorum. No private keys should be provided in chat.
   that role using its own new key. Test insufficient-quorum role rotation as well as
   insufficient-quorum settlement. No backend-held key combination may control either
   required quorum, account reconfiguration, or recovery by itself.
-- Name the independent PR reviewer and record review of escrow v2 and configuration.
-  Draco's proposed signer role is not evidence that he independently reviewed the
-  PR. Confirm whether he authored the Soroban changes; a teammate can review a PR
-  independently of its author, but do not represent that as an external audit.
+- Record Ayoub's owner review of escrow v2 and configuration. He is the sole
+  current reviewer. Do not nominate Ace or King as reviewers or treat their
+  transaction signatures as code-review evidence. No independent human review
+  is provided by this arrangement; if required by the architecture team, that
+  acceptance condition remains unmet rather than being silently reclassified.
 
 ## Required evidence
 

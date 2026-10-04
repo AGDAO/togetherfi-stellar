@@ -24,9 +24,10 @@ AI coding assistants produced most implementation under his direction.
 AI-assisted implementation and local review are not an independent human audit.
 The draft grant plan proposes approximately 17 hours/week across remaining core
 Soroban work, not 17 hours per work package. Actual weekly availability and parallel
-commitments still require owner confirmation. Draco is identified as a second
-team developer and proposed multisig signer, not yet as a confirmed independent
-Soroban PR reviewer; no completed human escrow v2 review is claimed.
+commitments still require owner confirmation. Ayoub Arbani is the sole current
+reviewer as well as the implementation owner. Ace and King are security co-signers,
+not reviewers. Owner review is not independent review; no independent human
+escrow v2 review or external audit is claimed.
 
 ## Architecture-team acceptance evidence
 
@@ -52,8 +53,8 @@ incompatible with Rust 1.81, failing before contract tests ran. A configured wor
 a passing run; use the linked Actions result as the current CI evidence.
 
 The selected settlement-control mechanism is a native Stellar account multisig
-with a **2-of-3** policy, matching the owner's Arbitrum model. Ayoub Arbani and
-Draco are the first two proposed signer holders; the third is still to select.
+with a **2-of-3** policy, matching the owner's Arbitrum model. The selected
+signer holders are **Ayoub Arbani, Ace, and King**.
 Three independently held Stellar signing keys are required, not EVM addresses
 or three keys held by the backend.
 It is **not yet configured or verified on-chain**. Account signer weights,
