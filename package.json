@@ -1,0 +1,9 @@
+{
+  "name": "togetherfi-stellar-validation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node --test scripts/testnet-common.test.mjs" },
+  "dependencies": { "@stellar/stellar-sdk": "15.1.0" }
+}

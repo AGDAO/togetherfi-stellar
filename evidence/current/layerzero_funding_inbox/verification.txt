@@ -1,0 +1,32 @@
+Local/CI source verification only; no deployment or on-chain quorum proof.
+generated_at_utc=2026-10-04T11:14:35Z
+package=layerzero_funding_inbox
+toolchain=1.90.0
+target=wasm32v1-none
+rustc 1.90.0 (1159e78c4 2025-09-14)
+cargo 1.90.0 (840b83a10 2025-07-30)
+0dc5f99802b13ef0936c6e9af6173e698cca76be634b0183cd4bb00c12461f0e  Cargo.toml
+7f8c368194be8ce167cdd31dfea619a21710f533be91ff433d73d7687469e704  Cargo.lock
+2915ad6f9c4f981957b86c733bf2baccc46ca2bc96125ea736a4183f08ceefb9  src/lib.rs
+6890fbb92e0648683adbd6a3bdbfba3eab59002e7a9a17cb7bafc8c93c24198c  src/tests.rs
+$ cargo test --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.24s
+     Running unittests src/lib.rs (target/debug/deps/togetherfi_stellar_layerzero_funding_inbox-705e5789b7382a91)
+
+running 10 tests
+test tests::ambient_balance_cannot_be_allocated_by_a_non_oft_compose ... ok
+test tests::envelope_route_nonce_and_amount_must_match ... ok
+test tests::instance_and_persistent_entries_receive_safe_ttl ... ok
+test tests::official_oft_envelope_records_authenticated_amount_and_clears_full_message ... ok
+test tests::duplicate_guid_and_operation_rejected_but_nonce_gaps_and_reordering_work ... ok
+test tests::sequential_oft_credits_track_each_authenticated_oft_amount ... ok
+test tests::pause_blocks_new_liabilities_and_claims_but_not_recovery ... ok
+test tests::sponsor_cancel_and_expired_recovery_release_only_pending_liabilities ... ok
+test tests::unauthorized_or_unqueued_compose_cannot_credit ... ok
+test tests::sponsor_claim_releases_held_balance ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.58s
+
+$ cargo build --locked --release --target wasm32v1-none
+    Finished `release` profile [optimized] target(s) in 0.15s
+a5a37f66ad4b63a96d453fca9a19df728ea59399de31668d2e5250bbfac130a6  target/wasm32v1-none/release/togetherfi_stellar_layerzero_funding_inbox.wasm

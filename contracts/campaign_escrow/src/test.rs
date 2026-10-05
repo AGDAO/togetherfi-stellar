@@ -3,9 +3,9 @@
 use super::*;
 use soroban_sdk::{
     contract, contractimpl, contracttype,
-    testutils::{Address as _, Ledger},
+    testutils::{Address as _, Ledger, MockAuth, MockAuthInvoke},
     token::{StellarAssetClient, TokenClient},
-    Address, Bytes, Env,
+    Address, Bytes, Env, IntoVal, Vec,
 };
 
 #[contracttype]
@@ -147,6 +147,93 @@ fn exact_split_sends_each_leg_to_its_approved_destination() {
         amount - service - nft - revenue - referrer
     );
     assert_eq!(s.token.balance(&s.id), 0);
+}
+
+#[test]
+fn admin_alternative_split_calls_fail_without_changing_campaign_or_balances() {
+    let s = setup();
+    s.client.fund(&32, &s.sponsor, &10_000);
+    activate(&s, 32);
+    // All authorizations (including governance/admin) are mocked as valid.
+    // Even full authorization cannot introduce a split argument or setter.
+    let alternate = Vec::from_array(&s.env, [9000_i128, 1000, 0, 0, 0]);
+    let args = (32_u64, 1_u32, alternate.clone()).into_val(&s.env);
+    assert!(s.env.try_invoke_contract::<(), EscrowError>(
+        &s.id, &symbol_short!("complete"), args,
+    ).is_err());
+    assert!(s.env.try_invoke_contract::<(), EscrowError>(
+        &s.id, &symbol_short!("set_split"), (alternate,).into_val(&s.env),
+    ).is_err());
+    assert_eq!(s.client.get_campaign(&32).status, CampaignStatus::Active);
+    assert_eq!(s.token.balance(&s.id), 10_000);
+    for recipient in [&s.creator, &s.referrer, &s.service, &s.nft, &s.revenue] {
+        assert_eq!(s.token.balance(recipient), 0);
+    }
+    // The legitimate ABI still settles the original, immutable policy.
+    s.client.complete(&32, &1);
+    assert_eq!(s.token.balance(&s.creator), 8200);
+    assert_eq!(s.token.balance(&s.service), 1000);
+    assert_eq!(s.token.balance(&s.nft), 500);
+    assert_eq!(s.token.balance(&s.revenue), 200);
+    assert_eq!(s.token.balance(&s.referrer), 100);
+    assert_eq!(s.token.balance(&s.id), 0);
+}
+
+#[test]
+fn admin_cannot_select_or_replace_sponsor_committed_beneficiaries() {
+    let s = setup();
+    let attacker = Address::generate(&s.env);
+    s.client.fund(&33, &s.sponsor, &10_000);
+    let args = (33_u64, attacker.clone(), Some(attacker.clone()), terms(&s.env))
+        .into_val(&s.env);
+    s.env.mock_auths(&[MockAuth {
+        address: &s.governance,
+        invoke: &MockAuthInvoke {
+            contract: &s.id,
+            fn_name: "activate",
+            args,
+            sub_invokes: &[],
+        },
+    }]);
+    assert!(s.client.try_activate(
+        &33, &attacker, &Some(attacker.clone()), &terms(&s.env),
+    ).is_err());
+    assert_eq!(s.client.get_campaign(&33).status, CampaignStatus::Funded);
+    s.env.mock_all_auths();
+    activate(&s, 33);
+    assert!(s.client.try_activate(
+        &33, &attacker, &Some(attacker.clone()), &terms(&s.env),
+    ).is_err());
+    let committed = s.client.get_campaign(&33);
+    assert_eq!(committed.creator, s.creator);
+    assert_eq!(committed.referrer, Some(s.referrer.clone()));
+    s.client.complete(&33, &1);
+    assert_eq!(s.token.balance(&attacker), 0);
+    assert_eq!(s.token.balance(&s.creator), 8200);
+    assert_eq!(s.token.balance(&s.referrer), 100);
+}
+
+#[test]
+fn governance_is_not_the_settlement_authority() {
+    let s = setup();
+    s.client.fund(&31, &s.sponsor, &1000);
+    activate(&s, 31);
+
+    // Give governance an auth entry for the attempted completion. It must not
+    // satisfy the distinct settlement address required by complete().
+    s.env.mock_auths(&[MockAuth {
+        address: &s.governance,
+        invoke: &MockAuthInvoke {
+            contract: &s.id,
+            fn_name: "complete",
+            args: (31_u64, 1_u32).into_val(&s.env),
+            sub_invokes: &[],
+        },
+    }]);
+    assert!(
+        s.client.try_complete(&31, &1).is_err(),
+        "governance alone must not authorize settlement"
+    );
 }
 
 #[test]
