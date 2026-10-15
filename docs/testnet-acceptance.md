@@ -1,8 +1,9 @@
-# Escrow v2 testnet acceptance — quorum completion confirmed
+# Escrow v2 testnet acceptance: quorum completion confirmed
 
 V2 and both contributor pools are deployed and initialized on testnet. Role-account
 configuration, disabled setup-key rejections and quorum completion are verified.
-Real expiry refund and independent human review are not claimed. Historical v1 IDs
+Real expiry refund is not yet claimed. Separate internal human peer review by
+Zyad Rehioui (INKY) is owner-confirmed, not an external audit. Historical v1 IDs
 remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
 The owner permits the architecture team's requested testnet validation. This is
@@ -11,15 +12,17 @@ wallets are strictly testnet-only; mainnet requires different owner-provided wal
 
 ## Selected signer policy
 
-Reuse the Arbitrum model's **2-of-3 approval policy**, implemented through native
-Stellar account signer weights and thresholds rather than an EVM contract.
-The selected signer holders are **Ayoub Arbani, Ace, and King**. Ace and King
-are security co-signers only, not PR reviewers. All three must have independently
+Use a **2-of-3 approval policy**, implemented through native
+Stellar account signer weights and thresholds.
+The historical/current on-chain signer holders are **Ayoub Arbani, Ace, and King**.
+The intended roster is **Ayoub Arbani, Zyad, and King**, pending confirmed rotation.
+Zyad is also a developer/peer reviewer; King is a co-signer, not a code reviewer.
+Med Amine is a technical reviewer, not a signer. All three members must have independently
 held Stellar signing keys; none may be a placeholder or an extra backend-held key.
 
 Use three independently held Stellar signing keys, proposed weight 1 each and
 required quorum 2. Protect governance as well as settlement. Signer names and
-Arbitrum addresses are not Stellar G-account public keys and cannot configure
+Non-Stellar addresses are not Stellar G-account public keys and cannot configure
 this quorum. No private keys should be provided in chat.
 
 ## Required decisions
@@ -37,11 +40,10 @@ this quorum. No private keys should be provided in chat.
   that role using its own new key. Test insufficient-quorum role rotation as well as
   insufficient-quorum settlement. No backend-held key combination may control either
   required quorum, account reconfiguration, or recovery by itself.
-- Record Ayoub's owner review of escrow v2 and configuration. He is the sole
-  current reviewer. Do not nominate Ace or King as reviewers or treat their
-  transaction signatures as code-review evidence. No independent human review
-  is provided by this arrangement; if required by the architecture team, that
-  acceptance condition remains unmet rather than being silently reclassified.
+- Record Ayoub's owner review and the owner-confirmed separate human peer review
+  by Zyad Rehioui (INKY), another team developer. Internal peer review is not an
+  external audit; no separate review report is attached here. Do not nominate Ace
+  or King as code reviewers or treat transaction signatures as review evidence.
 
 ## Required evidence
 
@@ -66,6 +68,11 @@ separate `approve`, `release`, or `timeout` entry point. Preserve the production
 30-day expiry rather than changing it just to produce an immediate timeout proof.
 Plan the actual expiry evidence window or agree an explicitly separate test fixture
 with the team; a shortened fixture must not be described as the deployed v2 code.
+The additional 30-day live-ledger refund proof is deferred technical validation,
+not an established grant-payment prerequisite. No direct architecture-team or
+Stellar instruction requiring that specific wait is cited in this checklist.
+Confirm actual acceptance criteria rather than treating this document as proof
+of an externally imposed funding condition.
 
 Record network, contract IDs, transaction hashes, ledger times, sponsor/recipient
 balances, and StellarExpert testnet links. Failed simulation/local mock output is

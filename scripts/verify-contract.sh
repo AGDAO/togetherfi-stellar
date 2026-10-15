@@ -6,7 +6,7 @@ PACKAGE="${1:?contract package required}"
 RUST="${2:?exact Rust version required}"
 TARGET="${3:?WASM target required}"
 case "$PACKAGE:$RUST:$TARGET" in
-  campaign_escrow:1.81.0:wasm32-unknown-unknown|contributor_pool:1.81.0:wasm32-unknown-unknown|reputation_anchor:1.81.0:wasm32-unknown-unknown|layerzero_receipt_adapter:1.90.0:wasm32v1-none|layerzero_funding_inbox:1.90.0:wasm32v1-none) ;;
+  campaign_escrow:1.81.0:wasm32-unknown-unknown|contributor_pool:1.81.0:wasm32-unknown-unknown|reputation_anchor:1.81.0:wasm32-unknown-unknown) ;;
   *) echo "Unsupported package/toolchain/target tuple" >&2; exit 1 ;;
 esac
 OUT="$ROOT/evidence/current/$PACKAGE"

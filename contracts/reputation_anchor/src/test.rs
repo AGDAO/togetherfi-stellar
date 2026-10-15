@@ -41,7 +41,7 @@ fn setup<'a>() -> TestSetup<'a> {
     }
 }
 
-// Simulated Arbitrum tx hashes (66-char 0x-prefixed hex strings)
+// Legacy optional-reference fixtures (66-character 0x-prefixed hex strings).
 fn arb_hash_a(env: &Env) -> String {
     String::from_str(
         env,

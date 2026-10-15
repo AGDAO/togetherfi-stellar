@@ -1,9 +1,9 @@
-//! TogetherFi Reputation Anchor Soroban smart contract.
+//! TogetherFi Reputation Anchor: Soroban smart contract.
 //!
 //! Stores creator TogetherScores natively on Stellar. Each creator's score is
-//! keyed by `profile_id` (the TogetherFi database id) and linked back to the
-//! corresponding Arbitrum on-chain anchor via `arbitrum_tx_hash`, providing
-//! cross-chain identity proof.
+//! keyed by `profile_id` (the TogetherFi database id). A legacy optional
+//! reference field is retained for deployed-interface compatibility only.
+//! That unverified metadata does not establish any cross-chain identity proof.
 //!
 //! This replaces the classic Stellar `manageData` account-anchoring approach,
 //! which had a critical limitation: every call overwrote the same key on the
@@ -17,8 +17,8 @@
 //!   3. `get_score`: public read that returns the full ScoreRecord.
 //!   4. `get_scores_batch`: public batch read for the verifiability dashboard.
 //!
-//! Admin is the TogetherFi backend signer (same keypair used by the campaign
-//! escrow contract). Only the admin can write scores; reads are open to all.
+//! Only the configured reputation admin can write scores; reads are open to all.
+//! This identity-writing role does not grant campaign settlement authority.
 
 #![no_std]
 
@@ -51,8 +51,8 @@ pub struct ScoreRecord {
     pub score: u32,
     /// Human-readable tier: "bronze", "silver", or "gold".
     pub tier: Symbol,
-    /// Arbitrum One tx hash from ScoreAnchor.anchor(), used as cross-chain proof.
-    /// Full 66-char "0x..." string. Empty string when anchored Stellar-only.
+    /// Legacy optional reference; the historical field name is ABI-compatible.
+    /// Unverified application metadata. Native Stellar anchors may leave it empty.
     pub arbitrum_tx_hash: String,
     /// Unix timestamp (seconds) at the ledger when this anchor was written.
     pub anchored_at: u64,
@@ -91,9 +91,9 @@ impl ReputationAnchor {
 
     /// Admin-only. Writes or overwrites the TogetherScore for `profile_id`.
     ///
-    /// `arbitrum_tx_hash` is the Arbitrum One ScoreAnchor transaction hash
-    /// for this anchor, providing cross-chain proof. Pass an empty string
-    /// when anchoring Stellar-only (no Arbitrum counterpart).
+    /// `arbitrum_tx_hash` retains its historical name for interface compatibility.
+    /// Pass an empty string for native Stellar anchors. This optional reference
+    /// is not authenticated by the contract and does not prove an external action.
     ///
     /// `score` must be in range 0..=1000. Values outside this range are
     /// rejected with `InvalidScore`.

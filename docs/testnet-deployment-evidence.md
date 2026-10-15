@@ -1,4 +1,4 @@
-# Escrow v2 testnet validation — 4 October 2026
+# Escrow v2 testnet validation: 4 October 2026
 
 ## Scope and current result
 
@@ -9,9 +9,11 @@ zero. The supplied wallets are testnet-only; mainnet requires different owner-
 provided addresses and separate authorization.
 
 **Quorum-authorized completion is confirmed with Ayoub and King's signatures.**
-The exact payout and authenticated pool credits are verified. No independent
-review, mainnet deployment, or production readiness is claimed.
-Ayoub is the implementation owner and sole reviewer.
+The exact payout and authenticated pool credits are verified. Separate human
+peer review by Zyad Rehioui (INKY), another team developer, is owner-confirmed;
+no external audit, mainnet deployment or production readiness is claimed.
+Ayoub is the technical lead and production decision owner. No separate human
+review report is attached to this deployment evidence.
 Ace and King are security co-signers only.
 
 ## Contracts and asset
@@ -102,7 +104,7 @@ deployed contract via RPC simulation. Both returned `InvalidState`
 (`Error(Contract, #6)`). These are non-mutating simulation checks, not
 ledger-confirmed failed transactions; their results are retained in the manifest.
 
-## Remaining acceptance gates
+## Completed checks, deferred validation and production planning
 
 1. Member signatures, 1-of-3 RPC rejection, 2-of-3 ledger confirmation, exact payout
    deltas and liability reconciliation are complete. Duplicate terminal-operation
@@ -112,11 +114,15 @@ ledger-confirmed failed transactions; their results are retained in the manifest
 2. Campaign 2 reaches its real 30-day expiry: **3 November 2026, 12:46:17 UTC**.
    Retain a confirmed refund to its original fixture sponsor then. Do not shorten
    expiry or relabel a shortened fixture as this deployed v2.
-3. Owner review is the only assigned review. If the architecture team requires
-   independent review, that separate condition remains unmet.
+   This extra live-ledger proof is deferred validation, not an established
+   grant-payment prerequisite; no direct request requiring that specific wait
+   is cited here.
+3. The owner confirms separate human peer review by team developer Zyad Rehioui
+   (INKY). This is internal peer review, not an external audit.
 4. Expanded CI is installed using newly authorized workflow-write access;
    retain its successful run separately from on-chain acceptance evidence.
-5. Final production asset, mainnet signers, operational custody and production
-   launch require separate decisions; optional LayerZero components remain undeployed.
+5. Ayoub leads production asset, mainnet signer, custody and launch decisions.
+   Mainnet execution still requires separate authorization. The native-only
+   review snapshot contains no optional bridge components.
 
 See [wallet signing instructions](testnet-signing.md).
