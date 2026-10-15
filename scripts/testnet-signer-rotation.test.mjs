@@ -21,7 +21,11 @@ function fixture() {
 
 test('rotation only adds Zyad and removes Ace from both dedicated roles', () => {
   const { manifest, governance, settlement } = fixture();
-  const { transaction, config } = buildSignerRotation(manifest, governance, settlement, ZYAD_TESTNET_KEY);
+  const beforeSequence = String(governance.sequence);
+  const { transaction, config, observedAccounts } =
+    buildSignerRotation(manifest, governance, settlement, ZYAD_TESTNET_KEY);
+  assert.equal(String(observedAccounts[0].sequence), beforeSequence);
+  assert.equal(BigInt(transaction.sequence), BigInt(beforeSequence) + 1n);
   assert.equal(transaction.source, manifest.accounts.governance);
   assert.equal(transaction.fee, '40000');
   assert.equal(transaction.signatures.length, 0);

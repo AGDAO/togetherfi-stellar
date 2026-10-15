@@ -32,6 +32,12 @@ export function buildSignerRotation(manifest, governance, settlement, replacemen
   if (!Number.isInteger(timeout) || timeout < 60 || timeout > 86400) {
     throw new Error('Signing window must be between one minute and one day');
   }
+  // SDK build() advances the supplied source account object in memory.
+  // Capture public pre-transaction sequence evidence before constructing it.
+  const observedAccounts = [governance, settlement].map(account => ({
+    account_id: account.account_id, sequence: account.sequence,
+    thresholds: account.thresholds, signers: account.signers,
+  }));
   const builder = new TransactionBuilder(governance, {
     fee: '10000', networkPassphrase: NETWORK,
   });
@@ -46,7 +52,7 @@ export function buildSignerRotation(manifest, governance, settlement, replacemen
   // No threshold/master changes, payments, contract calls, or member-wallet operations.
   const transaction = builder.setTimeout(timeout).build();
   if (transaction.signatures.length) throw new Error('Preparation must remain unsigned');
-  return { transaction, config };
+  return { transaction, config, observedAccounts };
 }
 
 async function main() {
@@ -69,7 +75,8 @@ async function main() {
     horizon.loadAccount(manifest.accounts.governance),
     horizon.loadAccount(manifest.accounts.settlement),
   ]);
-  const { transaction, config } = buildSignerRotation(manifest, governance, settlement, ZYAD_TESTNET_KEY);
+  const { transaction, config, observedAccounts } =
+    buildSignerRotation(manifest, governance, settlement, ZYAD_TESTNET_KEY);
   const request = {
     network: 'testnet',
     status: 'awaiting_existing_quorum_signatures',
@@ -83,10 +90,7 @@ async function main() {
     fee_test_xlm: Number(transaction.fee) / 10000000,
     hash: transaction.hash().toString('hex'),
     unsigned_xdr: transaction.toXDR(),
-    observed_accounts: [governance, settlement].map(account => ({
-      account_id: account.account_id, sequence: account.sequence,
-      thresholds: account.thresholds, signers: account.signers,
-    })),
+    observed_accounts: observedAccounts,
     note: 'Unsigned request only. Existing deployed manifest and on-chain signer set are unchanged.',
   };
   await mkdir(out, { recursive: true });

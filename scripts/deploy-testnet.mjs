@@ -27,7 +27,7 @@ const manifest = {
   status: 'bootstrap_in_progress', review: 'owner-only; no independent review claimed',
   signers: {
     Ayoub: 'GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE',
-    Ace: 'GD57W22FBBREDJSEN2PDRLP5FYBZQ4QHO65KN6Z6U2ZP3I2OCOALJFTH',
+    Zyad: 'GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7',
     King: 'GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U',
   },
   policy: { quorum: 2, signer_weight: 1, master_weight: 0 },

@@ -14,14 +14,18 @@ peer review by Zyad Rehioui (INKY), another team developer, is owner-confirmed;
 no external audit, mainnet deployment or production readiness is claimed.
 Ayoub is the technical lead and production decision owner. No separate human
 review report is attached to this deployment evidence.
-Ace and King are security co-signers only.
+Ace and King were transaction co-signers for the historical deployment, not code reviewers.
+The current roster is Ayoub, Zyad and King after the confirmed replacement in
+ledger 5207471. See [rotation evidence](testnet-signer-rotation.md).
+The [fresh Zyad and King campaign](testnet-zyad-king.md) is separate and its
+release signatures are pending.
 
 ## Contracts and asset
 
 | Binding | Testnet address |
 |---|---|
 | Campaign Escrow v2 | `CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ` |
-| 5% MOFO contributor pool | `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76` |
+| 5% NFT contributor pool | `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76` |
 | 2% community contributor pool | `CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25` |
 | Governance account | `GA777UZBWGPK7KPKE5BSQWH7XWDXHXQ5XLYPPZ2KSQE2WEG7OL7LKLK3` |
 | Settlement account | `GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM` |
@@ -33,7 +37,7 @@ Sponsor, creator, referrer, treasury and eligibility accounts are isolated test
 fixtures, not production custody or verified real-world campaign participants.
 Individual member wallets' signer settings were not changed.
 
-## On-chain role-account configuration
+## Historical role-account configuration at deployment
 
 Both role accounts have low/medium/high thresholds **2/2/2**, the following
 signers with weight **1** each, and their dedicated master with weight **0**:

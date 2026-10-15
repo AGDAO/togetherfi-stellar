@@ -33,7 +33,7 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 - Med Amine is the external scoped technical reviewer, not an implementation
   owner or transaction signer. His supplied GitHub profile is
   https://github.com/med-amiine.
-- Zyad is an internal developer/peer reviewer and the intended replacement
+- Zyad is an internal developer/peer reviewer and a confirmed testnet
   co-signer. King is a co-signer, not a code reviewer.
 
 The prior review remains attached to its original commit in
@@ -43,22 +43,28 @@ new snapshot or the future signer configuration. New review is requested from
 Med Amine and Zyad against the exact new PR head. Neither approval is claimed
 until the reviewer records it. A scoped technical review is not a formal audit.
 
-## Signer transition: not yet executed
+## Signer transition confirmed; fresh release signatures pending
 
-The intended policy is 2-of-3 across Ayoub, Zyad and King on both dedicated
-governance and settlement accounts. The historical/current evidence still lists
-Ayoub, Ace and King. The prepared public unsigned request adds Zyad and removes
-Ace, retaining member weights 1, thresholds 2 and disabled setup masters.
-It is not proof of an applied change.
+Ayoub and King authorized replacing Ace with Zyad on both dedicated governance
+and settlement accounts. The transaction succeeded on 15 October 2026 in ledger
+5207471, hash `acf8693c615586e35f23f98d184eb2769d8d6ed2f511c06b3d4569db69e54657`.
+Both live account configurations were checked: Ayoub, Zyad and King each weight 1,
+thresholds 2/2/2 and dedicated setup masters weight 0.
+See [confirmed rotation evidence](../evidence/testnet-signer-rotation/confirmation.json).
+Individual member wallets were not reconfigured.
 
-Before using that request, check its deadline, account sequence and transaction
-body again. Expired requests require a new frozen envelope and fresh signatures.
-Existing members authorize the replacement; Zyad cannot authorize his own
-addition. Med Amine has no signature task.
+The original deployed manifest and completed campaign 1 retain their historical
+roster and signatures. They are not rewritten as Zyad's participation.
+The original unsigned rotation request is retained for audit, not for resubmission.
 
-After ledger confirmation, verify both account configurations and record a
-fresh below-quorum rejection and successful two-member release under the new
-roster, including Zyad's actual participation. Preserve all historical evidence.
+Campaign 3 is newly funded and active with one free test XLM on the same deployed
+escrow. Its frozen completion envelope is prepared specifically for Zyad and King.
+Their signatures and a fresh one-member rejection followed by successful
+two-member completion are **pending**, not yet accepted evidence.
+See [the fresh signing handoff](testnet-zyad-king.md).
+
+Med Amine has no signature task. Zyad's internal code review and transaction
+signature are different roles; neither signature is an independent audit.
 No signer private keys or recovery phrases should be shared.
 
 ## Items for the two reviewers

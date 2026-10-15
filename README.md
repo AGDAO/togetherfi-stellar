@@ -86,16 +86,21 @@ A configured workflow is not passing evidence, and passing CI alone does not
 prove its WASM bytes equal the previously deployed locally built binaries.
 
 The selected settlement-control mechanism is a native Stellar account multisig
-with a **2-of-3** policy. The historical/current on-chain roster is
-**Ayoub Arbani, Ace, and King**; the intended replacement roster is
-**Ayoub Arbani, Zyad, and King**, pending ledger confirmation.
+with a **2-of-3** policy. The current on-chain roster is
+**Ayoub Arbani, Zyad, and King** on both dedicated role accounts.
+The replacement was confirmed on 15 October 2026 in ledger 5207471:
+[rotation confirmation](evidence/testnet-signer-rotation/confirmation.json).
+The historical deployment manifest retains the original Ayoub, Ace and King roster.
 Three independently held Stellar signing keys are required, not EVM addresses
 or three keys held by the backend.
 Both account configurations are **verified on testnet**: signer weights 1/1/1,
 low/medium/high thresholds 2/2/2, setup master weight 0. Disabled setup-key attempts
-were rejected by the network. Actual member 1-of-3 rejection occurred at RPC
-ingestion, and 2-of-3 completion is ledger-confirmed. Mainnet needs different
-owner-provided wallets.
+were rejected by the network. The historical member 1-of-3 rejection and 2-of-3
+completion remain valid evidence for that earlier roster, not Zyad's participation.
+A separate one-test-XLM campaign is active for a
+[fresh Zyad and King release test](docs/testnet-zyad-king.md).
+Their wallet signatures, fresh below-quorum rejection and successful release
+are still pending. Mainnet needs different owner-provided wallets.
 Governance custody must also be independently threshold-controlled so the backend
 cannot bypass settlement quorum by rotating the settlement role to its own key.
 See [testnet acceptance checklist](docs/testnet-acceptance.md).

@@ -14,8 +14,11 @@ wallets are strictly testnet-only; mainnet requires different owner-provided wal
 
 Use a **2-of-3 approval policy**, implemented through native
 Stellar account signer weights and thresholds.
-The historical/current on-chain signer holders are **Ayoub Arbani, Ace, and King**.
-The intended roster is **Ayoub Arbani, Zyad, and King**, pending confirmed rotation.
+The current on-chain signer holders are **Ayoub Arbani, Zyad, and King**.
+Both dedicated role accounts were confirmed rotated in ledger 5207471 on
+15 October 2026. The original deployment evidence retains Ayoub, Ace and King.
+The [fresh Zyad and King release test](testnet-zyad-king.md) is awaiting their
+signatures; historical completion is not proof of the new member's participation.
 Zyad is also a developer/peer reviewer; King is a co-signer, not a code reviewer.
 Med Amine is a technical reviewer, not a signer. All three members must have independently
 held Stellar signing keys; none may be a placeholder or an extra backend-held key.
