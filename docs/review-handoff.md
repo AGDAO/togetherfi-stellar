@@ -1,25 +1,24 @@
 # Stellar-native review handoff
 
-## What changed after the first review
+## Review status and scope
 
-The public review repository is limited to three native Soroban packages:
+**Awaiting final code reviews from Zyad Rehioui and Med Amine on
+[PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).**
+Neither final approval is recorded or claimed by this handoff.
+The PR must remain unmerged until both reviews and the required checks are
+resolved, before the owner sends the package to The Arch team.
+
+The public review package is limited to three native Soroban packages:
 `campaign_escrow`, `contributor_pool` and `reputation_anchor`.
-The optional EVM/LayerZero bridge components, their package metadata, vendored
-dependencies and build jobs are removed from this review snapshot. This removes
-the stale foreign package identity and the unused bridge funding story rather
-than disguising it with a renamed package.
+Campaigns use native Stellar sponsor funding, with no cross-chain funding path.
 
-Campaigns are funded natively on Stellar by the sponsor. There is no cross-chain
-funding path in this source snapshot. Campaign completion, original-sponsor
+Campaign completion, original-sponsor
 refunds, authenticated pool credits and the fixed 82/10/5/2/1 split are unchanged.
 The 5% NFT contributor destination and 2% community destination remain separate
-Stellar pool instances. Branding cleanup does not remove or redirect either leg.
+Stellar pool instances.
 
 The escrow/pool executable logic, interfaces and pinned lockfiles are preserved.
-The contributor-pool comment uses the generic NFT contributor allocation label.
-Reputation-anchor documentation comments now describe the metadata accurately;
-its executable code and interface are unchanged. In particular, the
-historically deployed reputation contract retains the `arbitrum_tx_hash` field
+The deployed reputation contract retains the historical `arbitrum_tx_hash` field
 name for interface compatibility only. It is optional application metadata, not
 bridge code, a funding requirement, or authenticated cross-chain evidence.
 Changing its schema would require separate versioning and deployment evidence.
@@ -35,12 +34,28 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
   owner or transaction signer. His supplied GitHub profile is
   https://github.com/med-amiine.
 - [Zyad Rehioui](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
-  co-signer. King is a co-signer, not a code reviewer.
+  co-signer.
+- Ace Jacobs supports GameFi testing and operations, not contract review or the
+  current Stellar signing quorum.
+- Dan Dean Ver King Ramos supports SocialFi testing and operations and is a
+  co-signer, not a code reviewer.
+
+## Future delivery plan
+
+The owner-approved proposed allocation is **758 hours over 26 weeks**:
+Ayoub 416, Zyad 134, Med Amine 26, Ace 91 and King 91.
+See the [full allocation, schedules and responsibilities](future-work-allocation.md).
+The approximately 29.2 hours/week is a combined team average, not a commitment
+per reviewer. These are future delivery estimates; individual scope, availability
+and compensation arrangements are confirmed separately. Historical platform work
+is not included as newly completed Stellar delivery.
+
+## Prior review evidence
 
 The prior review remains attached to its original commit in
 [PR #1](https://github.com/AGDAO/togetherfi-stellar/pull/1).
 It covered a broader source tree and must not be represented as approval of this
-new snapshot or the future signer configuration. New review is requested from
+new snapshot or the now-confirmed signer configuration. New review is requested from
 Med Amine and Zyad against the exact new PR head. Neither approval is claimed
 until the reviewer records it. A scoped technical review is not a formal audit.
 
@@ -84,9 +99,9 @@ No signer private keys or recovery phrases should be shared.
 A valid member signature by itself does not satisfy a 2-of-3 threshold.
 The single-member rejection is the expected security result, not evidence of
 an invalid Zyad signature. The successful Zyad and King release proves the
-new member can authorize with a second member. The owner requested the
-[additional Zyad and Ayoub test](testnet-zyad-ayoub.md) for the remaining pair
-also succeeded. Its receipt, original signed envelopes, negative test and exact
+new member can authorize with a second member. The
+[Zyad and Ayoub test](testnet-zyad-ayoub.md) also succeeded.
+Its receipt, original signed envelopes, negative test and exact
 payout/accounting results are preserved. This is testnet evidence, not a grant
 award, mainnet-readiness claim or substitute for the two requested code reviews.
 
@@ -111,9 +126,5 @@ Historical test transcripts and earlier CI runs do not prove this new PR passed.
 New CI must be checked separately. Source parity alone does not prove CI WASM
 bytes match the previously deployed locally built binaries.
 
-The proposed future grant workload is 758 hours over 26 weeks, approximately
-29.2 aggregate hours/week. A truthful per-person breakdown is still required.
-Do not assign Med Amine or Zyad hours they have not explicitly committed.
-Historical overall-platform work is separate from future Stellar delivery.
 This snapshot authorizes no mainnet deployment, real-funds operations or changes
 to the live TogetherFi application.

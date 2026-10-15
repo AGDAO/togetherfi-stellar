@@ -43,9 +43,9 @@ Ayoub Arbani is the CEO/Developer and Soroban technical owner:
 TogetherFi is built by a human development team that was building the platform
 before adopting AI tools. AI assists the team's engineering work; it is not the
 sole builder or a substitute for human review.
-The owner confirms a baseline of 3 hours/day including weekends, or 21 hours/week,
-with extra weekend time potentially bringing availability to approximately 25 hours/week.
-This is one shared allocation, not an allocation per work package.
+The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
+3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
+allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
 [Zyad Rehioui (INKY)](https://github.com/Zrehi), another team developer.
 Med Amine has supplied a scoped review of the earlier PR.
@@ -58,8 +58,9 @@ Production decisions are led by Ayoub; this does not authorize
 mainnet deployment or real-funds operations.
 [King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
 
-The future grant work plan totals 758 hours over 26 weeks, approximately
-29.2 aggregate hours/week. Named allocations must reflect each contributor's
+The [proposed team allocation](docs/future-work-allocation.md) totals 758 hours
+over 26 weeks, approximately 29.2 aggregate hours/week: Ayoub 416, Zyad 134,
+Med Amine 26, Ace 91 and King 91. Named allocations must reflect each contributor's
 actual confirmed commitment; none are inferred from a review agreement.
 Historical TogetherFi platform engineering hours are not Stellar Testnet hours.
 
