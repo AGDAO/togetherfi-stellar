@@ -1,0 +1,27 @@
+Local/CI source verification only; no deployment or on-chain quorum proof.
+generated_at_utc=2026-10-04T11:14:28Z
+package=layerzero_receipt_adapter
+toolchain=1.90.0
+target=wasm32v1-none
+rustc 1.90.0 (1159e78c4 2025-09-14)
+cargo 1.90.0 (840b83a10 2025-07-30)
+f0386dcb81b89101d8631afbea7f8b0f404c40ac338547347c8eb02d564f0fa7  Cargo.toml
+9a514cc40c6f02ec07292933d29449837036cea2bfb1cda5079b44ccf0479db7  Cargo.lock
+d540954cc84b02c59605583aaba1be12c0df8cd972ce97f2950faad021862bb6  src/lib.rs
+e7587bb34636cc270c8f4056a18280b6c31f7043b0e5ff3ec80f8566a04f3820  src/tests.rs
+$ cargo test --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.41s
+     Running unittests src/lib.rs (target/debug/deps/togetherfi_stellar_layerzero_receipt_adapter-bee0f22266e29d68)
+
+running 5 tests
+test tests::payload_is_versioned_domain_separated_and_round_trips ... ok
+test tests::nonce_and_peer_checks_are_explicit_in_the_receiver_contract ... ok
+test tests::unsupported_status_and_malformed_payloads_are_rejected ... ok
+test tests::quote_and_owner_send_return_the_official_receipt ... ok
+test tests::mock_endpoint_delivery_authenticates_peer_clears_and_orders ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+$ cargo build --locked --release --target wasm32v1-none
+    Finished `release` profile [optimized] target(s) in 0.19s
+fce42a4d05e111f70049fce8e8b12080ab8c2ade6e99b93b7ccb135512c9ea6d  target/wasm32v1-none/release/togetherfi_stellar_layerzero_receipt_adapter.wasm

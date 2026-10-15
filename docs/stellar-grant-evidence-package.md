@@ -1,5 +1,15 @@
 # TogetherFi Stellar Grant Evidence Package
 
+**4 October 2026 status update:** Core escrow v2 and both contributor pools are
+deployed on Stellar Testnet. Two-member completion, exact 82/10/5/2/1 payout and
+liability reconciliation are confirmed. Current proof supersedes historical
+deployment-pending statements below; see the public review PR
+https://github.com/AGDAO/togetherfi-stellar/pull/1 and its testnet evidence document.
+Expanded CI now covers five contract tests/builds plus the Node approval guards;
+see the current review-branch Actions run for actual results. The real 30-day
+refund and any required independent human review remain open.
+No mainnet or real-funds readiness is claimed.
+
 **Audience:** founder and architecture team  
 **Evidence cut-off:** repository state and tracked documentation reviewed 13 September 2026  
 **Use:** copy-ready technical evidence dossier; not an audit, deployment approval, or production-readiness statement
@@ -33,7 +43,9 @@ implementation detail.
 |---|---|
 | Public source repository | `https://github.com/AGDAO/togetherfi-stellar` |
 | Independently checked visibility | Anonymous HTTPS returned HTTP 200 for the repository and immutable commit on 13 September 2026; the unauthenticated GitHub API returned the same full commit hash and message. |
-| Immutable current-source commit | `https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78` |
+| Immutable current-source commit | `https://github.com/AGDAO/togetherfi-stellar/commit/426203570f752a6e4ba27048fe18dbc2ddbbf237` |
+| Versioned evidence commit | `https://github.com/AGDAO/togetherfi-stellar/commit/ed5813a4197268b2c01b1e40f7fa90f6fe439e44` |
+| Public release | `https://github.com/AGDAO/togetherfi-stellar/releases/tag/stellar-grant-source-v2.0.0` |
 | Working-tree source | `contracts/togetherfi-stellar/` in this application repository, with `UPSTREAM_COMMIT` set to `6fd30883bf8c305eb8dd8a8a8fabe7226171332b`. |
 | Application repository URL | None is locally documented in the reviewed files. Do not infer or publish a URL from local remotes. |
 | Release provenance | `RELEASE.md` records the exact upstream baseline, MIT license, founder responsibility and maintenance statement, commit attribution boundary, AI-assistance disclosure, release scope, and exclusions. |
@@ -84,11 +96,11 @@ deliverable.
 
 | Component and source location | Purpose and current state | Tests/evidence | Deployment and safe disclosure |
 |---|---|---|---|
-| `contracts/togetherfi-stellar/contracts/campaign_escrow/` | Current CreatorFi-only v2 liability-bearing escrow. `fund`, sponsor-only `activate`, settlement-authority `complete`, public `refund_expired`, two-step role rotation, pause, TTL extension, operation consumption, and exact split. Implemented locally; no v2 deployment. | Current `src/test.rs` declares 12 tests covering authorization, split, expiry, pause, rotation, deficits, isolation, TTL, and accounting. Tracked README's older “4 tests” statement is stale relative to the current file; no standalone execution transcript is tracked in this dossier. | Show source, pinned commit, tests, and a redacted build log. Do not present v2 as the historical deployed contract. |
-| `contracts/togetherfi-stellar/contracts/contributor_pool/` | Separate immutable-manifest pools: one 5% MOFO allocation and one 2% community/revenue allocation. Dual authorities publish exact recipients/amounts; recipients self-claim; expiry carries unclaimed reservations forward. Implemented locally; no deployment IDs. | Current `src/test.rs` declares 8 tests, including manifest immutability, dual authority, funding, expiry, pause, role, claim, and direct-transfer isolation. Execution result is not separately recorded. | Source and invariants can be shared; keep eligibility evidence, signer identities, and operational policy private unless requested. |
-| `contracts/togetherfi-stellar/contracts/reputation_anchor/` | Admin-authorized score records, public reads/batch reads, `ScoreAnchored` events. Separate from Classic Stellar `manageData` account anchoring. Implemented; current source has 11 declared tests; no new deployment claimed. | README's six-test description is historical/documentary and does not supersede the current test file. | Show source/API and a future verified transaction; never call Classic account data Soroban. |
-| `contracts/togetherfi-stellar/contracts/layerzero_receipt_adapter/` | SDK-25/Rust-1.90 isolated OApp for versioned, domain-separated, financially inert final-state receipts. It cannot settle, refund, or move campaign funds. Implemented locally; not live. | Current `src/tests.rs` declares 5 tests for payloads, malformed/status rejection, peer/nonce checks, mock endpoint delivery, and quote/send receipt behavior. | Show interface, isolation boundary, tests, and later manifest; no endpoint/peer/transaction is currently claimable. |
-| `contracts/togetherfi-stellar/contracts/layerzero_funding_inbox/` | SDK-25/Rust-1.90 Soroban Inbox. Authenticates configured OFT compose provenance and records a pending liability; `claim` is sponsor-authorized and never calls escrow. Includes cancel, expiry recovery, pause, TTL restoration, and duplicate guards. Implemented locally; not live. | Independent review record: **10/10**, with wrong route/amount/queue, replay, ambient-balance, pause, TTL, and recovery coverage. | Show source, ABI/payload schema, and review result with the explicit configured-OFT residual; do not present a bridge delivery as funding. |
+| `contracts/togetherfi-stellar/contracts/campaign_escrow/` | Current CreatorFi-only v2 liability-bearing escrow. `fund`, sponsor-only `activate`, settlement-authority `complete`, public `refund_expired`, two-step role rotation, pause, TTL extension, operation consumption, and exact split. Implemented locally; no v2 deployment. | Rust 1.81.0 transcript: **12/12**, covering authorization, split, expiry, pause, rotation, deficits, isolation, TTL, and accounting. | Show source, pinned commit, transcript, and redacted build log. Do not present v2 as the historical deployed contract. |
+| `contracts/togetherfi-stellar/contracts/contributor_pool/` | Separate immutable-manifest pools: one 5% MOFO allocation and one 2% community/revenue allocation. Dual authorities publish exact recipients/amounts; recipients self-claim; expiry carries unclaimed reservations forward. Implemented locally; no deployment IDs. | Rust 1.81.0 transcript: **8/8**, including manifest immutability, dual authority, funding, expiry, pause, role, claim, and direct-transfer isolation. | Source and invariants can be shared; keep eligibility evidence, signer identities, and operational policy private unless requested. |
+| `contracts/togetherfi-stellar/contracts/reputation_anchor/` | Admin-authorized score records, public reads/batch reads, `ScoreAnchored` events. Separate from Classic Stellar `manageData` account anchoring. Implemented; no new deployment claimed. | Rust 1.81.0 transcript: **11/11**. README's older six-test description is historical. | Show source/API, transcript, and a future verified transaction; never call Classic account data Soroban. |
+| `contracts/togetherfi-stellar/contracts/layerzero_receipt_adapter/` | SDK-25/Rust-1.90 isolated OApp for versioned, domain-separated, financially inert final-state receipts. It cannot settle, refund, or move campaign funds. Implemented locally; not live. | Rust 1.90.0 transcript: **5/5** for payloads, malformed/status rejection, peer/nonce checks, mock endpoint delivery, and quote/send receipt behavior. | Show interface, isolation boundary, tests, and later manifest; no endpoint/peer/transaction is currently claimable. |
+| `contracts/togetherfi-stellar/contracts/layerzero_funding_inbox/` | SDK-25/Rust-1.90 Soroban Inbox. Authenticates configured OFT compose provenance and records a pending liability; `claim` is sponsor-authorized and never calls escrow. Includes cancel, expiry recovery, pause, TTL restoration, and duplicate guards. Implemented locally; not live. | Rust 1.90.0 transcript and independent review record: **10/10**, with wrong route/amount/queue, replay, ambient-balance, pause, TTL, and recovery coverage. | Show source, ABI/payload schema, and review result with the explicit configured-OFT residual; do not present a bridge delivery as funding. |
 | Vendored OApp/endpoint tree | Pinned dependency surface for the two LayerZero Soroban packages, not a TogetherFi deployment. | Dependency/toolchain boundary reviewed. | Share dependency versions/lockfiles as needed; do not imply LayerZero registry deployment. |
 
 The Campaign Escrow, Contributor Pool, and Reputation Anchor use Soroban SDK
@@ -96,8 +108,10 @@ The Campaign Escrow, Contributor Pool, and Reputation Anchor use Soroban SDK
 isolated workspaces. The README states the receipt adapter target is
 `wasm32v1-none`; the older escrow family uses `wasm32-unknown-unknown`. A release
 must record the exact target, lockfile, compiler, source commit, and WASM hash for
-each package. No WASM hash or new deployment manifest is currently evidence here.
-The tracked source is suitable for future independent source verification, but
+each package. Local release-WASM hashes are recorded in
+`contracts/togetherfi-stellar/evidence/soroban-tests/`; they identify local
+builds and are not deployed-artifact verification. No new deployment manifest
+is currently evidence here. The tracked source is suitable for future independent source verification, but
 verification is not complete for the historical Reputation Anchor and has not
 been submitted for the new v2 or LayerZero artifacts.
 
@@ -345,11 +359,11 @@ several properties, so rows must not be added together as a unique-test total.
 | Suite | Passed | Failed | Ignored | What it proves | Path / reproducibility |
 |---|---:|---:|---:|---|---|
 | Solidity LayerZero/source route review | 18 | 0 | 0 | Reviewed wrapper boundary, exact pinned IOFT selectors, official approval modes, route identity and source funding behavior. | `cd mofo-deploy && npm run test:layerzero-clean` was reproduced on 13 September 2026: 69 Solidity files compiled and 18 tests passed. This is not deployment proof. |
-| Soroban Campaign Escrow | NR (12 declared) | NR | NR | Current source-level authorization, split, expiry, pause, role, deficit, isolation, TTL, and accounting cases. | `contracts/.../campaign_escrow/src/test.rs`; run with the documented Rust 1.81 toolchain. No standalone pass transcript is tracked. |
-| Soroban Reputation Anchor | NR (11 declared) | NR | NR | Current source-level score lifecycle, access control, batch reads, bounds, and profile isolation. | `contracts/.../reputation_anchor/src/test.rs`; README’s six-test note is older and not a current execution count. |
-| Soroban Contributor Pool | NR (8 declared) | NR | NR | Manifest immutability, dual authority, claims, carry-forward, pause, role and direct-transfer isolation. | `contracts/.../contributor_pool/src/test.rs`; execution count not separately recorded. |
-| Soroban Funding Inbox review | 10 | 0 | 0 | Inbox authentication, amount/route/queue checks, pending liability lifecycle, replay/duplicate rejection, TTL and pause/recovery. | `contracts/.../layerzero_funding_inbox/src/tests.rs`; final independent review record says 10/10, local/repository evidence only. |
-| Soroban receipt adapter | NR (5 declared) | NR | NR | Versioned payload, malformed/status rejection, peer/nonce checks, and mock endpoint behavior. | `contracts/.../layerzero_receipt_adapter/src/tests.rs`; mock endpoint is not a live LayerZero endpoint. |
+| Soroban Campaign Escrow | 12 | 0 | 0 | Authorization, split, expiry, pause, role, deficit, isolation, TTL, and accounting cases. | Rust 1.81.0 transcript: `contracts/togetherfi-stellar/evidence/soroban-tests/campaign_escrow.txt`. |
+| Soroban Reputation Anchor | 11 | 0 | 0 | Score lifecycle, access control, batch reads, bounds, and profile isolation. | Rust 1.81.0 transcript: `contracts/togetherfi-stellar/evidence/soroban-tests/reputation_anchor.txt`; README’s six-test note was historical. |
+| Soroban Contributor Pool | 8 | 0 | 0 | Manifest immutability, dual authority, claims, carry-forward, pause, role and direct-transfer isolation. | Rust 1.81.0 transcript: `contracts/togetherfi-stellar/evidence/soroban-tests/contributor_pool.txt`. |
+| Soroban Funding Inbox | 10 | 0 | 0 | Inbox authentication, amount/route/queue checks, pending liability lifecycle, replay/duplicate rejection, TTL and pause/recovery. | Rust 1.90.0 transcript: `contracts/togetherfi-stellar/evidence/soroban-tests/layerzero_funding_inbox.txt`; local/repository evidence only. |
+| Soroban receipt adapter | 5 | 0 | 0 | Versioned payload, malformed/status rejection, peer/nonce checks, and mock endpoint behavior. | Rust 1.90.0 transcript: `contracts/togetherfi-stellar/evidence/soroban-tests/layerzero_receipt_adapter.txt`; mock endpoint is not a live LayerZero endpoint. |
 | Focused backend review record | 35 | 0 | 0 | Funding-intent lifecycle, finality/canonicality, source reorg/missing-receipt handling, durable halt, and route reconciliation. | The independent review record identifies 35/35 across its focused evidence set. This count overlaps the narrower rows below and is not a current file-count total. |
 | Runtime adapter review record | 11 | 0 | 0 | Event decoding, accepted hashes, finalized source evidence, ABI fixture and receipt/Inbox identity boundaries. | The independent review record identifies 11/11 for its accepted fixture set. |
 | Backend route/runtime review record after wrapper | 16 | 0 | 0 | API route authorization, exact calls, claim identity, route gates and wrapper-integrated runtime behavior. | The independent review record identifies 16/16 for its wrapper-integrated evidence set. |
@@ -370,11 +384,12 @@ using viem’s actual `TransactionReceiptNotFoundError`, with provider-agreement
 and provider-disagreement cases. This is why the table does not add review sets
 and current command results into a fabricated grand total.
 
-The Rust package commands documented with `cargo +1.81` and `cargo +1.90` could
-not be re-executed in the current application shell because its standalone
-`cargo` does not include `rustup` toolchain switching. That is an environment
-limitation, not a contract-test failure. The source-declared counts remain
-labelled NR until the pinned toolchains produce retained execution transcripts.
+The retained Soroban evidence bundle was generated with exact Rust 1.81.0 and
+1.90.0 toolchains, committed package lockfiles, and the documented WASM targets.
+Its summary records 46/46 passing tests across the five packages and includes
+manifest, lockfile, source-tree, and release-WASM hashes. These local artifacts
+do not establish deployment, source verification, testnet execution, or a live
+LayerZero route.
 
 ## 8. Deployment and verification matrix
 
@@ -412,9 +427,11 @@ contract ID is asserted by this dossier.
 Provide the minimum independently useful set:
 
 1. The independently accessible public repository and immutable source commit:
-   `https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78`.
+   `https://github.com/AGDAO/togetherfi-stellar/commit/426203570f752a6e4ba27048fe18dbc2ddbbf237`.
    It contains the current v2, Contributor Pool, Funding Inbox, receipt-adapter,
-   and selected EVM LayerZero boundary source.
+   and selected EVM LayerZero boundary source. The tagged public release is
+   `https://github.com/AGDAO/togetherfi-stellar/releases/tag/stellar-grant-source-v2.0.0`;
+   its metadata commit versions this evidence package.
 2. Selected source paths for v2 escrow, Contributor Pool, Reputation Anchor,
    Funding Inbox, and receipt adapter; license and build commands.
 3. This accuracy statement, architecture/custody diagram, authorization matrix,
@@ -451,7 +468,7 @@ application codebase.
 
 ## 10. Completed versus remaining grant-eligible work
 
-### Already completed (not to be funded retroactively)
+### Already completed — not to be funded retroactively
 
 - Existing Arbitrum CreatorFi/SocialFi foundation and historical EVM settlement
   work.
@@ -468,7 +485,7 @@ Completed means implementation/repository evidence only. It does not mean
 deployed, live, or production-ready, and none should be presented as a new
 retroactive funding request.
 
-### Remaining work for candidate grant deliverables
+### Remaining work — candidate grant deliverables
 
 Only the following repository-supported work belongs in a new scope:
 
@@ -526,7 +543,7 @@ approval as a mainnet technical gate.
 
 - The local repository contains the listed Soroban, EVM, and backend components.
 - `https://github.com/AGDAO/togetherfi-stellar` and immutable source commit
-  `0493b2cee72f52d38872152d26bf320d1281ef78` were independently accessible
+  `426203570f752a6e4ba27048fe18dbc2ddbbf237` were independently accessible
   without authentication on 13 September 2026.
 - Historical v1 Stellar IDs and transactions are documented, while current v2 and
   LayerZero route deployments are not.
@@ -548,11 +565,11 @@ approval as a mainnet technical gate.
 - Local Solidity route review 18/18, Soroban Inbox review 10/10, focused backend
   review 35/35, runtime adapter review 11/11, backend route/runtime review 16/16,
   and a current combined backend reproduction of 45/45.
-- Source-declared tests cover escrow security, pool accounting, reputation,
+- Reproduced Soroban tests cover escrow security, pool accounting, reputation,
   receipt authentication, replay, wrong-peer/wrong-inbox, under-delivery,
   deadline, reorg, missing receipt, pause, recovery, and chain isolation.
-- Some Soroban source test files have no tracked execution transcript; those
-  results are deliberately marked NR rather than inferred as passing.
+- The five retained Soroban transcripts record 46/46 passing tests with exact
+  compiler, target, lockfile, source-tree, and WASM hashes.
 
 ### D. Things remaining to be deployed
 

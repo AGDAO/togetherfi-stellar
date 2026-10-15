@@ -1,0 +1,69 @@
+Local/CI source verification only; no deployment or on-chain quorum proof.
+generated_at_utc=2026-10-04T11:13:31Z
+package=campaign_escrow
+toolchain=1.81.0
+target=wasm32-unknown-unknown
+rustc 1.81.0 (eeb90cda1 2024-09-04)
+cargo 1.81.0 (2dbb1af80 2024-08-20)
+bef87152433b806b1cd816367230fd4519845b5f947b7057ff228469c31d41db  Cargo.toml
+abd7a4851f01e0c798eed6a7373ece704b61177d6dfa13eed55d02184373586b  Cargo.lock
+55c5218a2f0b55116569ceb1398937ff20326cc4c68be7b47eacc6ddf4f51377  src/lib.rs
+cc5c7aa4c73848571eab57d7f0c191b580ccb3b93bbd5dfaf68701e3e28d3080  src/test.rs
+$ cargo test --locked
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+  --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:19:20
+   |
+19 | use generic_array::ArrayLength;
+   |                    ^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:159:27
+    |
+159 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: use of deprecated trait `generic_array::ArrayLength`: please upgrade to generic-array 1.x
+   --> <checkout>/soroban-env-host-patch/src/host/crypto.rs:188:27
+    |
+188 |         SignatureSize<C>: ArrayLength<u8>,
+    |                           ^^^^^^^^^^^
+
+warning: `soroban-env-host` (lib) generated 3 warnings
+   Compiling campaign-escrow v0.1.0 (<checkout>/contracts/campaign_escrow)
+warning: use of deprecated method `soroban_sdk::Env::register_stellar_asset_contract`: use [Env::register_stellar_asset_contract_v2]
+  --> src/test.rs:65:24
+   |
+65 |     let token_id = env.register_stellar_asset_contract(token_admin.clone());
+   |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `campaign-escrow` (lib test) generated 1 warning
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 32.56s
+     Running unittests src/lib.rs (target/debug/deps/campaign_escrow-453866aa2feb1532)
+
+running 15 tests
+test test::aggregate_deficit_blocks_cross_campaign_spending ... ok
+test test::exact_split_sends_each_leg_to_its_approved_destination ... ok
+test test::admin_cannot_select_or_replace_sponsor_committed_beneficiaries ... ok
+test test::admin_alternative_split_calls_fail_without_changing_campaign_or_balances ... ok
+test test::completion_wins_before_expiry_refund_wins_at_expiry ... ok
+test test::governance_is_not_the_settlement_authority ... ok
+test test::initialize_is_one_time_and_config_versioned ... ok
+test test::explicit_referrer_and_sponsor_only_activation ... ok
+test test::multiple_campaigns_are_isolated_and_ttl_touch_is_callable ... ok
+test test::pause_blocks_new_work_but_expiry_refund_remains_callable ... ok
+test test::expiry_boundary_and_terminal_duplicate_guards ... ok
+test test::rotation_is_two_step_and_old_settlement_rejected ... ok
+test test::wrong_version_and_amount_validation ... ok
+test test::role_authorization_is_enforced_when_auth_entries_are_absent ... ok
+test test::property_accounting_many_base_unit_amounts ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.43s
+
+$ cargo build --locked --release --target wasm32-unknown-unknown
+   Compiling campaign-escrow v0.1.0 (<checkout>/contracts/campaign_escrow)
+    Finished `release` profile [optimized] target(s) in 2.80s
+1cfbad51dc1932e81de857b4a22402f883584ba4c6b89388aff53929c2e6b0eb  target/wasm32-unknown-unknown/release/campaign_escrow.wasm

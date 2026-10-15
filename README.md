@@ -1,18 +1,88 @@
-# TogetherFi × Stellar Soroban Contracts
+# TogetherFi × Stellar — Soroban Contracts
 
 ## Grant preparation status
 
-The Campaign Escrow v2 source in this working tree is implemented and locally
-tested but **has not been deployed**. No deployment is authorized as part of
-this grant-preparation work. The contract IDs and transactions below document
-the earlier v1 testnet baseline only; they are existing evidence and must not be
-claimed as new grant-funded delivery.
+Campaign Escrow v2 and both dedicated contributor pools are **deployed and
+initialized on Stellar Testnet** for the architecture team's requested validation.
+Both role accounts have verified 2-of-3 configurations and disabled setup masters.
+Quorum-authorized completion is confirmed with two verified member signatures; no production readiness,
+mainnet deployment or real-funds activity is claimed or authorized.
+Historical v1 IDs remain separately labeled below.
 
-This release is derived from upstream baseline commit
-`6fd30883bf8c305eb8dd8a8a8fabe7226171332b`, recorded in `UPSTREAM_COMMIT`.
-See `RELEASE.md` for release scope, attribution, responsibility, and AI-assistance disclosure.
+Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
+transactions, deployed WASM verification and pending acceptance gates.
+See [wallet signing instructions](docs/testnet-signing.md) for the quorum test.
+
+Confirmed lifecycle proofs:
+[v2 deployment](https://stellar.expert/explorer/testnet/tx/86f5b65bfb589121aa44e207922c18ce3fcc7a0422cd7dbb68dc8c8d593b3114),
+[2-of-3 handoff](https://stellar.expert/explorer/testnet/tx/9bb97971a294acc396362834eefdcc1cb96c2fe8916be8e8294a4bc482451d29),
+[sponsor funding](https://stellar.expert/explorer/testnet/tx/53c2e5ed884c8575507760640ed1d05749f22388418468ee28cafa6d674bc0e3),
+[sponsor activation/approval](https://stellar.expert/explorer/testnet/tx/8ecd390622067c25610596b0ce78101c5db6d956293119109b176225dc76b729).
+[Quorum-authorized release](https://stellar.expert/explorer/testnet/tx/ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404)
+is confirmed with exact 82/10/5/2/1 payout deltas and reconciled liability.
+The real 30-day timeout/refund proof remains pending.
+
+This working tree is pinned to upstream baseline commit
+`6fd30883bf8c305eb8dd8a8a8fabe7226171332b` in `UPSTREAM_COMMIT`.
 
 [![Tests](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml/badge.svg)](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml)
+
+## Engineering ownership and AI assistance
+
+Ayoub Arbani is the CEO/Developer and Soroban technical owner:
+[personal GitHub](https://github.com/AGDAO/) and
+[LinkedIn](https://linkedin.com/in/ayoub-arbani/).
+AI coding assistants produced most implementation under his direction.
+AI-assisted implementation and local review are not an independent human audit.
+The draft grant plan proposes approximately 17 hours/week across remaining core
+Soroban work, not 17 hours per work package. Actual weekly availability and parallel
+commitments still require owner confirmation. Ayoub Arbani is the sole current
+reviewer as well as the implementation owner. Ace and King are security co-signers,
+not reviewers. Owner review is not independent review; no independent human
+escrow v2 review or external audit is claimed.
+[King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
+
+## Architecture-team acceptance evidence
+
+The fixed policy is **82/10/5/2/1**. `complete(campaign_id, operation_version)`
+has no split or destination argument, and there is no split setter.
+Only the stored sponsor can commit creator/referrer at activation; they cannot
+be replaced afterward. Governance cannot authorize settlement by itself.
+
+Direct tests in [campaign escrow tests](contracts/campaign_escrow/src/test.rs):
+- `admin_alternative_split_calls_fail_without_changing_campaign_or_balances`
+- `admin_cannot_select_or_replace_sponsor_committed_beneficiaries`
+- `governance_is_not_the_settlement_authority`
+- `exact_split_sends_each_leg_to_its_approved_destination`
+
+The verification script uses Rust-compatible committed lockfiles (`--locked`),
+tests all five packages, and builds their WASM with pinned toolchains.
+The active expanded workflow tests and builds all five contracts independently,
+retains verification artifacts, and runs the offline Node approval guards.
+It is installed on the review branch using explicitly authorized workflow-write
+access. A reference copy is supplied as `docs/proposed-ci-workflow.yml`.
+See [current CI runs](https://github.com/AGDAO/togetherfi-stellar/actions/workflows/test.yml?query=branch%3Aescrow-v2-ci-security-evidence-20261004)
+for the actual result; workflow configuration alone is not passing evidence.
+The previous CI and published lockfiles resolved newer edition-2024 dependencies
+incompatible with Rust 1.81, failing before contract tests ran. A configured workflow is not
+a passing run; use the linked Actions result as the current CI evidence.
+
+The selected settlement-control mechanism is a native Stellar account multisig
+with a **2-of-3** policy, matching the owner's Arbitrum model. The selected
+signer holders are **Ayoub Arbani, Ace, and King**.
+Three independently held Stellar signing keys are required, not EVM addresses
+or three keys held by the backend.
+Both account configurations are **verified on testnet**: signer weights 1/1/1,
+low/medium/high thresholds 2/2/2, setup master weight 0. Disabled setup-key attempts
+were rejected by the network. Actual member 1-of-3 rejection occurred at RPC
+ingestion, and 2-of-3 completion is ledger-confirmed. Mainnet needs different
+owner-provided wallets.
+Governance custody must also be independently threshold-controlled so the backend
+cannot bypass settlement quorum by rotating the settlement role to its own key.
+See [testnet acceptance checklist](docs/testnet-acceptance.md).
+
+Arbitrum-triggered Stellar payments are **excluded from the current grant scope**.
+No Stellar-side USDC liquidity or replenishment mechanism is claimed.
 
 Two Soroban smart contracts deployed on Stellar testnet as part of the
 [TogetherFi](https://togetherfi.io) Stellar Community Fund grant application.
@@ -31,9 +101,12 @@ They are not the v2 implementation and do not describe a new deployment.
 
 ---
 
-## Campaign Escrow v2 (`contracts/campaign_escrow`) (not deployed)
+## Campaign Escrow v2 (`contracts/campaign_escrow`) — testnet validation
 
-Holds USDC for a TogetherFi creator campaign and releases it atomically on
+Testnet contract: `CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ`.
+Test fixture asset is free seven-decimal XLM, not production USDC.
+
+Holds the configured settlement asset for a TogetherFi creator campaign and releases it atomically on
 completion with the platform's fixed payout split:
 
 | Recipient | Share |
@@ -49,7 +122,7 @@ completion with the platform's fixed payout split:
 | Function | Caller | Action |
 |---|---|---|
 | `initialize(governance, settlement, token, service_treasury, nft_pool, revenue_pool)` | governance | One-time setup |
-| `fund(campaign_id, sponsor, amount)` | sponsor signs | Transfer USDC sponsor → contract |
+| `fund(campaign_id, sponsor, amount)` | sponsor signs | Transfer configured asset sponsor → contract |
 | `activate(campaign_id, creator, referrer, terms_hash)` | stored sponsor | Commit payout destinations and terms |
 | `complete(campaign_id, operation_version)` | settlement authority | Release with split atomically |
 | `refund_expired(campaign_id)` | anyone after expiry | Return full balance to stored sponsor |
@@ -64,7 +137,12 @@ is no fallback recipient for the `1%` referrer leg.
 Campaign funding is at least 100 base units (`0.0000100` for a 7-decimal
 asset), which ensures every fixed 5% / 2% / 1% payout leg is nonzero.
 
-## Contributor Pool (`contracts/contributor_pool`) (not deployed)
+## Contributor Pool (`contracts/contributor_pool`) — testnet validation
+
+Both separate instances are deployed and initialized:
+- 5% MOFO: `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76`.
+- 2% community: `CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25`.
+Their first authenticated campaign credits are confirmed: 0.05 and 0.02 test XLM.
 
 Deploy **two separately initialized instances**: one for the 5% MOFO
 contributor allocation and one for the 2% community contributor allocation.
@@ -110,10 +188,11 @@ before any deployment.
 | Fund (end-to-end test) | `ebced8761f76e5e1bbdb5d0fe0859f095ce999e2fb5487358474399484d25c89` |
 | Complete (end-to-end test) | `268ad813ee9192a9a6838b03173e3403d83df7bf1ab3cf17ae2c8790f574496b` |
 
-Split verified on-chain: 82.5% creator / 10% platform treasury / 5% revenue pool / 2.5% referrer. The escrow drained to zero.
+Split verified on-chain: 82.5% creator / 10% platform treasury / 5% revenue pool / 2.5% referrer — escrow drained to zero.
 
 > Note: XLM native asset used as USDC stand-in for the testnet test.
-> Mainnet deployment will use the official Stellar USDC token contract on grant approval.
+> This historical stand-in does not select the v2 asset/issuer. The final asset
+> requires separate confirmation; no mainnet deployment is authorized here.
 
 ---
 
@@ -151,7 +230,7 @@ pub struct ScoreRecord {
 
 Emitted by `anchor_score` on every call. Indexed by `(profile_id, score, tier, anchored_at, arbitrum_tx_hash)`. Any Stellar explorer can verify the anchor on-chain.
 
-## LayerZero Receipt Adapter (`contracts/layerzero_receipt_adapter`) (not deployed)
+## LayerZero Receipt Adapter (`contracts/layerzero_receipt_adapter`) — not deployed
 
 The LayerZero V2 adapter is an optional informational messaging component. It
 publishes versioned, domain-separated receipts only after a Stellar campaign has
@@ -189,7 +268,7 @@ The receipt adapter and funding inbox are implementation artifacts only. They
 are not an audit or a production-readiness claim, and no real cross-chain
 transaction evidence is presented here.
 
-## LayerZero Funding Inbox (`contracts/layerzero_funding_inbox`) (not deployed)
+## LayerZero Funding Inbox (`contracts/layerzero_funding_inbox`) — not deployed
 
 The optional bridge funding path is a separate Soroban package. It uses the
 official LayerZero Stellar 1.2.55 `ILayerZeroComposer` interface, authenticates
@@ -247,7 +326,7 @@ toolchain and is not part of the SDK 21/Rust 1.81 deployment boundary.
 
 ## Building
 
-### Critical toolchain requirement
+### Toolchain requirement — CRITICAL
 
 Campaign Escrow, Contributor Pool, and Reputation Anchor **must compile with
 Rust 1.81**. Rust 1.82+ produces WASM that soroban-sdk 21.x / stellar-cli 27
@@ -300,6 +379,28 @@ cd contracts/layerzero_receipt_adapter
 cargo +1.90 test
 ```
 
+### Reproducible evidence bundle
+
+Install the exact Rust `1.81.0` and `1.90.0` toolchains and the
+`wasm32-unknown-unknown` / `wasm32v1-none` targets, then run:
+
+From the Soroban repository root (or the application subtree), run:
+
+```bash
+for package in campaign_escrow contributor_pool reputation_anchor; do
+  bash scripts/verify-contract.sh "$package" 1.81.0 wasm32-unknown-unknown
+done
+for package in layerzero_receipt_adapter layerzero_funding_inbox; do
+  bash scripts/verify-contract.sh "$package" 1.90.0 wasm32v1-none
+done
+```
+
+The script uses committed lockfiles with `--locked`, tests each package, builds
+its WASM with the required target, and writes transcripts and hashes to
+`evidence/current/<package>/`. These are local
+reproducibility artifacts only; they are not deployment, testnet, or live-route
+proof.
+
 ### Deploying (stellar-cli 27)
 
 ```bash
@@ -319,23 +420,23 @@ contracts/
   campaign_escrow/
     Cargo.toml
     src/
-      lib.rs: contract implementation
-      test.rs: 4 integration tests
+      lib.rs    — contract implementation
+      test.rs   — escrow lifecycle, authorization, and immutable-policy tests
   reputation_anchor/
     Cargo.toml
     src/
-      lib.rs: contract implementation
-      test.rs: integration tests
+      lib.rs    — contract implementation
+      test.rs   — integration tests
   contributor_pool/
     Cargo.toml
     src/
-      lib.rs: immutable contributor manifest and self-claim implementation
-      test.rs: pool lifecycle and replay-protection tests
+      lib.rs     — immutable contributor manifest and self-claim implementation
+      test.rs    — pool lifecycle and replay-protection tests
   layerzero_receipt_adapter/
     Cargo.toml
     src/
-      lib.rs: optional LayerZero V2 final-state receipt OApp
-      test.rs: authentication, replay, ordering, and payload tests
+      lib.rs     — optional LayerZero V2 final-state receipt OApp
+      test.rs    — authentication, replay, ordering, and payload tests
 LICENSE
 README.md
 ```
