@@ -1,0 +1,295 @@
+{
+  "network": "testnet",
+  "created_at": "2026-10-15T10:46:56.727Z",
+  "status": "zyad_king_quorum_completion_verified; historical_real_expiry_refund_proof_still_pending",
+  "baseline_evidence": "../testnet-escrow-v2/manifest.json",
+  "rotation_evidence": "../testnet-signer-rotation/confirmation.json",
+  "signers": {
+    "Ayoub": "GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE",
+    "Zyad": "GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7",
+    "King": "GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U"
+  },
+  "policy": {
+    "quorum": 2,
+    "signer_weight": 1,
+    "master_weight": 0
+  },
+  "contracts": {
+    "escrow": {
+      "id": "CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ",
+      "salt": "521ea2913f1f5c378c95f3a68eef13253cf6df650e972a2703a9612690ff8578"
+    },
+    "nft_pool": {
+      "id": "CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76",
+      "salt": "328cea239c2d1da502083bb700769816aa63c5c0f17d1783eb015362bd0d9de1"
+    },
+    "revenue_pool": {
+      "id": "CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25",
+      "salt": "1b757f7152f88c730cc2432d3612e7d11e105772d56b845bdcfff487fbde033a"
+    }
+  },
+  "asset": {
+    "symbol": "XLM",
+    "decimals": 7,
+    "fixture_only": true,
+    "contract": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+    "note": "Free testnet XLM only; not final production asset or USDC."
+  },
+  "accounts": {
+    "deployer": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C",
+    "governance": "GA777UZBWGPK7KPKE5BSQWH7XWDXHXQ5XLYPPZ2KSQE2WEG7OL7LKLK3",
+    "settlement": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
+    "sponsor": "GASRCL6BLPJNU55THGRSOGYNCZLJK2XQVMVCCTT2L6PHXIVQDXPHCGTT",
+    "creator": "GBSISBN2Y5F4YWXSBO3F7WNNDNN4X2AUQXJPS2K6WKHEGKDHFZZAS6YN",
+    "referrer": "GC2E63W3MQCXMETBMTWLXBNHNGILLWCHFLRZSB2PL4ZFLQCJRLXQF3DD",
+    "service_treasury": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C",
+    "eligibility_authority": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C"
+  },
+  "campaign_id": 3,
+  "transactions": [
+    {
+      "label": "fund_campaign_3_for_new_roster",
+      "hash": "13609d9477a6f67e44c70b1be7710a55590943bca0842eb38b85ec7ef7ac9751",
+      "signed_xdr": "AAAAAgAAAAAlES/BW9Lad7M5oycbDRZWlWrwqyohTnpfnnuisB3ecRUU7oMAT3XnAAAAAQAAAAEAAAAAAAAAAAAAAABq0LGKAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAEZnVuZAAAAAMAAAAFAAAAAAAAAAMAAAASAAAAAAAAAAAlES/BW9Lad7M5oycbDRZWlWrwqyohTnpfnnuisB3ecQAAAAoAAAAAAAAAAAAAAAAAmJaAAAAAAQAAAAAAAAAAAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAABGZ1bmQAAAADAAAABQAAAAAAAAADAAAAEgAAAAAAAAAAJREvwVvS2nezOaMnGw0WVpVq8KsqIU56X557orAd3nEAAAAKAAAAAAAAAAAAAAAAAJiWgAAAAAEAAAAAAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAACHRyYW5zZmVyAAAAAwAAABIAAAAAAAAAACURL8Fb0tp3szmjJxsNFlaVavCrKiFOel+ee6KwHd5xAAAAEgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAAAoAAAAAAAAAAAAAAAAAmJaAAAAAAAAAAAEAAAAAAAAAAgAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAUAAAAAQAAAAcc+61R3Bky6B3oV7SiJAL4g1hLpMa4k4iv9Tkpwuaw6wAAAAQAAAAAAAAAACURL8Fb0tp3szmjJxsNFlaVavCrKiFOel+ee6KwHd5xAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAMAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABQAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQATSuoAAACQAAAF4AAAAAAVFMdzAAAAAbAd3nEAAABAS0T/TyWEml3xvapODMZC1cBMd5ckEtqAI12VcGk5tU+tG+WzLZet5uQpO7+iGlQ3ijFXsBf9rnpy6YTXOY5iAA==",
+      "status": "confirmed_success",
+      "ledger": 5207530,
+      "ledger_closed_at": "1792061237",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/13609d9477a6f67e44c70b1be7710a55590943bca0842eb38b85ec7ef7ac9751"
+    },
+    {
+      "label": "activate_campaign_3_for_new_roster",
+      "hash": "359caf585a4a26847fe85017867e067ca96cb78a19e9788568b763cf3f7a8f54",
+      "signed_xdr": "AAAAAgAAAAAlES/BW9Lad7M5oycbDRZWlWrwqyohTnpfnnuisB3ecQAFgy0AT3XnAAAAAgAAAAEAAAAAAAAAAAAAAABq0LGOAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIYWN0aXZhdGUAAAAEAAAABQAAAAAAAAADAAAAEgAAAAAAAAAAZIkFusdLzFryC7Zf2a0bW8voFIXS+Wleso5DKGcucgkAAAASAAAAAAAAAAC0T27bZAV2EmFk7LuFp2mQtdhHKuOZB09fMlXASYrvAgAAAA0AAAAfbmF0aXZlLXRlc3RuZXQtenlhZC1raW5nLXF1b3J1bQAAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIYWN0aXZhdGUAAAAEAAAABQAAAAAAAAADAAAAEgAAAAAAAAAAZIkFusdLzFryC7Zf2a0bW8voFIXS+Wleso5DKGcucgkAAAASAAAAAAAAAAC0T27bZAV2EmFk7LuFp2mQtdhHKuOZB09fMlXASYrvAgAAAA0AAAAfbmF0aXZlLXRlc3RuZXQtenlhZC1raW5nLXF1b3J1bQAAAAAAAAAAAQAAAAAAAAACAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAAAQAAAAYAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAQAAAAAQAAAAIAAAAPAAAACENhbXBhaWduAAAABQAAAAAAAAADAAAAAQAPBcAAAAAAAAACEAAAAAAABVwdAAAAAbAd3nEAAABA7gpwFBgqWWSuVt+MYtUQga4YVWBZFoogV1UYSL93Zlt/0k6BMCakKK1BAXwcBV7sWZwGba5A6NzG+HOUbGuwBQ==",
+      "status": "confirmed_success",
+      "ledger": 5207531,
+      "ledger_closed_at": "1792061242",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/359caf585a4a26847fe85017867e067ca96cb78a19e9788568b763cf3f7a8f54"
+    },
+    {
+      "label": "one_of_three_zyad_completion_rejected",
+      "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+      "signed_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArifCbqoATJTvAAAAAgAAAAEAAAAAAAAAAAAAAABq0gC8AAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAADAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAADAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAAZIkFusdLzFryC7Zf2a0bW8voFIXS+Wleso5DKGcucgkAAAAAAAAAALRPbttkBXYSYWTsu4WnaZC12Ecq45kHT18yVcBJiu8CAAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAMAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAMAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAMAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAADAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEkV4AAAAbAAAA+EAAAAAAnwkeaAAAAAQTj9gsAAABAqOcYVsXSPjwPcfs42PeUSZoD2ctKX/NH6G/iV3h8DNuH5BPBUxsmEnEIhXPXLQXqEfQzCH8r2YBMeC/IPvDiBQ==",
+      "status": "rejected_before_ledger",
+      "result_xdr": "AAAAACfCR/7////6AAAAAA==",
+      "reason": "txBadAuth"
+    },
+    {
+      "label": "two_of_three_zyad_king_completion_confirmed",
+      "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+      "signed_xdr": "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",
+      "status": "confirmed_success",
+      "ledger": 5207647,
+      "ledger_closed_at": "1792061822",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32"
+    }
+  ],
+  "evidence": {
+    "campaign_before_completion": {
+      "amount": "10000000",
+      "creator": "GBSISBN2Y5F4YWXSBO3F7WNNDNN4X2AUQXJPS2K6WKHEGKDHFZZAS6YN",
+      "expires_at": "1794653237",
+      "funded_at": "1792061237",
+      "operation_version": 1,
+      "referrer": "GC2E63W3MQCXMETBMTWLXBNHNGILLWCHFLRZSB2PL4ZFLQCJRLXQF3DD",
+      "sponsor": "GASRCL6BLPJNU55THGRSOGYNCZLJK2XQVMVCCTT2L6PHXIVQDXPHCGTT",
+      "status": [
+        "Active"
+      ],
+      "terms_hash": {
+        "type": "Buffer",
+        "data": [
+          110,
+          97,
+          116,
+          105,
+          118,
+          101,
+          45,
+          116,
+          101,
+          115,
+          116,
+          110,
+          101,
+          116,
+          45,
+          122,
+          121,
+          97,
+          100,
+          45,
+          107,
+          105,
+          110,
+          103,
+          45,
+          113,
+          117,
+          111,
+          114,
+          117,
+          109
+        ]
+      }
+    },
+    "balances_before_completion": {
+      "creator": "100000000000",
+      "service": "99705159777",
+      "nft_pool": "500000",
+      "revenue_pool": "200000",
+      "referrer": "100000000000",
+      "escrow": "20000000"
+    },
+    "accounting_before_completion": {
+      "escrow": {
+        "TotalLiability": "20000000"
+      },
+      "nft_pool": {
+        "TotalCredited": "500000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      },
+      "revenue_pool": {
+        "TotalCredited": "200000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      }
+    },
+    "verified_release_signers": [
+      "Zyad",
+      "King"
+    ],
+    "signature_verification": {
+      "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+      "unchanged_body": true,
+      "distinct_valid_signatures": 2,
+      "verified_at": "2026-10-15T10:56:58.625Z"
+    },
+    "one_of_three_rejection": {
+      "signed_by": "Zyad",
+      "reason": "txBadAuth",
+      "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+      "type": "RPC ingestion rejection, not a confirmed ledger transaction",
+      "note": "Stellar transaction hashes exclude envelope signatures; the later two-signature submission has the same transaction hash."
+    },
+    "balances_after_one_signature_rejection": {
+      "creator": "100000000000",
+      "service": "99705159777",
+      "nft_pool": "500000",
+      "revenue_pool": "200000",
+      "referrer": "100000000000",
+      "escrow": "20000000"
+    },
+    "campaign_after_completion": {
+      "amount": "10000000",
+      "creator": "GBSISBN2Y5F4YWXSBO3F7WNNDNN4X2AUQXJPS2K6WKHEGKDHFZZAS6YN",
+      "expires_at": "1794653237",
+      "funded_at": "1792061237",
+      "operation_version": 1,
+      "referrer": "GC2E63W3MQCXMETBMTWLXBNHNGILLWCHFLRZSB2PL4ZFLQCJRLXQF3DD",
+      "sponsor": "GASRCL6BLPJNU55THGRSOGYNCZLJK2XQVMVCCTT2L6PHXIVQDXPHCGTT",
+      "status": [
+        "Completed"
+      ],
+      "terms_hash": {
+        "type": "Buffer",
+        "data": [
+          110,
+          97,
+          116,
+          105,
+          118,
+          101,
+          45,
+          116,
+          101,
+          115,
+          116,
+          110,
+          101,
+          116,
+          45,
+          122,
+          121,
+          97,
+          100,
+          45,
+          107,
+          105,
+          110,
+          103,
+          45,
+          113,
+          117,
+          111,
+          114,
+          117,
+          109
+        ]
+      }
+    },
+    "balances_after_completion": {
+      "creator": "100008200000",
+      "service": "99706159777",
+      "nft_pool": "1000000",
+      "revenue_pool": "400000",
+      "referrer": "100000100000",
+      "escrow": "10000000"
+    },
+    "exact_payout_deltas_stroops": {
+      "creator": "8200000",
+      "service": "1000000",
+      "nft_pool": "500000",
+      "revenue_pool": "200000",
+      "referrer": "100000",
+      "escrow": "-10000000"
+    },
+    "accounting_after_completion": {
+      "escrow": {
+        "TotalLiability": "10000000"
+      },
+      "nft_pool": {
+        "TotalCredited": "1000000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      },
+      "revenue_pool": {
+        "TotalCredited": "400000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      }
+    },
+    "split_verified": "82/10/5/2/1, exact base-unit deltas",
+    "historical_expiry_campaign_unchanged": true,
+    "ledger_receipt": {
+      "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+      "ledger": 5207647,
+      "created_at": "2026-10-15T10:57:02Z",
+      "fee_charged_stroops": "290506519",
+      "successful": true,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32"
+    },
+    "last_verified_utc": "2026-10-15T10:57:04.673Z"
+  },
+  "fixture_custody": "Free testnet XLM only. Disposable sponsor/recipient fixtures; no production custody or member keys.",
+  "requested_release_signers": [
+    "Zyad",
+    "King"
+  ],
+  "review": "Fresh human reviews pending; signatures are not code-review approvals.",
+  "approval": {
+    "status": "confirmed",
+    "hash": "de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32",
+    "unsigned_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArifCbqoATJTvAAAAAgAAAAEAAAAAAAAAAAAAAABq0gC8AAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAADAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAADAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAAZIkFusdLzFryC7Zf2a0bW8voFIXS+Wleso5DKGcucgkAAAAAAAAAALRPbttkBXYSYWTsu4WnaZC12Ecq45kHT18yVcBJiu8CAAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAMAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAMAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAMAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAADAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEkV4AAAAbAAAA+EAAAAAAnwkeaAAAAAA==",
+    "source": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
+    "campaign_id": 3,
+    "operation_version": 1,
+    "amount_base_units": "10000000",
+    "expected_split": "82/10/5/2/1",
+    "quoted_resource_fee_stroops": "333021869",
+    "fee_cap_test_xlm": "66.7053738",
+    "signature_deadline_utc": "2026-10-16T10:47:24.000Z",
+    "signing_method": "Freighter signing-only; sign this identical frozen envelope separately; do not re-simulate",
+    "completion_ledger": 5207647
+  }
+}

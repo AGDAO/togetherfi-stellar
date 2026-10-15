@@ -16,6 +16,7 @@ soroban-sdk = "21.7.6"
 
 [dev-dependencies]
 soroban-sdk = { version = "21.7.6", features = ["testutils"] }
+contributor-pool = { path = "../contributor_pool" }
 
 [patch.crates-io]
 soroban-env-host = { path = "../../soroban-env-host-patch" }

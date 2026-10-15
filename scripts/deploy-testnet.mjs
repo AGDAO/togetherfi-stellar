@@ -12,13 +12,28 @@ import {
   NETWORK, server, horizon, addressValue, validateSigners, assertQuorum,
   contractId, saveManifest, activate, submitPrepared, basicTransaction,
 } from './testnet-common.mjs';
+import { deploymentProof, verifyDeploymentBindings } from './deployment-binding.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = resolve(ROOT, 'evidence/testnet-escrow-v2');
+// Never overwrite receipts for the pre-hardening deployment.
+const OUT = resolve(ROOT, 'evidence/testnet-escrow-v3');
 const PATH = resolve(OUT, 'manifest.json');
 if (process.argv[2] !== '--execute-testnet') {
   throw new Error('Explicit --execute-testnet required; mainnet is unsupported');
 }
+const hashesIndex = process.argv.indexOf('--reviewed-wasm-sha256');
+if (hashesIndex < 0 || !process.argv[hashesIndex + 1]) {
+  throw new Error('Patched deployment requires --reviewed-wasm-sha256 <reviewed-build.json>; historical WASM hashes are not valid for this source');
+}
+const reviewedBuild = JSON.parse(await readFile(resolve(process.argv[hashesIndex + 1]), 'utf8'));
+if (reviewedBuild.initialization !== 'deployer-preimage-v1') {
+  throw new Error('Reviewed build must declare initialization: deployer-preimage-v1');
+}
+const packageSpecs = ['campaign_escrow', 'contributor_pool'].map(name => {
+  const expected = reviewedBuild.wasm_sha256?.[name];
+  if (!/^[0-9a-f]{64}$/.test(expected || '')) throw new Error('Missing reviewed WASM SHA256 for ' + name);
+  return [name, expected];
+});
 try { await access(PATH); throw new Error('Existing manifest must not be overwritten'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 
@@ -27,7 +42,7 @@ const manifest = {
   status: 'bootstrap_in_progress', review: 'owner-only; no independent review claimed',
   signers: {
     Ayoub: 'GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE',
-    Ace: 'GD57W22FBBREDJSEN2PDRLP5FYBZQ4QHO65KN6Z6U2ZP3I2OCOALJFTH',
+    Zyad: 'GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7',
     King: 'GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U',
   },
   policy: { quorum: 2, signer_weight: 1, master_weight: 0 },
@@ -37,6 +52,7 @@ const manifest = {
     note: 'Free testnet XLM only; not final production asset or USDC.',
   },
   contracts: {}, accounts: {}, transactions: [], evidence: {},
+  initialization: 'deployer-preimage-v1',
 };
 const signerKeys = validateSigners(manifest);
 // No member signing keys are generated or read. These are disposable setup/fixture keys.
@@ -93,10 +109,6 @@ async function call(key, id, method, args, label, extras = []) {
 try {
   for (const key of signerKeys) await activate(key);
   for (const key of Object.values(fixture)) await activate(key.publicKey());
-  const packageSpecs = [
-    ['campaign_escrow', '1cfbad51dc1932e81de857b4a22402f883584ba4c6b89388aff53929c2e6b0eb'],
-    ['contributor_pool', '2f24a684373cfb2683912b1a85be0b8e4ac859fb64c15b14a52050579e99a865'],
-  ];
   const wasmHashes = {};
   for (const [name, expected] of packageSpecs) {
     const wasm = await readFile(resolve(ROOT, 'contracts', name,
@@ -123,18 +135,18 @@ try {
   for (const name of ['nft_pool', 'revenue_pool']) {
     await call(fixture.governance, manifest.contracts[name].id, 'initialize', [
       gov, addressValue(manifest.accounts.eligibility_authority), token, addressValue(escrow),
+      ...deploymentProof(manifest.contracts[name].id, fixture.deployer.publicKey(), salts[name]),
     ], 'initialize_' + name, [fixture.deployer]);
   }
   await call(fixture.governance, escrow, 'initialize', [
     gov, addressValue(manifest.accounts.settlement), token,
     addressValue(manifest.accounts.service_treasury),
     addressValue(manifest.contracts.nft_pool.id), addressValue(manifest.contracts.revenue_pool.id),
-  ], 'initialize_escrow');
-  // Detect a failed/mismatched initializer before handing off the role accounts.
-  if (await view(escrow, 'governance') !== manifest.accounts.governance ||
-      await view(escrow, 'settlement_authority') !== manifest.accounts.settlement) {
-    throw new Error('Escrow role binding mismatch');
-  }
+    ...deploymentProof(escrow, fixture.deployer.publicKey(), salts.escrow),
+  ], 'initialize_escrow', [fixture.deployer]);
+  // No role handoff or campaign funding until every configured binding matches.
+  manifest.evidence.deployment_bindings = await verifyDeploymentBindings(manifest, view);
+  await saveManifest(PATH, manifest);
   const options = [];
   for (const role of ['governance', 'settlement']) {
     for (const publicKey of signerKeys) options.push(Operation.setOptions({

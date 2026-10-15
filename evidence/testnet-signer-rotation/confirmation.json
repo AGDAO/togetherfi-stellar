@@ -1,0 +1,44 @@
+{
+  "network": "testnet",
+  "status": "confirmed_success",
+  "hash": "acf8693c615586e35f23f98d184eb2769d8d6ed2f511c06b3d4569db69e54657",
+  "ledger": 5207471,
+  "created_at": "2026-10-15T10:42:22Z",
+  "fee_charged_stroops": "400",
+  "fee_cap_stroops": "40000",
+  "authorizing_signers": ["Ayoub", "King"],
+  "after_signers": {
+    "Ayoub": "GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE",
+    "Zyad": "GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7",
+    "King": "GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U"
+  },
+  "accounts": [
+    {
+      "account_id": "GA777UZBWGPK7KPKE5BSQWH7XWDXHXQ5XLYPPZ2KSQE2WEG7OL7LKLK3",
+      "sequence": "21555848153137156",
+      "thresholds": {"low_threshold": 2, "med_threshold": 2, "high_threshold": 2},
+      "signers": [
+        {"weight": 1, "key": "GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U", "type": "ed25519_public_key"},
+        {"weight": 1, "key": "GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE", "type": "ed25519_public_key"},
+        {"weight": 1, "key": "GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7", "type": "ed25519_public_key"},
+        {"weight": 0, "key": "GA777UZBWGPK7KPKE5BSQWH7XWDXHXQ5XLYPPZ2KSQE2WEG7OL7LKLK3", "type": "ed25519_public_key"}
+      ]
+    },
+    {
+      "account_id": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
+      "sequence": "21555852448104449",
+      "thresholds": {"low_threshold": 2, "med_threshold": 2, "high_threshold": 2},
+      "signers": [
+        {"weight": 1, "key": "GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U", "type": "ed25519_public_key"},
+        {"weight": 1, "key": "GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE", "type": "ed25519_public_key"},
+        {"weight": 1, "key": "GDTAV2MA7TX4ATKBPEF4G7SFT7GHPIRZ4UVMQKNISPEGC5AE4P3AWWG7", "type": "ed25519_public_key"},
+        {"weight": 0, "key": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM", "type": "ed25519_public_key"}
+      ]
+    }
+  ],
+  "explorer": "https://stellar.expert/explorer/testnet/tx/acf8693c615586e35f23f98d184eb2769d8d6ed2f511c06b3d4569db69e54657",
+  "verified_at": "2026-10-15T10:42:23.187Z",
+  "historical_observation_note": "The original request is preserved unchanged. TransactionBuilder.build() advanced its in-memory governance account object, so request.observed_accounts records governance sequence 21555848153137156 after construction, not the actual pre-submit sequence 21555848153137155.",
+  "fresh_zyad_king_release": "pending; signer rotation is not release evidence",
+  "scope": "Only dedicated testnet governance and settlement accounts changed. Individual member-wallet signers and thresholds were not modified. No payments or mainnet operations."
+}

@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "engines": { "node": ">=20" },
-  "scripts": { "test": "node --test scripts/testnet-common.test.mjs" },
+  "scripts": { "test": "node --test scripts/*.test.mjs" },
   "dependencies": { "@stellar/stellar-sdk": "15.1.0" }
 }
