@@ -1,7 +1,11 @@
 # Stellar-native final review candidate
 
-This package awaits final code reviews by Zyad Rehioui and Med Amine on PR #2
-before handoff to The Arch team. No final approval or merge is claimed.
+This package awaits final code reviews on PR #2 before handoff to The Arch team.
+Med Amine's review request was sent to
+[@elastikchain-eth](https://github.com/elastikchain-eth), the account that
+authored his PR #1 review and identifies him as @med-amiine. Zyad's collaborator
+invitation is pending acceptance, so his review request has not yet been sent.
+No final approval or merge is claimed.
 It is not a new contract deployment, audit or mainnet release.
 
 The public review snapshot contains only Campaign Escrow, Contributor Pool and

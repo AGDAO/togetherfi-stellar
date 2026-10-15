@@ -2,8 +2,11 @@
 
 ## Review status and scope
 
-**Awaiting final code reviews from Zyad Rehioui and Med Amine on
-[PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).**
+**Final code reviews remain outstanding on
+[PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).** A review request
+has been sent to Med Amine's GitHub review account,
+[@elastikchain-eth](https://github.com/elastikchain-eth). Zyad's collaborator
+invitation is pending acceptance; his review request has not yet been sent.
 Neither final approval is recorded or claimed by this handoff.
 The PR must remain unmerged until both reviews and the required checks are
 resolved, before the owner sends the package to The Arch team.
@@ -31,8 +34,10 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 
 - Ayoub is the implementation owner.
 - Med Amine is the external scoped technical reviewer, not an implementation
-  owner or transaction signer. His supplied GitHub profile is
-  https://github.com/med-amiine.
+  owner or transaction signer. His public profile is
+  [@med-amiine](https://github.com/med-amiine); his PR #1 review was authored
+  from [@elastikchain-eth](https://github.com/elastikchain-eth), the account
+  requested for his PR #2 review.
 - [Zyad Rehioui](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
   co-signer.
 - Ace Jacobs supports GameFi testing and operations, not contract review or the
@@ -53,11 +58,15 @@ is not included as newly completed Stellar delivery.
 ## Prior review evidence
 
 The prior review remains attached to its original commit in
-[PR #1](https://github.com/AGDAO/togetherfi-stellar/pull/1).
+[PR #1](https://github.com/AGDAO/togetherfi-stellar/pull/1), under the
+[@elastikchain-eth account](https://github.com/AGDAO/togetherfi-stellar/pull/1#pullrequestreview-5527032908).
+The review text identifies the reviewer as Med Amine (@med-amiine).
 It covered a broader source tree and must not be represented as approval of this
-new snapshot or the now-confirmed signer configuration. New review is requested from
-Med Amine and Zyad against the exact new PR head. Neither approval is claimed
-until the reviewer records it. A scoped technical review is not a formal audit.
+new snapshot or the now-confirmed signer configuration. A new review request was
+sent to Med's @elastikchain-eth account against the PR #2 head. Zyad's review
+request awaits acceptance of his collaborator invitation. Neither approval is
+claimed until each reviewer records it. A scoped technical review is not a
+formal audit.
 
 ## Signer transition and fresh release confirmed
 

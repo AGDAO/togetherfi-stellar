@@ -25,7 +25,8 @@ grant handoff. Any compensation arrangements are documented separately.
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
-[Med Amine](https://github.com/med-amiine),
+[Med Amine's public profile](https://github.com/med-amiine),
+[Med's PR review account](https://github.com/elastikchain-eth),
 [Ace](https://github.com/devcryptoaceph),
 [King](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a/).
 
