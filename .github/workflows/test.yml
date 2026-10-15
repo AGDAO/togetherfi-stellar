@@ -37,12 +37,6 @@ jobs:
           - contract: reputation_anchor
             rust: "1.81.0"
             target: wasm32-unknown-unknown
-          - contract: layerzero_receipt_adapter
-            rust: "1.90.0"
-            target: wasm32v1-none
-          - contract: layerzero_funding_inbox
-            rust: "1.90.0"
-            target: wasm32v1-none
     steps:
       - uses: actions/checkout@v4
       - name: Install pinned Rust toolchain
