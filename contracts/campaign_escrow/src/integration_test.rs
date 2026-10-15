@@ -58,8 +58,8 @@ impl Rig {
         let asset = env.register_stellar_asset_contract_v2(admin.clone());
         // These issuer capabilities allow genuine nested SAC failures, without
         // changing contract storage or substituting a failing mock contract.
-        asset.issuer().set_flag(IssuerFlags::AuthRevocableFlag);
-        asset.issuer().set_flag(IssuerFlags::AuthClawbackEnabledFlag);
+        asset.issuer().set_flag(IssuerFlags::RevocableFlag);
+        asset.issuer().set_flag(IssuerFlags::ClawbackEnabledFlag);
         let token = asset.address();
         let escrow_salt = BytesN::from_array(&env, &[71; 32]);
         let escrow = env.deployer()
@@ -296,7 +296,13 @@ fn real_second_pool_credit_failure_rolls_back_all_earlier_payouts_and_credits() 
     assert_eq!(before.pools[0].liability, 300);
     assert_eq!(before.pools[1].liability, 120);
     rig.authorize_complete(2);
-    assert!(rig.escrow().try_complete(&2, &1).is_err());
+    let failure = rig.env.try_invoke_contract::<(), soroban_sdk::Error>(
+        &rig.escrow, &symbol_short!("complete"), (2_u64, 1_u32).into_val(&rig.env),
+    ).err().expect("nested credit must fail")
+        .expect("the pool's contract error must be preserved");
+    assert_eq!(failure, soroban_sdk::Error::from_contract_error(
+        contributor_pool::PoolError::Deficit as u32,
+    ));
     assert_eq!(rig.state(&[1, 2]), before);
     assert_eq!(rig.escrow().get_campaign(&2).status, CampaignStatus::Active);
     // Repair only the original one-unit deficit: no duplicate payments or
