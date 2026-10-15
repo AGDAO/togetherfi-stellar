@@ -21,6 +21,11 @@ The separate [fresh Zyad and King campaign](testnet-zyad-king.md) completed in
 ledger 5207647 with the new members' actual signatures, following the expected
 one-member RPC rejection. Its exact payout deltas and accounting were verified.
 
+The additional [Zyad and Ayoub campaign 4](testnet-zyad-ayoub.md) completed
+in ledger 5207852 after a valid Ayoub-only envelope was correctly blocked.
+Exact payout deltas and all liability/credit changes reconciled. Campaign 3
+and the original real-expiry campaign 2 were checked unchanged.
+
 ## Contracts and asset
 
 | Binding | Testnet address |

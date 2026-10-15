@@ -39,31 +39,35 @@ test('new-roster fixture uses completed native testnet baseline and both confirm
   assert.equal(baseline.approval.status, 'confirmed');
 });
 
-test('recorded release has Zyad and King signatures, RPC rejection, exact payouts and reconciled liability', () => {
-  const m = load('testnet-zyad-king/manifest.json');
+for (const { directory, names, singleMember } of [
+  { directory: 'testnet-zyad-king', names: ['Zyad', 'King'], singleMember: 'Zyad' },
+  { directory: 'testnet-zyad-ayoub', names: ['Zyad', 'Ayoub'], singleMember: 'Ayoub' },
+]) {
+test(`recorded ${names.join(' and ')} release: valid signatures, expected block, exact payouts and liability`, () => {
+  const m = load(`${directory}/manifest.json`);
   assert.equal(m.network, 'testnet');
   assert.equal(m.approval.status, 'confirmed');
   const signed = TransactionBuilder.fromXDR(
-    readFileSync(new URL('testnet-zyad-king/quorum-signed.xdr.txt', root), 'utf8').trim(),
+    readFileSync(new URL(`${directory}/quorum-signed.xdr.txt`, root), 'utf8').trim(),
     Networks.TESTNET);
   assert.equal(signed.hash().toString('hex'), m.approval.hash);
   assert.equal(signed.signatures.length, 2);
-  for (const [index, name] of ['Zyad', 'King'].entries()) {
+  for (const [index, name] of names.entries()) {
     const key = Keypair.fromPublicKey(m.signers[name]);
     assert.deepEqual(signed.signatures[index].hint(), key.signatureHint());
     assert.ok(key.verify(signed.hash(), signed.signatures[index].signature()));
   }
-  assert.equal(m.evidence.one_of_three_rejection.signed_by, 'Zyad');
+  assert.equal(m.evidence.one_of_three_rejection.signed_by, singleMember);
   assert.equal(m.evidence.one_of_three_rejection.reason, 'txBadAuth');
   const rejected = m.transactions.find(entry =>
-    entry.label === 'one_of_three_zyad_completion_rejected');
+    entry.label === `one_of_three_${singleMember.toLowerCase()}_completion_rejected`);
   assert.equal(rejected.status, 'rejected_before_ledger');
   assert.equal(xdr.TransactionResult.fromXDR(rejected.result_xdr, 'base64')
     .result().switch().name, 'txBadAuth');
   const single = TransactionBuilder.fromXDR(rejected.signed_xdr, Networks.TESTNET);
   assert.equal(single.hash().toString('hex'), m.approval.hash);
   assert.equal(single.signatures.length, 1);
-  assert.ok(Keypair.fromPublicKey(m.signers.Zyad)
+  assert.ok(Keypair.fromPublicKey(m.signers[singleMember])
     .verify(single.hash(), single.signatures[0].signature()));
   assert.equal(m.evidence.ledger_receipt.successful, true);
   assert.equal(m.evidence.ledger_receipt.hash, m.approval.hash);
@@ -86,6 +90,7 @@ test('recorded release has Zyad and King signatures, RPC rejection, exact payout
     BigInt(before.revenue_pool.TotalCredited), 200_000n);
   assert.equal(m.evidence.historical_expiry_campaign_unchanged, true);
 });
+}
 
 test('new-roster fixture rejects wrong network, pending evidence, wrong members and broken quorum', () => {
   for (const mutate of [

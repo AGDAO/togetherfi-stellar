@@ -16,6 +16,9 @@ release by Zyad and King is confirmed in ledger 5207647 after a Zyad-only
 `txBadAuth` rejection. The payout split and accounting were verified.
 No fresh human code-review approval is claimed.
 
-An additional Zyad and Ayoub release is prepared as campaign 4 using one free
-test XLM on the same escrow. Their new signatures and its acceptance results
-are pending. Completed campaign 3 evidence is preserved separately.
+The additional Zyad and Ayoub release completed campaign 4 in ledger 5207852
+using one free test XLM on the same escrow. Ayoub's valid signature alone was
+correctly blocked with `txBadAuth`; together their signatures authorized the
+exact 82/10/5/2/1 split. Actual fee: 0.1999542 free test XLM.
+The earlier completed campaign 3 and original expiry fixture remain unchanged.
+See [campaign 4 confirmation and public envelopes](docs/testnet-zyad-ayoub.md).

@@ -50,8 +50,9 @@ The owner confirms separate human peer review by Zyad Rehioui (INKY), another
 team developer. Med Amine has supplied a scoped review of the earlier PR.
 Neither review is a formal audit, and the earlier review is not approval of this
 updated snapshot. Fresh review by Med Amine and Zyad is requested.
-King is a co-signer, not a code reviewer. Zyad is also the intended replacement
-for Ace in the testnet signer group; that rotation is pending.
+King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
+testnet role accounts in confirmed ledger 5207471. Zyad and King completed
+campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
 Production decisions are led by Ayoub; this does not authorize
 mainnet deployment or real-funds operations.
 [King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
@@ -102,9 +103,10 @@ A separate one-test-XLM campaign completed the
 Zyad alone was rejected at RPC ingestion with `txBadAuth`; Zyad and King together
 completed campaign 3, with the exact fixed split and pool credits verified.
 No Ayoub or Ace signature authorized this fresh release.
-An additional [Zyad and Ayoub pair test](docs/testnet-zyad-ayoub.md) is prepared
-as separate campaign 4 and is awaiting their new wallet signatures. It is not
-yet claimed as completed evidence.
+The additional [Zyad and Ayoub pair test](docs/testnet-zyad-ayoub.md) completed
+campaign 4 in ledger 5207852 after Ayoub alone was correctly blocked.
+Both signatures were verified; the exact split and accounting reconciled.
+Its consumed envelope needs no further signatures or submission.
 Mainnet needs different owner-provided wallets.
 Governance custody must also be independently threshold-controlled so the backend
 cannot bypass settlement quorum by rotating the settlement role to its own key.

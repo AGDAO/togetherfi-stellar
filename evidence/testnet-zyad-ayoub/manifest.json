@@ -1,7 +1,7 @@
 {
   "network": "testnet",
   "created_at": "2026-10-15T11:00:58.894Z",
-  "status": "campaign_4_active; zyad_ayoub_completion_and_one_signature_rejection_pending",
+  "status": "zyad_ayoub_quorum_completion_verified; historical_real_expiry_refund_proof_still_pending",
   "baseline_evidence": "../testnet-escrow-v2/manifest.json",
   "rotation_evidence": "../testnet-signer-rotation/confirmation.json",
   "signers": {
@@ -64,6 +64,23 @@
       "ledger": 5207699,
       "ledger_closed_at": "1792062082",
       "explorer": "https://stellar.expert/explorer/testnet/tx/d182b067f7fa01c7909d558b049190adb43cbe2b5aff9dadcc26a7d2fcfd7b1a"
+    },
+    {
+      "label": "one_of_three_ayoub_completion_rejected",
+      "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
+      "signed_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgBD+4wATJTvAAAAAwAAAAEAAAAAAAAAAAAAAABq0gQDAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAAEAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAAEAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAAETMrIUSQNHgocanV71k3VNzlEWSxBmyGtLFacIyb/TQAAAAAAAAAAF9TvwgbeapvwGXTs+GnDBfk5BCXaO7iYe3G3Eie0962AAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAQAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAQAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAAEAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEkCaQAAAbAAAA+EAAAAAAAQ9R8AAAAAXMK+PoAAABAjlqxr6z2QrrnBiLfLaUg+/AiTZ3b97ZCc7oPaPEKJaB2O9Z/QZ4XRbrP5l/LIzWR88YRDmnXhUbJCRsatY91CA==",
+      "status": "rejected_before_ledger",
+      "result_xdr": "AAAAAABD1OD////6AAAAAA==",
+      "reason": "txBadAuth"
+    },
+    {
+      "label": "two_of_three_zyad_ayoub_completion_confirmed",
+      "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
+      "signed_xdr": "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",
+      "status": "confirmed_success",
+      "ledger": 5207852,
+      "ledger_closed_at": "1792062847",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd"
     }
   ],
   "evidence": {
@@ -123,7 +140,138 @@
       "revenue_pool": "400000",
       "referrer": "100000000000",
       "escrow": "20000000"
-    }
+    },
+    "accounting_before_completion": {
+      "escrow": {
+        "TotalLiability": "20000000"
+      },
+      "nft_pool": {
+        "TotalCredited": "1000000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      },
+      "revenue_pool": {
+        "TotalCredited": "400000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      }
+    },
+    "signature_verification": {
+      "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
+      "verified_signers": [
+        "Zyad",
+        "Ayoub"
+      ],
+      "same_frozen_transaction_body": true,
+      "member_wallet_keys_not_used_by_backend": true
+    },
+    "one_of_three_rejection": {
+      "signed_by": "Ayoub",
+      "signature_valid": true,
+      "reason": "txBadAuth",
+      "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
+      "type": "RPC ingestion rejection, not a confirmed ledger transaction"
+    },
+    "balances_after_one_signature_rejection": {
+      "creator": "100000000000",
+      "service": "99706159777",
+      "nft_pool": "1000000",
+      "revenue_pool": "400000",
+      "referrer": "100000000000",
+      "escrow": "20000000"
+    },
+    "campaign_after_completion": {
+      "amount": "10000000",
+      "creator": "GAITGKZBISIDI6BIOGU5L32ZG5KNZZIRMSYQM3EGWSYVU4EMTP6TJGZJ",
+      "expires_at": "1794654077",
+      "funded_at": "1792062077",
+      "operation_version": 1,
+      "referrer": "GBPVHPYIDN42U36AMXJ3HYNHBQL6JZAQS5UO5YTB5XDNYSE62PPLM2KZ",
+      "sponsor": "GDTTR7WXN45HZJ6GGOCY6JTA4ARJBBOEZLXPTZAV3VU77S4WYLU56KZA",
+      "status": [
+        "Completed"
+      ],
+      "terms_hash": {
+        "type": "Buffer",
+        "data": [
+          110,
+          97,
+          116,
+          105,
+          118,
+          101,
+          45,
+          116,
+          101,
+          115,
+          116,
+          110,
+          101,
+          116,
+          45,
+          122,
+          121,
+          97,
+          100,
+          45,
+          97,
+          121,
+          111,
+          117,
+          98,
+          45,
+          113,
+          117,
+          111,
+          114,
+          117,
+          109
+        ]
+      }
+    },
+    "balances_after_completion": {
+      "creator": "100008200000",
+      "service": "99707159777",
+      "nft_pool": "1500000",
+      "revenue_pool": "600000",
+      "referrer": "100000100000",
+      "escrow": "10000000"
+    },
+    "exact_payout_deltas_stroops": {
+      "creator": "8200000",
+      "service": "1000000",
+      "nft_pool": "500000",
+      "revenue_pool": "200000",
+      "referrer": "100000",
+      "escrow": "-10000000"
+    },
+    "accounting_after_completion": {
+      "escrow": {
+        "TotalLiability": "10000000"
+      },
+      "nft_pool": {
+        "TotalCredited": "1500000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      },
+      "revenue_pool": {
+        "TotalCredited": "600000",
+        "TotalLiability": "0",
+        "TotalPaid": "0"
+      }
+    },
+    "historical_expiry_campaign_unchanged": true,
+    "previous_zyad_king_campaign_unchanged": true,
+    "ledger_receipt": {
+      "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
+      "ledger": 5207852,
+      "created_at": "2026-10-15T11:14:07Z",
+      "fee_charged_stroops": "1999542",
+      "successful": true,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd"
+    },
+    "split_verified": "82/10/5/2/1, exact base-unit deltas",
+    "last_verified_utc": "2026-10-15T11:14:10.840Z"
   },
   "fixture_custody": "Free testnet XLM only. Disposable sponsor/recipient fixtures; no production custody or member keys.",
   "requested_release_signers": [
@@ -132,7 +280,7 @@
   ],
   "review": "Fresh human reviews pending; signatures are not code-review approvals.",
   "approval": {
-    "status": "requires_zyad_and_ayoub_wallet_signatures",
+    "status": "confirmed",
     "hash": "74fb8d534a7e5c704d9d15f9a5097da309253c6a599e03ede85a657b841c51fd",
     "unsigned_xdr": "AAAAAgAAAADtZnT3fjQV8FSiZWu9ySmTyMu44QlSOYnXKB/uv4WArgBD+4wATJTvAAAAAwAAAAEAAAAAAAAAAAAAAABq0gQDAAAAAAAAAAEAAAAAAAAAGAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAAEAAAAAwAAAAEAAAABAAAAAAAAAAAAAAABvkqznp87ZhLsGowqzT6J6zGbXLZpu0CPp1FvkC5KR7UAAAAIY29tcGxldGUAAAACAAAABQAAAAAAAAAEAAAAAwAAAAEAAAAAAAAAAQAAAAAAAAADAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABQAAAABAAAABxz7rVHcGTLoHehXtKIkAviDWEukxriTiK/1OSnC5rDrAAAABy8kpoQ3PPsmg5ErGoW+C45KyFn7ZMFbFKUgUFeemahlAAAADQAAAAAAAAAAETMrIUSQNHgocanV71k3VNzlEWSxBmyGtLFacIyb/TQAAAAAAAAAAF9TvwgbeapvwGXTs+GnDBfk5BCXaO7iYe3G3Eie0962AAAAAAAAAADjDo/tqQIVljNI4oPtKIw3QTXqYgWTWfKgDA6xpqi/vwAAAAYAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAAQAAAAAQAAAAIAAAAPAAAAEENyZWRpdGVkQ2FtcGFpZ24AAAAFAAAAAAAAAAQAAAABAAAABgAAAAEo+zWwXBdIoSmZbfXSKYj05Zq8j0nltlRN1SJKNTO7zAAAABQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAgAAAA8AAAAIQ2FtcGFpZ24AAAAFAAAAAAAAAAQAAAABAAAABgAAAAG+SrOenztmEuwajCrNPonrMZtctmm7QI+nUW+QLkpHtQAAABAAAAABAAAAAwAAAA8AAAARQ29uc3VtZWRPcGVyYXRpb24AAAAAAAAFAAAAAAAAAAQAAAADAAAAAQAAAAEAAAAGAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAFAAAAAEAAAAGAAAAAdeSi3LCcDzP6vfrn/TvTVBKVai5efybRQ6iyEK00c5hAAAAEAAAAAEAAAACAAAADwAAAAdCYWxhbmNlAAAAABIAAAABKPs1sFwXSKEpmW310imI9OWavI9J5bZUTdUiSjUzu8wAAAABAAAABgAAAAHXkotywnA8z+r365/0701QSlWouXn8m0UOoshCtNHOYQAAABAAAAABAAAAAgAAAA8AAAAHQmFsYW5jZQAAAAASAAAAAb5Ks56fO2YS7BqMKs0+iesxm1y2abtAj6dRb5AuSke1AAAAAQAAAAYAAAAB15KLcsJwPM/q9+uf9O9NUEpVqLl5/JtFDqLIQrTRzmEAAAAQAAAAAQAAAAIAAAAPAAAAB0JhbGFuY2UAAAAAEgAAAAH9NsgyWB9ycTcYWzaRjLn+MFjUBucenY/kIIOLDP95wgAAAAEAAAAGAAAAAf02yDJYH3JxNxhbNpGMuf4wWNQG5x6dj+Qgg4sM/3nCAAAAEAAAAAEAAAACAAAADwAAABBDcmVkaXRlZENhbXBhaWduAAAABQAAAAAAAAAEAAAAAQAAAAYAAAAB/TbIMlgfcnE3GFs2kYy5/jBY1AbnHp2P5CCDiwz/ecIAAAAUAAAAAQEkCaQAAAbAAAA+EAAAAAAAQ9R8AAAAAA==",
     "source": "GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM",
@@ -143,6 +291,7 @@
     "quoted_resource_fee_stroops": "1722654",
     "fee_cap_test_xlm": "0.4455308",
     "signature_deadline_utc": "2026-10-16T11:01:23.000Z",
-    "signing_method": "Freighter signing-only; sign this identical frozen envelope separately; do not re-simulate"
+    "signing_method": "Freighter signing-only; sign this identical frozen envelope separately; do not re-simulate",
+    "completion_ledger": 5207852
   }
 }

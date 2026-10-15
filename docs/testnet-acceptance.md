@@ -51,6 +51,13 @@ this quorum. No private keys should be provided in chat.
 
 ## Required evidence
 
+The historical baseline below is supplemented by the current-roster
+[Zyad and King release](testnet-zyad-king.md), ledger 5207647, and
+[Zyad and Ayoub release](testnet-zyad-ayoub.md), ledger 5207852.
+Both had a valid single-member envelope blocked with `txBadAuth`, followed by
+confirmed two-member completion and exact payout/accounting reconciliation.
+These confirmations do not close the real-expiry refund gate below.
+
 | Evidence | Current status |
 |---|---|
 | Exact source commit, lockfile hashes, compiler/target, fresh WASM hashes | Local inputs retained; all three RPC-retrieved WASMs match tested hashes |

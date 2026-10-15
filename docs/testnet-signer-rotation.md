@@ -11,6 +11,8 @@ Do not sign or resubmit the already-consumed replacement envelope.
 The original request and instructions below are historical audit material.
 The separate [Zyad and King release test](testnet-zyad-king.md) is now confirmed
 in ledger 5207647. Neither consumed envelope needs further signatures.
+The [additional Zyad and Ayoub release](testnet-zyad-ayoub.md) completed in
+ledger 5207852; it is also consumed and needs no further signing.
 
 The owner requested replacing Ace with Zyad on the dedicated governance and
 settlement accounts. The intended roster is Ayoub, Zyad and King, with weight 1

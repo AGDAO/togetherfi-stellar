@@ -77,15 +77,17 @@ No signer private keys or recovery phrases should be shared.
 | Ayoub + King | Replace Ace with Zyad on both role accounts | Confirmed, ledger 5207471 |
 | Zyad alone | Campaign 3 completion | Correctly blocked at RPC ingestion: `txBadAuth` |
 | Zyad + King | Campaign 3 completion | Confirmed, ledger 5207647; exact split verified |
-| Ayoub alone | Additional campaign 4 completion | Planned insufficient-quorum check; not yet submitted |
-| Zyad + Ayoub | Additional campaign 4 completion | New frozen request prepared; both signatures pending |
+| Ayoub alone | Additional campaign 4 completion | Correctly blocked at RPC ingestion: `txBadAuth`; balances unchanged |
+| Zyad + Ayoub | Additional campaign 4 completion | Confirmed, ledger 5207852; exact split and accounting verified |
 
 A valid member signature by itself does not satisfy a 2-of-3 threshold.
 The single-member rejection is the expected security result, not evidence of
 an invalid Zyad signature. The successful Zyad and King release proves the
 new member can authorize with a second member. The owner requested the
-[additional Zyad and Ayoub test](testnet-zyad-ayoub.md) for the remaining pair;
-neither its completion nor a grant award is claimed.
+[additional Zyad and Ayoub test](testnet-zyad-ayoub.md) for the remaining pair
+also succeeded. Its receipt, original signed envelopes, negative test and exact
+payout/accounting results are preserved. This is testnet evidence, not a grant
+award, mainnet-readiness claim or substitute for the two requested code reviews.
 
 ## Items for the two reviewers
 
@@ -95,7 +97,7 @@ neither its completion nor a grant award is claimed.
 3. Escrow-authenticated contributor credits, allocation and claim invariants.
 4. The retained reputation interface and explicit absence of bridge dependencies.
 5. Pinned dependencies, SDK host patch provenance and the new CI results.
-6. Once available, the actual new-roster configuration and quorum evidence.
+6. The confirmed new-roster configuration and both fresh quorum release tests.
 
 Reviewers should record findings and unresolved items on the new PR with the
 commit they reviewed. Source review and transaction signatures are distinct.
