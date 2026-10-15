@@ -65,9 +65,9 @@ Open a hash at `https://stellar.expert/explorer/testnet/tx/<hash>`.
 | Action | Confirmed testnet transaction hash |
 |---|---|
 | Deploy escrow v2 | [86f5b65b…](https://stellar.expert/explorer/testnet/tx/86f5b65bfb589121aa44e207922c18ce3fcc7a0422cd7dbb68dc8c8d593b3114) |
-| Deploy MOFO pool | [140b64ee…](https://stellar.expert/explorer/testnet/tx/140b64ee659de374f19c88e54dcb883ead9abe9a74aad9eb389fead3b0e088bf) |
+| Deploy NFT contributor pool | [140b64ee…](https://stellar.expert/explorer/testnet/tx/140b64ee659de374f19c88e54dcb883ead9abe9a74aad9eb389fead3b0e088bf) |
 | Deploy community pool | [e42d4894…](https://stellar.expert/explorer/testnet/tx/e42d4894f2dd0d8d46cada7ca02c46f8bfce67ed61cd658c3ed5cbe923bff486) |
-| Initialize MOFO pool | [e53208a9…](https://stellar.expert/explorer/testnet/tx/e53208a969d7ae762c73e1c60aca1bd5da4743e46e8f263ba5b0714595d03774) |
+| Initialize NFT contributor pool | [e53208a9…](https://stellar.expert/explorer/testnet/tx/e53208a969d7ae762c73e1c60aca1bd5da4743e46e8f263ba5b0714595d03774) |
 | Initialize community pool | [b86f2491…](https://stellar.expert/explorer/testnet/tx/b86f2491b6e2f2b76f1fa252035f422ea730bd855246cf58aeaa8a551053bc39) |
 | Initialize escrow | [7baaf300…](https://stellar.expert/explorer/testnet/tx/7baaf300372e22014248f53a382767dc02d29642c6835be5118f557c76f2ed13) |
 | Handoff both roles to 2-of-3 | [9bb97971…](https://stellar.expert/explorer/testnet/tx/9bb97971a294acc396362834eefdcc1cb96c2fe8916be8e8294a4bc482451d29) |
@@ -105,7 +105,7 @@ An actual selected member's 1-of-3 envelope was rejected with `txBadAuth` at RPC
 ingestion, not recorded as a failed ledger transaction. The same transaction body
 with two independently verified member signatures was confirmed successfully.
 Campaign 1 is `Completed`; exact token balance deltas are 0.82 creator, 0.10 service,
-0.05 MOFO pool, 0.02 community pool, and 0.01 referrer, in test XLM.
+0.05 NFT contributor pool, 0.02 community pool, and 0.01 referrer, in test XLM.
 Pool `TotalCredited` counters match the 5% and 2% transfers. Escrow liability is
 exactly 1 test XLM, owed only to the still-funded expiry campaign.
 

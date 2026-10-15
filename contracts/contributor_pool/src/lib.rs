@@ -2,7 +2,7 @@
 
 //! Immutable contributor-reward pool.
 //!
-//! Deploy one instance for the MOFO contributor allocation and one for the
+//! Deploy one instance for the NFT contributor allocation and one for the
 //! community contributor allocation. Campaign Escrow sends each completed
 //! campaign's allocation to its configured pool. A pool never chooses a
 //! recipient: a manifest must be approved by both governance and a separate

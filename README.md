@@ -9,13 +9,13 @@ Quorum-authorized completion is confirmed with two verified member signatures; n
 mainnet deployment or real-funds activity is claimed or authorized.
 Historical v1 IDs remain separately labeled below.
 
-**Pending signer update:** the owner selected Zyad to replace Ace on both testnet
-role accounts, retaining 2-of-3. The existing roster remains active until the
-existing quorum signs and the replacement is confirmed. See the
-[testnet signer-rotation request](docs/testnet-signer-rotation.md).
+**Signer update confirmed:** Zyad replaced Ace on both dedicated testnet role
+accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
+Zyad and Ayoub completed campaign 4. See the
+[confirmed signer rotation](docs/testnet-signer-rotation.md).
 Med Amine is a technical reviewer, not a signer.
 See the [new native-only review handoff](docs/review-handoff.md) for the cleanup
-boundary, requested reviews and remaining signer evidence.
+boundary, requested reviews and remaining acceptance gates.
 
 Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
 transactions, deployed WASM verification and pending acceptance gates.
@@ -46,8 +46,9 @@ sole builder or a substitute for human review.
 The owner confirms a baseline of 3 hours/day including weekends, or 21 hours/week,
 with extra weekend time potentially bringing availability to approximately 25 hours/week.
 This is one shared allocation, not an allocation per work package.
-The owner confirms separate human peer review by Zyad Rehioui (INKY), another
-team developer. Med Amine has supplied a scoped review of the earlier PR.
+The owner confirms separate human peer review by
+[Zyad Rehioui (INKY)](https://github.com/Zrehi), another team developer.
+Med Amine has supplied a scoped review of the earlier PR.
 Neither review is a formal audit, and the earlier review is not approval of this
 updated snapshot. Fresh review by Med Amine and Zyad is requested.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated

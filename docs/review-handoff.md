@@ -15,7 +15,8 @@ refunds, authenticated pool credits and the fixed 82/10/5/2/1 split are unchange
 The 5% NFT contributor destination and 2% community destination remain separate
 Stellar pool instances. Branding cleanup does not remove or redirect either leg.
 
-The escrow/pool source, contract logic and pinned lockfiles are preserved.
+The escrow/pool executable logic, interfaces and pinned lockfiles are preserved.
+The contributor-pool comment uses the generic NFT contributor allocation label.
 Reputation-anchor documentation comments now describe the metadata accurately;
 its executable code and interface are unchanged. In particular, the
 historically deployed reputation contract retains the `arbitrum_tx_hash` field
@@ -33,7 +34,7 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 - Med Amine is the external scoped technical reviewer, not an implementation
   owner or transaction signer. His supplied GitHub profile is
   https://github.com/med-amiine.
-- Zyad is an internal developer/peer reviewer and a confirmed testnet
+- [Zyad Rehioui](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
   co-signer. King is a co-signer, not a code reviewer.
 
 The prior review remains attached to its original commit in
