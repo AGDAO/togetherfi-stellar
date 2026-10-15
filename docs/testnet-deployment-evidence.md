@@ -10,7 +10,7 @@ provided addresses and separate authorization.
 
 **Quorum-authorized completion is confirmed with Ayoub and King's signatures.**
 The exact payout and authenticated pool credits are verified. Separate human
-peer review by Zyad Rehioui (INKY), another team developer, is owner-confirmed;
+peer review by Zyad (INKY), another team developer, is owner-confirmed;
 no external audit, mainnet deployment or production readiness is claimed.
 Ayoub is the technical lead and production decision owner. No separate human
 review report is attached to this deployment evidence.
@@ -52,7 +52,7 @@ signers with weight **1** each, and their dedicated master with weight **0**:
 |---|---|
 | Ayoub | `GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE` |
 | Ace | `GD57W22FBBREDJSEN2PDRLP5FYBZQ4QHO65KN6Z6U2ZP3I2OCOALJFTH` |
-| [King](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a) | `GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U` |
+| King | `GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U` |
 
 Only public signer addresses were used. Member secrets were never generated,
 requested, read, or stored. Temporary setup keys existed only in process memory;
@@ -127,7 +127,7 @@ ledger-confirmed failed transactions; their results are retained in the manifest
    This extra live-ledger proof is deferred validation, not an established
    grant-payment prerequisite; no direct request requiring that specific wait
    is cited here.
-3. The owner confirms separate human peer review by team developer Zyad Rehioui
+3. The owner confirms separate human peer review by team developer Zyad
    (INKY). This is internal peer review, not an external audit.
 4. Expanded CI is installed using newly authorized workflow-write access;
    retain its successful run separately from on-chain acceptance evidence.

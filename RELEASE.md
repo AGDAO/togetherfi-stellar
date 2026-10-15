@@ -1,10 +1,23 @@
 # Stellar-native final review candidate
 
+## Follow-up: initialization hardening
+
+The current source binds each initializer to its actual deployer and deployment
+salt and requires deployer authorization in addition to the original authority
+checks. The deployment script verifies thirteen configuration bindings before
+handoff or funding. Strict native regressions and deployment-helper tests cover
+the new guards. The initialization ABI changes, and a treasury getter is added.
+No dependency versions, payout economics or score-record schema change.
+
+This follow-up is not deployed. Historical testnet evidence remains intact and
+does not prove execution of this new source. Final reviews remain pending.
+See [initialization hardening](docs/initialization-hardening.md).
+
 This package awaits final code reviews on PR #2 before handoff to The Arch team.
 Med Amine's review request was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth), the account that
 authored his PR #1 review and identifies him as @med-amiine. Zyad's collaborator
-invitation is pending acceptance, so his review request has not yet been sent.
+changes-requested review is recorded; his follow-up on the patched head is pending.
 No final approval or merge is claimed.
 It is not a new contract deployment, audit or mainnet release.
 
@@ -12,7 +25,8 @@ The public review snapshot contains only Campaign Escrow, Contributor Pool and
 Reputation Anchor, with their pinned lockfiles and the required SDK host patch.
 Optional bridge components and their vendored dependency trees are absent.
 Native sponsor funding, refund provenance, fixed payout economics and the
-deployed contract interfaces are unchanged.
+historically deployed contract instances remain unchanged. The current source's
+initialization interface changes as described above.
 
 See [review scope and acceptance status](docs/review-handoff.md). Both dedicated
 testnet accounts now have Ayoub, Zyad and King at 2-of-3. The fresh campaign 3

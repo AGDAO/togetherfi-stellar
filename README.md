@@ -2,6 +2,11 @@
 
 ## Grant preparation status
 
+**Current source update:** the first-initialization hardening changes the
+initialization ABI for future deployments. It has **not** been deployed.
+The v2 receipts below remain historical evidence for the earlier WASM, not
+proof of the patched initializer. See [hardening and validation boundaries](docs/initialization-hardening.md).
+
 Campaign Escrow v2 and both dedicated contributor pools are **deployed and
 initialized on Stellar Testnet** for the architecture team's requested validation.
 Both role accounts have verified 2-of-3 configurations and disabled setup masters.
@@ -40,9 +45,9 @@ This working tree is pinned to upstream baseline commit
 
 ## Engineering ownership and AI assistance
 
-Ayoub Arbani is the CEO/Developer and Soroban technical owner:
+Ayoub is the CEO/Developer and Soroban technical owner:
 [personal GitHub](https://github.com/AGDAO/) and
-[LinkedIn](https://linkedin.com/in/ayoub-arbani/).
+[GitHub](https://github.com/AGDAO).
 TogetherFi is built by a human development team that was building the platform
 before adopting AI tools. AI assists the team's engineering work; it is not the
 sole builder or a substitute for human review.
@@ -50,19 +55,19 @@ The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
 allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
-[Zyad Rehioui (INKY)](https://github.com/Zrehi), another team developer.
+[Zyad (INKY)](https://github.com/Zrehi), another team developer.
 Med Amine supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth); the review identifies
 him as Med Amine (@med-amiine). Neither review is a formal audit, and the earlier
 review is not approval of this updated snapshot. A fresh review has been
-requested from Med's @elastikchain-eth account on PR #2. Zyad's review is still
-pending acceptance of his collaborator invitation.
+requested from Med's @elastikchain-eth account on PR #2. Zyad's follow-up is still
+pending against the initialization-hardening snapshot.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
 testnet role accounts in confirmed ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
 Production decisions are led by Ayoub; this does not authorize
 mainnet deployment or real-funds operations.
-[King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
+King's community and operations role is described in the contributor allocation.
 
 The [proposed team allocation](docs/future-work-allocation.md) totals 758 hours
 over 26 weeks, approximately 29.2 aggregate hours/week: Ayoub 416, Zyad 134,
@@ -96,7 +101,7 @@ prove its WASM bytes equal the previously deployed locally built binaries.
 
 The selected settlement-control mechanism is a native Stellar account multisig
 with a **2-of-3** policy. The current on-chain roster is
-**Ayoub Arbani, Zyad, and King** on both dedicated role accounts.
+**Ayoub, Zyad, and King** on both dedicated role accounts.
 The replacement was confirmed on 15 October 2026 in ledger 5207471:
 [rotation confirmation](evidence/testnet-signer-rotation/confirmation.json).
 The historical deployment manifest retains the original Ayoub, Ace and King roster.
@@ -161,7 +166,7 @@ completion with the platform's fixed payout split:
 
 | Function | Caller | Action |
 |---|---|---|
-| `initialize(governance, settlement, token, service_treasury, nft_pool, revenue_pool)` | governance | One-time setup |
+| `initialize(governance, settlement, token, service_treasury, nft_pool, revenue_pool, deployer, deployment_salt)` | verified deployer + governance | One-time setup bound to the creation preimage |
 | `fund(campaign_id, sponsor, amount)` | sponsor signs | Transfer configured asset sponsor → contract |
 | `activate(campaign_id, creator, referrer, terms_hash)` | stored sponsor | Commit payout destinations and terms |
 | `complete(campaign_id, operation_version)` | settlement authority | Release with split atomically |
@@ -248,7 +253,7 @@ metadata, not a funding requirement, bridge component or authenticated proof.
 
 | Function | Caller | Action |
 |---|---|---|
-| `initialize(admin)` | admin | One-time setup |
+| `initialize(admin, deployer, deployment_salt)` | verified deployer + admin | One-time setup bound to the creation preimage |
 | `anchor_score(profile_id, creator, score, tier, arbitrum_tx_hash)` | admin only | Write/update score |
 | `get_score(profile_id)` | anyone | Read one score record |
 | `get_scores_batch(profile_ids)` | anyone | Batch read (missing entries skipped) |

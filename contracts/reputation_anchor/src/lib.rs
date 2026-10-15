@@ -24,7 +24,7 @@
 
 use soroban_sdk::{
     contract, contracterror, contractimpl, contracttype, log, symbol_short,
-    Address, Env, String, Symbol, Vec,
+    Address, BytesN, Env, String, Symbol, Vec,
 };
 
 // ── Storage keys ──────────────────────────────────────────────────────────────
@@ -68,6 +68,7 @@ pub enum RepAnchorError {
     NotInitialized     = 2,
     ScoreNotFound      = 3,
     InvalidScore       = 4,
+    InvalidDeployment  = 5,
 }
 
 // ── Contract ──────────────────────────────────────────────────────────────────
@@ -79,11 +80,21 @@ pub struct ReputationAnchor;
 impl ReputationAnchor {
     /// One-time setup. Sets `admin` as the only address allowed to call
     /// `anchor_score`. Cannot be called a second time.
-    pub fn initialize(env: Env, admin: Address) -> Result<(), RepAnchorError> {
+    pub fn initialize(
+        env: Env, admin: Address, deployer: Address, deployment_salt: BytesN<32>,
+    ) -> Result<(), RepAnchorError> {
         if env.storage().instance().has(&DataKey::Admin) {
             return Err(RepAnchorError::AlreadyInitialized);
         }
-        admin.require_auth();
+        if env.deployer().with_address(deployer.clone(), deployment_salt).deployed_address()
+            != env.current_contract_address()
+        {
+            return Err(RepAnchorError::InvalidDeployment);
+        }
+        deployer.require_auth();
+        if admin != deployer {
+            admin.require_auth();
+        }
         env.storage().instance().set(&DataKey::Admin, &admin);
         log!(&env, "reputation_anchor initialized, admin={}", admin);
         Ok(())

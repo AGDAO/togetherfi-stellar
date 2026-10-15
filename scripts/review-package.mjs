@@ -13,6 +13,7 @@ const SINGLE_FILES = [
   "docs/testnet-deployment-evidence.md", "docs/testnet-signing.md",
   "docs/testnet-signer-rotation.md", "docs/review-handoff.md",
   "docs/future-work-allocation.md",
+  "docs/initialization-hardening.md",
   "RELEASE.md",
   "evidence/testnet-escrow-v2/manifest.json",
   "evidence/testnet-escrow-v2/complete-campaign-1.xdr.txt",

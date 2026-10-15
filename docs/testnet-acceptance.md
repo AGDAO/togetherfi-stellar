@@ -3,7 +3,7 @@
 V2 and both contributor pools are deployed and initialized on testnet. Role-account
 configuration, disabled setup-key rejections and quorum completion are verified.
 Real expiry refund is not yet claimed. Separate internal human peer review by
-Zyad Rehioui (INKY) is owner-confirmed, not an external audit. Historical v1 IDs
+Zyad (INKY) is owner-confirmed, not an external audit. Historical v1 IDs
 remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
 The owner permits the architecture team's requested testnet validation. This is
@@ -14,7 +14,7 @@ wallets are strictly testnet-only; mainnet requires different owner-provided wal
 
 Use a **2-of-3 approval policy**, implemented through native
 Stellar account signer weights and thresholds.
-The current on-chain signer holders are **Ayoub Arbani, Zyad, and King**.
+The current on-chain signer holders are **Ayoub, Zyad, and King**.
 Both dedicated role accounts were confirmed rotated in ledger 5207471 on
 15 October 2026. The original deployment evidence retains Ayoub, Ace and King.
 The [fresh Zyad and King release test](testnet-zyad-king.md) completed in ledger
@@ -45,7 +45,7 @@ this quorum. No private keys should be provided in chat.
   insufficient-quorum settlement. No backend-held key combination may control either
   required quorum, account reconfiguration, or recovery by itself.
 - Record Ayoub's owner review and the owner-confirmed separate human peer review
-  by Zyad Rehioui (INKY), another team developer. Internal peer review is not an
+  by Zyad (INKY), another team developer. Internal peer review is not an
   external audit; no separate review report is attached here. Do not nominate Ace
   or King as code reviewers or treat transaction signatures as review evidence.
 

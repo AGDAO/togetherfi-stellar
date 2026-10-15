@@ -1,12 +1,23 @@
 # Stellar-native review handoff
 
+## Current initialization-hardening delta
+
+Zyad recorded a changes-requested review of the earlier snapshot. The follow-up
+source binds initialization to the actual deployer and contract-ID salt, adds
+strict authorization regressions and checks all deployment configuration before
+funding. This changes the initialization ABI, not campaign economics or the
+reputation score-record schema. It is not yet deployed. Earlier receipts and
+approvals do not validate the new initializer.
+See [the exact changes and remaining evidence](initialization-hardening.md).
+Med Amine's final review and Zyad's follow-up on the new head remain pending.
+
 ## Review status and scope
 
 **Final code reviews remain outstanding on
 [PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).** A review request
 has been sent to Med Amine's GitHub review account,
 [@elastikchain-eth](https://github.com/elastikchain-eth). Zyad's collaborator
-invitation is pending acceptance; his review request has not yet been sent.
+changes-requested review is recorded; his follow-up on this patched head is pending.
 Neither final approval is recorded or claimed by this handoff.
 The PR must remain unmerged until both reviews and the required checks are
 resolved, before the owner sends the package to The Arch team.
@@ -20,7 +31,8 @@ refunds, authenticated pool credits and the fixed 82/10/5/2/1 split are unchange
 The 5% NFT contributor destination and 2% community destination remain separate
 Stellar pool instances.
 
-The escrow/pool executable logic, interfaces and pinned lockfiles are preserved.
+The settlement economics and pinned lockfiles are preserved. Initialization
+interfaces change in the hardening delta; an escrow treasury getter is added.
 The deployed reputation contract retains the historical `arbitrum_tx_hash` field
 name for interface compatibility only. It is optional application metadata, not
 bridge code, a funding requirement, or authenticated cross-chain evidence.
@@ -38,11 +50,11 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
   [@med-amiine](https://github.com/med-amiine); his PR #1 review was authored
   from [@elastikchain-eth](https://github.com/elastikchain-eth), the account
   requested for his PR #2 review.
-- [Zyad Rehioui](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
+- [Zyad](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
   co-signer.
-- Ace Jacobs supports GameFi testing and operations, not contract review or the
+- Ace supports GameFi testing and operations, not contract review or the
   current Stellar signing quorum.
-- Dan Dean Ver King Ramos supports SocialFi testing and operations and is a
+- King supports SocialFi testing and operations and is a
   co-signer, not a code reviewer.
 
 ## Future delivery plan
@@ -64,7 +76,8 @@ The review text identifies the reviewer as Med Amine (@med-amiine).
 It covered a broader source tree and must not be represented as approval of this
 new snapshot or the now-confirmed signer configuration. A new review request was
 sent to Med's @elastikchain-eth account against the PR #2 head. Zyad's review
-request awaits acceptance of his collaborator invitation. Neither approval is
+request was followed by his changes-requested review. His follow-up on the
+hardening commit and Med's final review remain pending. Neither approval is
 claimed until each reviewer records it. A scoped technical review is not a
 formal audit.
 

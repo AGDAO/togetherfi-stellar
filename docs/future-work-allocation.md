@@ -16,19 +16,19 @@ grant handoff. Any compensation arrangements are documented separately.
 
 | Contributor | Stellar responsibilities | Proposed schedule | Total hours |
 |---|---|---|---:|
-| Ayoub Arbani | Main development, integration, testing and delivery coordination | 3 hours each weekday plus 1 hour Sunday | 416 |
-| Zyad Rehioui | Development, testing and internal peer review | 4 hours across weekdays plus 1 hour Sunday, with four additional 1-hour milestone sessions during the project | 134 |
+| Ayoub | Main development, integration, testing and delivery coordination | 3 hours each weekday plus 1 hour Sunday | 416 |
+| Zyad | Development, testing and internal peer review | 4 hours across weekdays plus 1 hour Sunday, with four additional 1-hour milestone sessions during the project | 134 |
 | Med Amine | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
-| Ace Jacobs | GameFi workflow testing, issue reporting, operational documentation and onboarding support | 30 minutes each weekday plus 1 hour Sunday | 91 |
-| Dan Dean Ver King Ramos | SocialFi workflow testing, onboarding, operational checks and settlement review/signing | 30 minutes each weekday plus 1 hour Sunday | 91 |
+| Ace | GameFi workflow testing, issue reporting, operational documentation and onboarding support | 30 minutes each weekday plus 1 hour Sunday | 91 |
+| King | SocialFi workflow testing, onboarding, operational checks and settlement review/signing | 30 minutes each weekday plus 1 hour Sunday | 91 |
 | **Total** | **Future Stellar delivery** | **Approximately 29.2 aggregate hours/week** | **758** |
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
 [Med Amine's public profile](https://github.com/med-amiine),
 [Med's PR review account](https://github.com/elastikchain-eth),
-[Ace](https://github.com/devcryptoaceph),
-[King](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a/).
+[Ace](https://github.com/devcryptoaceph).
+King is identified by his community handle in public repository materials.
 
 ## Reconciliation
 

@@ -9,7 +9,7 @@
 use soroban_sdk::{
     auth::{ContractContext, InvokerContractAuthEntry, SubContractInvocation},
     contract, contractclient, contracterror, contractimpl, contracttype, symbol_short, token,
-    Address, Bytes, Env, IntoVal, Symbol, Val, Vec,
+    Address, Bytes, BytesN, Env, IntoVal, Symbol, Val, Vec,
 };
 
 const DAY: u64 = 86_400;
@@ -94,6 +94,7 @@ pub enum EscrowError {
     Deficit = 13,
     InvalidContributorPool = 14,
     ReferrerRequired = 15,
+    InvalidDeployment = 16,
 }
 
 #[contract]
@@ -116,10 +117,20 @@ impl CampaignEscrow {
         service_treasury: Address,
         nft_pool: Address,
         revenue_pool: Address,
+        deployer: Address,
+        deployment_salt: BytesN<32>,
     ) -> Result<(), EscrowError> {
         if env.storage().instance().has(&DataKey::Governance) {
             return Err(EscrowError::AlreadyInitialized);
         }
+        // Bind first initialization to the authenticated contract-ID preimage,
+        // not to an arbitrary authority nominated by the first caller.
+        if env.deployer().with_address(deployer.clone(), deployment_salt).deployed_address()
+            != env.current_contract_address()
+        {
+            return Err(EscrowError::InvalidDeployment);
+        }
+        deployer.require_auth();
         if nft_pool == revenue_pool {
             return Err(EscrowError::InvalidContributorPool);
         }
@@ -133,7 +144,10 @@ impl CampaignEscrow {
         {
             return Err(EscrowError::InvalidContributorPool);
         }
-        governance.require_auth();
+        // Soroban authorizes an address once per invocation frame.
+        if governance != deployer {
+            governance.require_auth();
+        }
         env.storage()
             .instance()
             .set(&DataKey::Governance, &governance);
@@ -443,6 +457,11 @@ impl CampaignEscrow {
         Self::init(&env)?;
         env.storage().instance().extend_ttl(TTL, TTL);
         Ok(env.storage().instance().get(&DataKey::Token).unwrap())
+    }
+    pub fn service_treasury(env: Env) -> Result<Address, EscrowError> {
+        Self::init(&env)?;
+        env.storage().instance().extend_ttl(TTL, TTL);
+        Ok(env.storage().instance().get(&DataKey::ServiceTreasury).unwrap())
     }
     pub fn is_paused(env: Env) -> bool {
         Self::paused(&env)
