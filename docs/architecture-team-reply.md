@@ -84,11 +84,11 @@ and [acceptance matrix](testnet-acceptance.md) provide the underlying records.
 
 ## Review ownership and scope
 
-I am Ayoub Arbani, CEO/Developer, implementation owner and sole current reviewer:
+I am Ayoub, CEO/Developer, implementation owner and sole current reviewer:
 [GitHub](https://github.com/AGDAO/) and
-[LinkedIn](https://linkedin.com/in/ayoub-arbani/).
+LinkedIn.
 Most implementation was AI-assisted under my direction.
-Ace and [King](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a)
+Ace and King
 are security co-signers, not code reviewers. Owner review and transaction signatures
 are not independent human review or an external audit.
 

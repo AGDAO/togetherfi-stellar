@@ -29,18 +29,18 @@ This working tree is pinned to upstream baseline commit
 
 ## Engineering ownership and AI assistance
 
-Ayoub Arbani is the CEO/Developer and Soroban technical owner:
+Ayoub is the CEO/Developer and Soroban technical owner:
 [personal GitHub](https://github.com/AGDAO/) and
-[LinkedIn](https://linkedin.com/in/ayoub-arbani/).
+LinkedIn.
 AI coding assistants produced most implementation under his direction.
 AI-assisted implementation and local review are not an independent human audit.
 The draft grant plan proposes approximately 17 hours/week across remaining core
 Soroban work, not 17 hours per work package. Actual weekly availability and parallel
-commitments still require owner confirmation. Ayoub Arbani is the sole current
+commitments still require owner confirmation. Ayoub is the sole current
 reviewer as well as the implementation owner. Ace and King are security co-signers,
 not reviewers. Owner review is not independent review; no independent human
 escrow v2 review or external audit is claimed.
-[King's supplied professional profile](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a).
+King's supplied professional profile.
 
 ## Architecture-team acceptance evidence
 
@@ -69,7 +69,7 @@ a passing run; use the linked Actions result as the current CI evidence.
 
 The selected settlement-control mechanism is a native Stellar account multisig
 with a **2-of-3** policy, matching the owner's Arbitrum model. The selected
-signer holders are **Ayoub Arbani, Ace, and King**.
+signer holders are **Ayoub, Ace, and King**.
 Three independently held Stellar signing keys are required, not EVM addresses
 or three keys held by the backend.
 Both account configurations are **verified on testnet**: signer weights 1/1/1,

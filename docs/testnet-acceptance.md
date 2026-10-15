@@ -13,7 +13,7 @@ wallets are strictly testnet-only; mainnet requires different owner-provided wal
 
 Reuse the Arbitrum model's **2-of-3 approval policy**, implemented through native
 Stellar account signer weights and thresholds rather than an EVM contract.
-The selected signer holders are **Ayoub Arbani, Ace, and King**. Ace and King
+The selected signer holders are **Ayoub, Ace, and King**. Ace and King
 are security co-signers only, not PR reviewers. All three must have independently
 held Stellar signing keys; none may be a placeholder or an extra backend-held key.
 

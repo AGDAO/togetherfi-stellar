@@ -40,7 +40,7 @@ signers with weight **1** each, and their dedicated master with weight **0**:
 |---|---|
 | Ayoub | `GDGWL4MGDMHYLDKWTKOMH6RY2B4LR3A4GDUVGXS64LKPLSDTBL4PVBLE` |
 | Ace | `GD57W22FBBREDJSEN2PDRLP5FYBZQ4QHO65KN6Z6U2ZP3I2OCOALJFTH` |
-| [King](https://www.linkedin.com/in/dan-dean-ver-king-ramos-56073539a) | `GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U` |
+| King | `GARRSD6FDAUASB5UMPM6KV4UQZGWO47NBUY6F2GFC4V4UE6YOWRZDS5U` |
 
 Only public signer addresses were used. Member secrets were never generated,
 requested, read, or stored. Temporary setup keys existed only in process memory;
