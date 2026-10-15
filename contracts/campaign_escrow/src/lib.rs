@@ -569,3 +569,6 @@ impl CampaignEscrow {
 }
 
 mod test;
+
+#[cfg(test)]
+mod integration_test;

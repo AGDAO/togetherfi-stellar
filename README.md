@@ -61,7 +61,7 @@ Med Amine supplied a scoped review of PR #1 from
 him as Med Amine (@med-amiine). Neither review is a formal audit, and the earlier
 review is not approval of this updated snapshot. A fresh review has been
 requested from Med's @elastikchain-eth account on PR #2. Zyad's follow-up is still
-pending against the initialization-hardening snapshot.
+pending against the initialization-hardening and real-pool integration snapshot.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
 testnet role accounts in confirmed ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.

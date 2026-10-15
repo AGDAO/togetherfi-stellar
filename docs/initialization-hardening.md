@@ -89,12 +89,48 @@ one-time initialization coverage remains.
 Node tests check proof derivation, invalid proof inputs, every individual
 configuration mismatch and failed configuration reads.
 
+## Real escrow and two-pool integration coverage
+
+`contracts/campaign_escrow/src/integration_test.rs` registers the actual
+`CampaignEscrow`, two actual `ContributorPool` instances, and the built-in
+Stellar Asset Contract in one native Soroban environment. The pool crate is a
+local development-only dependency, not a replacement production implementation.
+All three contracts use the deployer-bound initialization interface.
+
+There is no blanket authorization. Setup and ordinary calls authorize exact
+invocations; sponsor funding includes the required nested token transfer.
+Settlement only mocks the settlement account's root authorization. Escrow-to-token
+and escrow-to-pool authorization must work through the real contract call graph.
+
+The four regression cases cover:
+
+- Rejection of direct pool credits with no authorization or authorization from
+  an outsider, governance or settlement account.
+- Exactly-once campaign settlement into both pools, integer rounding under the
+  fixed 82% / 10% / 5% / 2% / 1% policy, and independent subsequent campaigns.
+- A real second-pool credit failure caused by an issuer-authorized one-unit
+  clawback. Earlier creator/service payments and the first pool's credit must
+  roll back.
+- A real final-token-transfer failure caused by issuer revocation of the
+  referrer's token authorization. Both earlier pool credits must roll back.
+
+The failure cases first create legitimate nonzero manifest liabilities and
+partially paid allocations. Read-only snapshots compare all 13 participant and
+contract token balances, escrow liability, both pools' credited/paid/liability
+totals, campaign state and replay/credit markers. After the failing condition
+is repaired, the unchanged settlement must succeed without manual marker resets
+or duplicate payments. The failures use actual issuer calls, not mock pools or
+direct mutations of escrow/pool storage.
+
+These are native contract integration tests. They are not deployed-WASM
+execution, production resource-limit measurements, new on-chain receipts,
+signatures, or a formal audit. Current-head CI records the test/build result.
+
 ## Other review items
 
-This delta does not silently declare the dependency advisories or real
-escrow-to-pool integration-test recommendation resolved. Their disposition and
-Med Amine's final review remain pending. No formal audit or mainnet readiness
-is claimed.
+The native real escrow/two-pool integration recommendation now has the coverage
+above. Dependency-advisory disposition and Med Amine's final review remain
+separate acceptance gates. No formal audit or mainnet readiness is claimed.
 
 For storage operations, persistent/instance TTL expiry means archival rather
 than deletion. The operator must monitor TTL and pay extension/restoration fees.
