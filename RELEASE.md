@@ -12,5 +12,10 @@ deployed contract interfaces are unchanged.
 
 See [review scope and acceptance status](docs/review-handoff.md). Both dedicated
 testnet accounts now have Ayoub, Zyad and King at 2-of-3. The fresh campaign 3
-release by Zyad and King, and the corresponding one-signature rejection, are
-awaiting their wallet signatures. No fresh human approval is claimed.
+release by Zyad and King is confirmed in ledger 5207647 after a Zyad-only
+`txBadAuth` rejection. The payout split and accounting were verified.
+No fresh human code-review approval is claimed.
+
+An additional Zyad and Ayoub release is prepared as campaign 4 using one free
+test XLM on the same escrow. Their new signatures and its acceptance results
+are pending. Completed campaign 3 evidence is preserved separately.

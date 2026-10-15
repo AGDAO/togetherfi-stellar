@@ -4,8 +4,37 @@ The signer replacement is confirmed in ledger 5207471. Campaign 3 is a new
 one-free-test-XLM campaign on the existing deployed escrow, not a redeployment.
 Historical campaign 1 and the real-expiry campaign 2 are unchanged.
 
-**Status:** campaign 3 is active. Zyad and King's wallet signatures, the
-one-signature rejection and the two-signature release are still pending.
+**Status: verified.** Zyad's signature alone was rejected at RPC ingestion
+with `txBadAuth`, without payout balance changes. The unchanged transaction
+signed by Zyad and King completed campaign 3 in ledger **5207647** on
+15 October 2026 at 10:57:02 UTC.
+
+[Confirmed completion](https://stellar.expert/explorer/testnet/tx/de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32).
+The rejection is an RPC result, not a failed confirmed ledger transaction.
+Both submissions have the same transaction hash because the hash excludes
+envelope signatures. Their distinct signed envelopes and the rejection result
+are preserved in the manifest.
+
+**Do not sign or resubmit this completed request.** Instructions below are
+retained only to document how the actual signatures were collected.
+
+## Verified results
+
+| Destination | Exact increase in free test XLM |
+|---|---:|
+| Creator | 0.82 |
+| Service treasury | 0.10 |
+| NFT contributor pool | 0.05 |
+| Community contributor pool | 0.02 |
+| Referrer | 0.01 |
+
+Escrow token balance and liability each decreased by exactly 1 test XLM.
+Authenticated campaign credits increased by 0.05 and 0.02 in the two pools;
+pool payouts did not change. The original expiry campaign was checked unchanged.
+See [exact base-unit deltas and receipts](../evidence/testnet-zyad-king/manifest.json).
+Actual completion fee: **29.0506519 free test XLM** from the dedicated
+settlement account, below the signed cap. No member personal wallet or real
+funds paid this fixture cost.
 
 ## Frozen request
 
@@ -40,8 +69,8 @@ Do not submit, re-simulate, rebuild, or sign the old signer-replacement XDR.
 No private keys or recovery phrases are requested. The two public signed
 envelopes must be verified against the frozen hash before combining.
 
-After collecting both signatures, first preserve and submit a one-member
-envelope to record the expected RPC bad-auth rejection. Then preserve and submit
-the matching two-member envelope, verify terminal state and exact balance deltas,
-and attach the actual results to PR #2. Neither step is claimed complete yet.
-These transaction signatures do not constitute code-review approvals.
+Both signatures were collected and verified, each envelope was persisted before
+submission, and the one-member rejection and two-member confirmation are now
+recorded in PR #2. The campaign is terminal Completed and its exact payout
+deltas reconcile. These transaction signatures do not constitute code-review
+approvals by Zyad or Med Amine, or a formal audit.

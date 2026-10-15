@@ -17,8 +17,9 @@ review report is attached to this deployment evidence.
 Ace and King were transaction co-signers for the historical deployment, not code reviewers.
 The current roster is Ayoub, Zyad and King after the confirmed replacement in
 ledger 5207471. See [rotation evidence](testnet-signer-rotation.md).
-The [fresh Zyad and King campaign](testnet-zyad-king.md) is separate and its
-release signatures are pending.
+The separate [fresh Zyad and King campaign](testnet-zyad-king.md) completed in
+ledger 5207647 with the new members' actual signatures, following the expected
+one-member RPC rejection. Its exact payout deltas and accounting were verified.
 
 ## Contracts and asset
 

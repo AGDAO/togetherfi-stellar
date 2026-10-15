@@ -24,6 +24,15 @@ export function freeTestFeeCap(quotedFee) {
   return cap;
 }
 
+export function releaseFixtureSpec(pair = 'zyad-king') {
+  const specs = {
+    'zyad-king': { campaignId: 3, signers: ['Zyad', 'King'] },
+    'zyad-ayoub': { campaignId: 4, signers: ['Zyad', 'Ayoub'] },
+  };
+  assert.ok(Object.hasOwn(specs, pair), 'Unsupported testnet release signer pair');
+  return { pair, ...specs[pair], directory: 'testnet-' + pair };
+}
+
 export function validateRotatedEvidence(baseline, rotation) {
   assert.equal(baseline.network, 'testnet');
   assert.equal(rotation.network, 'testnet');
@@ -51,8 +60,10 @@ async function main() {
   if (process.argv[2] !== '--prepare-testnet') {
     throw new Error('Explicit --prepare-testnet required; mainnet is unsupported');
   }
+  const pairOption = process.argv.slice(3).find(arg => arg.startsWith('--pair='));
+  const spec = releaseFixtureSpec(pairOption ? pairOption.slice('--pair='.length) : undefined);
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-  const out = resolve(root, 'evidence/testnet-zyad-king');
+  const out = resolve(root, 'evidence', spec.directory);
   const path = resolve(out, 'manifest.json');
   try {
     await access(path);
@@ -94,9 +105,9 @@ async function main() {
     contracts: baseline.contracts, asset: baseline.asset,
     accounts: { ...baseline.accounts,
       ...Object.fromEntries(Object.entries(fixture).map(([name, key]) => [name, key.publicKey()])) },
-    campaign_id: 3, transactions: [], evidence: {},
+    campaign_id: spec.campaignId, transactions: [], evidence: {},
     fixture_custody: 'Free testnet XLM only. Disposable sponsor/recipient fixtures; no production custody or member keys.',
-    requested_release_signers: ['Zyad', 'King'],
+    requested_release_signers: spec.signers,
     review: 'Fresh human reviews pending; signatures are not code-review approvals.',
   };
   const escrow = new Contract(manifest.contracts.escrow.id);
@@ -128,11 +139,11 @@ async function main() {
     const campaign = nativeToScVal(manifest.campaign_id, { type: 'u64' });
     await sponsorCall('fund', [
       campaign, addressValue(manifest.accounts.sponsor), nativeToScVal(10_000_000n, { type: 'i128' }),
-    ], 'fund_campaign_3_for_new_roster');
+    ], `fund_campaign_${spec.campaignId}_for_new_roster`);
     await sponsorCall('activate', [
       campaign, addressValue(manifest.accounts.creator), addressValue(manifest.accounts.referrer),
-      nativeToScVal(Buffer.from('native-testnet-zyad-king-quorum')),
-    ], 'activate_campaign_3_for_new_roster');
+      nativeToScVal(Buffer.from(`native-testnet-${spec.pair}-quorum`)),
+    ], `activate_campaign_${spec.campaignId}_for_new_roster`);
     manifest.evidence.campaign_before_completion = await view(escrow, 'get_campaign', [campaign]);
     assert.equal(manifest.evidence.campaign_before_completion.status[0], 'Active');
     const destinations = {
@@ -174,18 +185,20 @@ async function main() {
     assert.equal(frozen.toEnvelope().v1().tx().ext().switch(), 1);
     assert.equal(frozen.signatures.length, 0);
     manifest.approval = {
-      status: 'requires_zyad_and_king_wallet_signatures', hash: frozen.hash().toString('hex'),
+      status: `requires_${spec.signers.map(name => name.toLowerCase()).join('_and_')}_wallet_signatures`,
+      hash: frozen.hash().toString('hex'),
       unsigned_xdr: frozen.toXDR(), source: manifest.accounts.settlement,
-      campaign_id: 3, operation_version: 1, amount_base_units: '10000000',
+      campaign_id: spec.campaignId, operation_version: 1, amount_base_units: '10000000',
       expected_split: '82/10/5/2/1',
       quoted_resource_fee_stroops: String(simulation.minResourceFee),
       fee_cap_test_xlm: String(Number(feeCap + 10_000n) / 10_000_000),
       signature_deadline_utc: new Date(Number(frozen.timeBounds.maxTime) * 1000).toISOString(),
       signing_method: 'Freighter signing-only; sign this identical frozen envelope separately; do not re-simulate',
     };
-    manifest.status = 'campaign_3_active; zyad_king_completion_and_one_signature_rejection_pending';
+    manifest.status = `campaign_${spec.campaignId}_active; ${spec.pair.replaceAll('-', '_')}_completion_and_one_signature_rejection_pending`;
     await saveManifest(path, manifest);
-    await writeFile(resolve(out, 'complete-campaign-3.xdr.txt'), frozen.toXDR() + '\n', { flag: 'wx' });
+    await writeFile(resolve(out, `complete-campaign-${spec.campaignId}.xdr.txt`),
+      frozen.toXDR() + '\n', { flag: 'wx' });
     console.log(JSON.stringify({
       network: 'testnet', status: manifest.status, approval_hash: manifest.approval.hash,
       deadline_utc: manifest.approval.signature_deadline_utc,

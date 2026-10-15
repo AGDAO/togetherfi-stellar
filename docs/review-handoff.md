@@ -43,7 +43,7 @@ new snapshot or the future signer configuration. New review is requested from
 Med Amine and Zyad against the exact new PR head. Neither approval is claimed
 until the reviewer records it. A scoped technical review is not a formal audit.
 
-## Signer transition confirmed; fresh release signatures pending
+## Signer transition and fresh release confirmed
 
 Ayoub and King authorized replacing Ace with Zyad on both dedicated governance
 and settlement accounts. The transaction succeeded on 15 October 2026 in ledger
@@ -57,15 +57,35 @@ The original deployed manifest and completed campaign 1 retain their historical
 roster and signatures. They are not rewritten as Zyad's participation.
 The original unsigned rotation request is retained for audit, not for resubmission.
 
-Campaign 3 is newly funded and active with one free test XLM on the same deployed
-escrow. Its frozen completion envelope is prepared specifically for Zyad and King.
-Their signatures and a fresh one-member rejection followed by successful
-two-member completion are **pending**, not yet accepted evidence.
-See [the fresh signing handoff](testnet-zyad-king.md).
+Campaign 3 used one free test XLM on the same deployed escrow. Both signatures
+were cryptographically verified against the exact frozen envelope. Zyad alone
+was rejected at RPC ingestion with `txBadAuth`, with no payout balance changes.
+Zyad and King together completed the campaign in ledger 5207647, transaction
+`de497ef9bead07454b35ae4614bac21c29226279d3e1ff39f8fbd37015223f32`.
+The exact 82/10/5/2/1 payout deltas, authenticated pool credits and escrow
+liability reduction were verified. The original expiry campaign remains unchanged.
+See [the fresh release evidence](testnet-zyad-king.md).
 
 Med Amine has no signature task. Zyad's internal code review and transaction
 signature are different roles; neither signature is an independent audit.
 No signer private keys or recovery phrases should be shared.
+
+## Quorum evidence matrix
+
+| Members | Operation | Result |
+|---|---|---|
+| Ayoub + King | Replace Ace with Zyad on both role accounts | Confirmed, ledger 5207471 |
+| Zyad alone | Campaign 3 completion | Correctly blocked at RPC ingestion: `txBadAuth` |
+| Zyad + King | Campaign 3 completion | Confirmed, ledger 5207647; exact split verified |
+| Ayoub alone | Additional campaign 4 completion | Planned insufficient-quorum check; not yet submitted |
+| Zyad + Ayoub | Additional campaign 4 completion | New frozen request prepared; both signatures pending |
+
+A valid member signature by itself does not satisfy a 2-of-3 threshold.
+The single-member rejection is the expected security result, not evidence of
+an invalid Zyad signature. The successful Zyad and King release proves the
+new member can authorize with a second member. The owner requested the
+[additional Zyad and Ayoub test](testnet-zyad-ayoub.md) for the remaining pair;
+neither its completion nor a grant award is claimed.
 
 ## Items for the two reviewers
 

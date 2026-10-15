@@ -22,6 +22,7 @@ const SINGLE_FILES = [
   "evidence/testnet-signer-rotation/quorum-signed.xdr.txt",
   "evidence/testnet-signer-rotation/confirmation.json",
   "docs/testnet-zyad-king.md",
+  "docs/testnet-zyad-ayoub.md",
 ];
 const SKIP = new Set(["target", "test_snapshots", "node_modules", ".git", ".cargo-ok"]);
 
@@ -40,7 +41,9 @@ export function reviewPaths(root = ROOT) {
     ...walk(root, `contracts/${name}/src`),
   ]), ...walk(root, "scripts"), ...walk(root, "soroban-env-host-patch"),
   ...walk(root, "evidence/testnet-zyad-king").filter(path =>
-    /\/(manifest\.json|complete-campaign-3\.xdr\.txt|preparation-unfunded-[0-9]+\.json)$/.test(path)),
+    /\/(manifest\.json|complete-campaign-3\.xdr\.txt|(?:zyad|king|quorum)-signed\.xdr\.txt|preparation-unfunded-[0-9]+\.json)$/.test(path)),
+  ...walk(root, "evidence/testnet-zyad-ayoub").filter(path =>
+    /\/(manifest\.json|complete-campaign-4\.xdr\.txt|(?:zyad|ayoub|quorum)-signed\.xdr\.txt)$/.test(path)),
   ].sort();
 }
 

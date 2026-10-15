@@ -9,7 +9,8 @@ The charged fee was 400 stroops (0.00004 free test XLM); 0.004 was the fee cap.
 Do not sign or resubmit the already-consumed replacement envelope.
 
 The original request and instructions below are historical audit material.
-For the next action use the separate [Zyad and King release test](testnet-zyad-king.md).
+The separate [Zyad and King release test](testnet-zyad-king.md) is now confirmed
+in ledger 5207647. Neither consumed envelope needs further signatures.
 
 The owner requested replacing Ace with Zyad on the dedicated governance and
 settlement accounts. The intended roster is Ayoub, Zyad and King, with weight 1

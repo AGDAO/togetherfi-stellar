@@ -97,10 +97,15 @@ Both account configurations are **verified on testnet**: signer weights 1/1/1,
 low/medium/high thresholds 2/2/2, setup master weight 0. Disabled setup-key attempts
 were rejected by the network. The historical member 1-of-3 rejection and 2-of-3
 completion remain valid evidence for that earlier roster, not Zyad's participation.
-A separate one-test-XLM campaign is active for a
-[fresh Zyad and King release test](docs/testnet-zyad-king.md).
-Their wallet signatures, fresh below-quorum rejection and successful release
-are still pending. Mainnet needs different owner-provided wallets.
+A separate one-test-XLM campaign completed the
+[fresh Zyad and King release test](docs/testnet-zyad-king.md) in ledger 5207647.
+Zyad alone was rejected at RPC ingestion with `txBadAuth`; Zyad and King together
+completed campaign 3, with the exact fixed split and pool credits verified.
+No Ayoub or Ace signature authorized this fresh release.
+An additional [Zyad and Ayoub pair test](docs/testnet-zyad-ayoub.md) is prepared
+as separate campaign 4 and is awaiting their new wallet signatures. It is not
+yet claimed as completed evidence.
+Mainnet needs different owner-provided wallets.
 Governance custody must also be independently threshold-controlled so the backend
 cannot bypass settlement quorum by rotating the settlement role to its own key.
 See [testnet acceptance checklist](docs/testnet-acceptance.md).
