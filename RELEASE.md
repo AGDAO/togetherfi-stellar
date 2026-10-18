@@ -14,7 +14,7 @@ does not prove execution of this new source. Final reviews remain pending.
 See [initialization hardening](docs/initialization-hardening.md).
 
 This package awaits final code reviews on PR #2 before handoff to The Arch team.
-The review request for Mohammed Idmoussi (Med Amine) was sent to
+The review request for Mohammed Idmoussi was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth), the account that
 authored his PR #1 review. Zyad's collaborator
 changes-requested review is recorded; his follow-up on the patched head is pending.

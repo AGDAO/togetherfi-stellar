@@ -21,7 +21,7 @@ The [fresh Zyad and King release test](testnet-zyad-king.md) completed in ledger
 5207647 after a Zyad-only RPC rejection. Exact payout deltas and pool credits
 were verified; this is separate from the historical completion evidence.
 Zyad is also a developer/peer reviewer; King is a co-signer, not a code reviewer.
-Mohammed Idmoussi (Med Amine) is a technical reviewer, not a signer. All three members must have independently
+Mohammed Idmoussi is a technical reviewer, not a signer. All three members must have independently
 held Stellar signing keys; none may be a placeholder or an extra backend-held key.
 
 Use three independently held Stellar signing keys, proposed weight 1 each and

@@ -18,7 +18,7 @@ Historical v1 IDs remain separately labeled below.
 accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
-Mohammed Idmoussi (Med Amine) is a technical reviewer, not a signer. His PR #1
+Mohammed Idmoussi is a technical reviewer, not a signer. His PR #1
 review was authored from and the PR #2 request was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth).
 See the [new native-only review handoff](docs/review-handoff.md) for the cleanup
@@ -55,7 +55,7 @@ The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
 [Zyad (INKY)](https://github.com/Zrehi), another team developer.
-Mohammed Idmoussi (Med Amine) supplied a scoped review of PR #1 from
+Mohammed Idmoussi supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
 formal audit, and the earlier review is not approval of this updated snapshot.
 A fresh review has been requested from his @elastikchain-eth account on PR #2.

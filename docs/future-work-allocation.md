@@ -18,7 +18,7 @@ grant handoff. Any compensation arrangements are documented separately.
 |---|---|---|---:|
 | Ayoub | Main development, integration, testing and delivery coordination | 3 hours each weekday plus 1 hour Sunday | 416 |
 | Zyad | Development, testing and internal peer review | 4 hours across weekdays plus 1 hour Sunday, with four additional 1-hour milestone sessions during the project | 134 |
-| Mohammed Idmoussi (Med Amine) | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
+| Mohammed Idmoussi | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
 | Ace | GameFi workflow testing, issue reporting, operational documentation and onboarding support | 30 minutes each weekday plus 1 hour Sunday | 91 |
 | King | SocialFi workflow testing, onboarding, operational checks and settlement review/signing | 30 minutes each weekday plus 1 hour Sunday | 91 |
 | **Total** | **Future Stellar delivery** | **Approximately 29.2 aggregate hours/week** | **758** |

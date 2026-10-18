@@ -9,13 +9,13 @@ funding. This changes the initialization ABI, not campaign economics or the
 reputation score-record schema. It is not yet deployed. Earlier receipts and
 approvals do not validate the new initializer.
 See [the exact changes and remaining evidence](initialization-hardening.md).
-The final review by Mohammed Idmoussi (Med Amine) and Zyad's follow-up on the new head remain pending.
+The final review by Mohammed Idmoussi and Zyad's follow-up on the new head remain pending.
 
 ## Review status and scope
 
 **Final code reviews remain outstanding on
 [PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).** A review request
-has been sent to the GitHub review account for Mohammed Idmoussi (Med Amine),
+has been sent to the GitHub review account for Mohammed Idmoussi,
 [@elastikchain-eth](https://github.com/elastikchain-eth). Zyad's collaborator
 changes-requested review is recorded; his follow-up on this patched head is pending.
 Neither final approval is recorded or claimed by this handoff.
@@ -45,7 +45,7 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 ## Review ownership and prior evidence
 
 - Ayoub is the implementation owner.
-- Mohammed Idmoussi (Med Amine) is the external scoped technical reviewer, not
+- Mohammed Idmoussi is the external scoped technical reviewer, not
   an implementation owner or transaction signer. His PR #1 review was authored
   from [@elastikchain-eth](https://github.com/elastikchain-eth), the account
   requested for his PR #2 review.
@@ -71,7 +71,7 @@ is not included as newly completed Stellar delivery.
 The prior review remains attached to its original commit in
 [PR #1](https://github.com/AGDAO/togetherfi-stellar/pull/1), under the
 [@elastikchain-eth account](https://github.com/AGDAO/togetherfi-stellar/pull/1#pullrequestreview-5527032908).
-The review text identifies the reviewer as Mohammed Idmoussi (Med Amine).
+The review text identifies the reviewer as Mohammed Idmoussi.
 It covered a broader source tree and must not be represented as approval of this
 new snapshot or the now-confirmed signer configuration. A new review request was
 sent to Mohammed Idmoussi's @elastikchain-eth account against the PR #2 head. Zyad's review
