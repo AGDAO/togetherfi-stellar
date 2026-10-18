@@ -18,9 +18,8 @@ Historical v1 IDs remain separately labeled below.
 accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
-Med Amine is a technical reviewer, not a signer. His public profile is
-[Med Amine (@med-amiine)](https://github.com/med-amiine); the GitHub account that
-authored his PR #1 review and is requested on PR #2 is
+Mohammed Idmoussi (Med Amine) is a technical reviewer, not a signer. His PR #1
+review was authored from and the PR #2 request was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth).
 See the [new native-only review handoff](docs/review-handoff.md) for the cleanup
 boundary, requested reviews and remaining acceptance gates.
@@ -56,12 +55,12 @@ The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
 [Zyad (INKY)](https://github.com/Zrehi), another team developer.
-Med Amine supplied a scoped review of PR #1 from
-[@elastikchain-eth](https://github.com/elastikchain-eth); the review identifies
-him as Med Amine (@med-amiine). Neither review is a formal audit, and the earlier
-review is not approval of this updated snapshot. A fresh review has been
-requested from Med's @elastikchain-eth account on PR #2. Zyad's follow-up is still
-pending against the initialization-hardening and real-pool integration snapshot.
+Mohammed Idmoussi (Med Amine) supplied a scoped review of PR #1 from
+[@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
+formal audit, and the earlier review is not approval of this updated snapshot.
+A fresh review has been requested from his @elastikchain-eth account on PR #2.
+Zyad's follow-up is still pending against the initialization-hardening and
+real-pool integration snapshot.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
 testnet role accounts in confirmed ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
@@ -71,7 +70,7 @@ King's community and operations role is described in the contributor allocation.
 
 The [proposed team allocation](docs/future-work-allocation.md) totals 758 hours
 over 26 weeks, approximately 29.2 aggregate hours/week: Ayoub 416, Zyad 134,
-Med Amine 26, Ace 91 and King 91. Named allocations must reflect each contributor's
+Mohammed Idmoussi 26, Ace 91 and King 91. Named allocations must reflect each contributor's
 actual confirmed commitment; none are inferred from a review agreement.
 Historical TogetherFi platform engineering hours are not Stellar Testnet hours.
 

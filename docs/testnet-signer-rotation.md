@@ -17,7 +17,7 @@ ledger 5207852; it is also consumed and needs no further signing.
 The owner requested replacing Ace with Zyad on the dedicated governance and
 settlement accounts. The intended roster is Ayoub, Zyad and King, with weight 1
 each, thresholds 2/2/2 and the dedicated setup masters remaining weight 0.
-Med Amine is a reviewer, not a signer.
+Mohammed Idmoussi (Med Amine) is a reviewer, not a signer.
 
 **The unsigned request alone was not evidence of an account change.** Preserve the
 original deployed manifest and historical validation evidence. Do not describe

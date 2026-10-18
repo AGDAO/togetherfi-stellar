@@ -73,4 +73,4 @@ Both signatures were collected and verified, each envelope was persisted before
 submission, and the one-member rejection and two-member confirmation are now
 recorded in PR #2. The campaign is terminal Completed and its exact payout
 deltas reconcile. These transaction signatures do not constitute code-review
-approvals by Zyad or Med Amine, or a formal audit.
+approvals by Zyad or Mohammed Idmoussi (Med Amine), or a formal audit.

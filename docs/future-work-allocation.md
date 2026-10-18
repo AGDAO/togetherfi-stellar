@@ -18,15 +18,14 @@ grant handoff. Any compensation arrangements are documented separately.
 |---|---|---|---:|
 | Ayoub | Main development, integration, testing and delivery coordination | 3 hours each weekday plus 1 hour Sunday | 416 |
 | Zyad | Development, testing and internal peer review | 4 hours across weekdays plus 1 hour Sunday, with four additional 1-hour milestone sessions during the project | 134 |
-| Med Amine | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
+| Mohammed Idmoussi (Med Amine) | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
 | Ace | GameFi workflow testing, issue reporting, operational documentation and onboarding support | 30 minutes each weekday plus 1 hour Sunday | 91 |
 | King | SocialFi workflow testing, onboarding, operational checks and settlement review/signing | 30 minutes each weekday plus 1 hour Sunday | 91 |
 | **Total** | **Future Stellar delivery** | **Approximately 29.2 aggregate hours/week** | **758** |
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
-[Med Amine's public profile](https://github.com/med-amiine),
-[Med's PR review account](https://github.com/elastikchain-eth),
+[Mohammed Idmoussi's PR review account](https://github.com/elastikchain-eth),
 [Ace](https://github.com/devcryptoaceph).
 King is identified by his community handle in public repository materials.
 
@@ -34,13 +33,13 @@ King is identified by his community handle in public repository materials.
 
 - Ayoub: `(5 x 3 + 1) x 26 = 416` hours.
 - Zyad: `(4 + 1) x 26 + 4 = 134` hours.
-- Med Amine: `26` hours of milestone-based review and follow-up.
+- Mohammed Idmoussi: `26` hours of milestone-based review and follow-up.
 - Ace: `(5 x 0.5 + 1) x 26 = 91` hours.
 - King: `(5 x 0.5 + 1) x 26 = 91` hours.
 - Combined: `416 + 134 + 26 + 91 + 91 = 758` hours.
 
 The normal weekly aggregate is 29 hours, including an average one hour for
-Med Amine's milestone-based allocation. Four additional milestone hours over
+Mohammed Idmoussi's milestone-based allocation. Four additional milestone hours over
 the project bring the total from 754 to 758. Review blocks need not occur
 every week.
 
@@ -53,9 +52,9 @@ Final budget eligibility is subject to the agreed grant work packages.
 
 The confirmed testnet signing group is Ayoub, Zyad and King. Ace is not in this
 Stellar quorum. Zyad's internal code-review role is separate from his co-signing
-role. Med Amine is the external scoped technical reviewer, not a signer;
+role. Mohammed Idmoussi is the external scoped technical reviewer, not a signer;
 his review is not a formal audit.
 
-The final code reviews by Zyad and Med Amine remain pending and must be recorded
+The final code reviews by Zyad and Mohammed Idmoussi remain pending and must be recorded
 against the PR head they review. No review approval, grant award, mainnet launch
 or real-funds operation is asserted by this planning allocation.

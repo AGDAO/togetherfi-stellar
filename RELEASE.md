@@ -14,9 +14,9 @@ does not prove execution of this new source. Final reviews remain pending.
 See [initialization hardening](docs/initialization-hardening.md).
 
 This package awaits final code reviews on PR #2 before handoff to The Arch team.
-Med Amine's review request was sent to
+The review request for Mohammed Idmoussi (Med Amine) was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth), the account that
-authored his PR #1 review and identifies him as @med-amiine. Zyad's collaborator
+authored his PR #1 review. Zyad's collaborator
 changes-requested review is recorded; his follow-up on the patched head is pending.
 No final approval or merge is claimed.
 It is not a new contract deployment, audit or mainnet release.
@@ -42,6 +42,6 @@ The earlier completed campaign 3 and original expiry fixture remain unchanged.
 See [campaign 4 confirmation and public envelopes](docs/testnet-zyad-ayoub.md).
 
 The [future delivery allocation](docs/future-work-allocation.md) is 758 hours over
-26 weeks: Ayoub 416, Zyad 134, Med Amine 26, Ace 91 and King 91. This is a
+26 weeks: Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 91 and King 91. This is a
 combined team average of approximately 29.2 hours/week, not per reviewer.
 The original real-expiry refund validation remains scheduled separately.
