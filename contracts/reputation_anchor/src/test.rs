@@ -2,7 +2,7 @@
 
 use super::*;
 use soroban_sdk::{
-    testutils::{Address as _, Ledger},
+    testutils::{Address as _, Ledger, MockAuth, MockAuthInvoke},
     Env, IntoVal, String, Symbol, Vec,
 };
 
@@ -28,9 +28,11 @@ fn setup<'a>() -> TestSetup<'a> {
     let admin = Address::generate(&env);
     let creator = Address::generate(&env);
 
-    let contract_id = env.register_contract(None, ReputationAnchor);
+    let deployment_salt = BytesN::from_array(&env, &[1; 32]);
+    let contract_id = env.deployer().with_address(admin.clone(), deployment_salt.clone()).deployed_address();
+    env.register_contract(Some(&contract_id), ReputationAnchor);
     let contract = ReputationAnchorClient::new(&env, &contract_id);
-    contract.initialize(&admin);
+    contract.initialize(&admin, &admin, &deployment_salt);
 
     TestSetup {
         env,
@@ -41,7 +43,34 @@ fn setup<'a>() -> TestSetup<'a> {
     }
 }
 
-// Simulated Arbitrum tx hashes (66-char 0x-prefixed hex strings)
+#[test]
+fn first_initialization_requires_the_actual_deployment_authority() {
+    let env = Env::default();
+    let deployer = Address::generate(&env);
+    let admin = Address::generate(&env);
+    let attacker = Address::generate(&env);
+    let salt = BytesN::from_array(&env, &[7; 32]);
+    let id = env.deployer().with_address(deployer.clone(), salt.clone()).deployed_address();
+    env.register_contract(Some(&id), ReputationAnchor);
+    let client = ReputationAnchorClient::new(&env, &id);
+    assert_eq!(client.try_initialize(&attacker, &attacker, &salt),
+        Err(Ok(RepAnchorError::InvalidDeployment)));
+    assert_eq!(client.try_initialize(&admin, &deployer, &BytesN::from_array(&env, &[8; 32])),
+        Err(Ok(RepAnchorError::InvalidDeployment)));
+    assert!(client.try_initialize(&attacker, &deployer, &salt).is_err());
+    let args = (admin.clone(), deployer.clone(), salt.clone()).into_val(&env);
+    let invoke = MockAuthInvoke { contract: &id, fn_name: "initialize", args, sub_invokes: &[] };
+    env.mock_auths(&[MockAuth { address: &deployer, invoke: &invoke }]);
+    assert!(client.try_initialize(&admin, &deployer, &salt).is_err());
+    env.mock_auths(&[
+        MockAuth { address: &deployer, invoke: &invoke },
+        MockAuth { address: &admin, invoke: &invoke },
+    ]);
+    client.initialize(&admin, &deployer, &salt);
+    assert!(client.try_initialize(&admin, &deployer, &salt).is_err());
+}
+
+// Legacy optional-reference fixtures (66-character 0x-prefixed hex strings).
 fn arb_hash_a(env: &Env) -> String {
     String::from_str(
         env,
@@ -182,14 +211,19 @@ fn test_unauthorized_anchor_fails() {
 
     // Initialize with admin auth mocked for that one call only
     env.mock_all_auths();
-    let contract_id = env.register_contract(None, ReputationAnchor);
+    let deployment_salt = BytesN::from_array(&env, &[1; 32]);
+    let contract_id = env.deployer().with_address(admin.clone(), deployment_salt.clone()).deployed_address();
+    env.register_contract(Some(&contract_id), ReputationAnchor);
     let contract = ReputationAnchorClient::new(&env, &contract_id);
-    contract.initialize(&admin);
+    contract.initialize(&admin, &admin, &deployment_salt);
 
     // Construct a fresh env with NO auth mocking. Re-register so state is clean.
     let env2 = Env::default();
     // No mock_all_auths. require_auth() checks are now strict.
-    let contract_id2 = env2.register_contract(None, ReputationAnchor);
+    let admin2 = Address::generate(&env2);
+    let deployment_salt2 = BytesN::from_array(&env2, &[1; 32]);
+    let contract_id2 = env2.deployer().with_address(admin2.clone(), deployment_salt2.clone()).deployed_address();
+    env2.register_contract(Some(&contract_id2), ReputationAnchor);
     let contract2 = ReputationAnchorClient::new(&env2, &contract_id2);
     // Objects cannot cross Env instances. Generate the creator inside env2.
     let creator_env2 = Address::generate(&env2);
@@ -208,17 +242,16 @@ fn test_unauthorized_anchor_fails() {
     // Now initialize the env2 contract, but DON'T mock admin's auth for the
     // subsequent anchor_score call. The contract's stored admin is `admin2`,
     // and without mocking admin2's auth the require_auth() will fail.
-    let admin2 = Address::generate(&env2);
     env2.mock_auths(&[soroban_sdk::testutils::MockAuth {
         address: &admin2,
         invoke: &soroban_sdk::testutils::MockAuthInvoke {
             contract: &contract_id2,
             fn_name: "initialize",
-            args: (admin2.clone(),).into_val(&env2),
+            args: (admin2.clone(), admin2.clone(), deployment_salt2.clone()).into_val(&env2),
             sub_invokes: &[],
         },
     }]);
-    contract2.initialize(&admin2);
+    contract2.initialize(&admin2, &admin2, &deployment_salt2);
 
     // Now try anchor_score with NO auth mocked. This must fail.
     let creator2 = Address::generate(&env2);
@@ -250,7 +283,7 @@ fn test_score_not_found() {
 fn test_double_initialize_fails() {
     let s = setup();
     let second_admin = Address::generate(&s.env);
-    let result = s.contract.try_initialize(&second_admin);
+    let result = s.contract.try_initialize(&second_admin, &second_admin, &BytesN::from_array(&s.env, &[1; 32]));
     assert!(result.is_err());
     assert_eq!(
         result.err().unwrap().unwrap(),

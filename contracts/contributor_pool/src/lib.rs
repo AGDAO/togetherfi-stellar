@@ -2,7 +2,7 @@
 
 //! Immutable contributor-reward pool.
 //!
-//! Deploy one instance for the MOFO contributor allocation and one for the
+//! Deploy one instance for the NFT contributor allocation and one for the
 //! community contributor allocation. Campaign Escrow sends each completed
 //! campaign's allocation to its configured pool. A pool never chooses a
 //! recipient: a manifest must be approved by both governance and a separate
@@ -95,6 +95,7 @@ pub enum PoolError {
     NoPendingRole = 15,
     RolesMustDiffer = 16,
     CampaignAlreadyCredited = 17,
+    InvalidDeployment = 18,
 }
 
 #[contract]
@@ -111,15 +112,29 @@ impl ContributorPool {
         eligibility_authority: Address,
         token: Address,
         escrow: Address,
+        deployer: Address,
+        deployment_salt: BytesN<32>,
     ) -> Result<(), PoolError> {
         if env.storage().instance().has(&DataKey::Governance) {
             return Err(PoolError::AlreadyInitialized);
         }
+        if env.deployer().with_address(deployer.clone(), deployment_salt).deployed_address()
+            != env.current_contract_address()
+        {
+            return Err(PoolError::InvalidDeployment);
+        }
+        deployer.require_auth();
         if governance == eligibility_authority {
             return Err(PoolError::RolesMustDiffer);
         }
-        governance.require_auth();
-        eligibility_authority.require_auth();
+        // The deployment authority may also hold one configuration role.
+        // Do not require the same address twice in this invocation frame.
+        if governance != deployer {
+            governance.require_auth();
+        }
+        if eligibility_authority != deployer {
+            eligibility_authority.require_auth();
+        }
         env.storage()
             .instance()
             .set(&DataKey::Governance, &governance);

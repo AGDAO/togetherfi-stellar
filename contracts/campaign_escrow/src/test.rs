@@ -49,6 +49,8 @@ struct Setup<'a> {
     service: Address,
     nft: Address,
     revenue: Address,
+    deployer: Address,
+    deployment_salt: BytesN<32>,
 }
 
 fn setup<'a>() -> Setup<'a> {
@@ -66,7 +68,10 @@ fn setup<'a>() -> Setup<'a> {
     let token = TokenClient::new(&env, &token_id);
     let mint = StellarAssetClient::new(&env, &token_id);
     mint.mint(&sponsor, &10_000_000_000i128);
-    let id = env.register_contract(None, CampaignEscrow);
+    let deployer = Address::generate(&env);
+    let deployment_salt = BytesN::from_array(&env, &[1; 32]);
+    let id = env.deployer().with_address(deployer.clone(), deployment_salt.clone()).deployed_address();
+    env.register_contract(Some(&id), CampaignEscrow);
     let nft = env.register_contract(None, MockContributorPool);
     let revenue = env.register_contract(None, MockContributorPool);
     MockContributorPoolClient::new(&env, &nft).initialize(&id, &token_id);
@@ -79,6 +84,8 @@ fn setup<'a>() -> Setup<'a> {
         &service,
         &nft,
         &revenue,
+        &deployer,
+        &deployment_salt,
     );
     Setup {
         env,
@@ -93,6 +100,8 @@ fn setup<'a>() -> Setup<'a> {
         service,
         nft,
         revenue,
+        deployer,
+        deployment_salt,
     }
 }
 
@@ -107,6 +116,7 @@ fn activate(s: &Setup, id: u64) {
 #[test]
 fn initialize_is_one_time_and_config_versioned() {
     let s = setup();
+    assert_eq!(s.client.service_treasury(), s.service);
     assert_eq!(s.client.config_version(), 1);
     assert_eq!(s.client.governance(), s.governance);
     assert_eq!(s.client.settlement_authority(), s.settlement);
@@ -121,10 +131,49 @@ fn initialize_is_one_time_and_config_versioned() {
             &Address::generate(&s.env),
             &s.service,
             &s.nft,
-            &s.revenue
+            &s.revenue,
+            &s.deployer,
+            &s.deployment_salt,
         ),
         Err(Ok(EscrowError::AlreadyInitialized))
     );
+}
+
+#[test]
+fn first_initialization_requires_the_actual_deployment_authority() {
+    // No blanket auth: first callers cannot choose their own deployer or
+    // nominate themselves as governance for somebody else's deployment.
+    let env = Env::default();
+    let deployer = Address::generate(&env);
+    let attacker = Address::generate(&env);
+    let salt = BytesN::from_array(&env, &[7; 32]);
+    let id = env.deployer().with_address(deployer.clone(), salt.clone()).deployed_address();
+    env.register_contract(Some(&id), CampaignEscrow);
+    let token = Address::generate(&env);
+    let settlement = Address::generate(&env);
+    let service = Address::generate(&env);
+    let governance = Address::generate(&env);
+    let nft = env.register_contract(None, MockContributorPool);
+    let revenue = env.register_contract(None, MockContributorPool);
+    MockContributorPoolClient::new(&env, &nft).initialize(&id, &token);
+    MockContributorPoolClient::new(&env, &revenue).initialize(&id, &token);
+    let client = CampaignEscrowClient::new(&env, &id);
+    assert_eq!(client.try_initialize(&attacker, &settlement, &token, &service, &nft, &revenue, &attacker, &salt),
+        Err(Ok(EscrowError::InvalidDeployment)));
+    assert_eq!(client.try_initialize(&governance, &settlement, &token, &service, &nft, &revenue, &deployer, &BytesN::from_array(&env, &[8; 32])),
+        Err(Ok(EscrowError::InvalidDeployment)));
+    // The real public preimage is not sufficient without deployer auth.
+    assert!(client.try_initialize(&attacker, &settlement, &token, &service, &nft, &revenue, &deployer, &salt).is_err());
+    let args = (governance.clone(), settlement.clone(), token.clone(), service.clone(), nft.clone(), revenue.clone(), deployer.clone(), salt.clone()).into_val(&env);
+    let invoke = MockAuthInvoke { contract: &id, fn_name: "initialize", args, sub_invokes: &[] };
+    env.mock_auths(&[MockAuth { address: &deployer, invoke: &invoke }]);
+    assert!(client.try_initialize(&governance, &settlement, &token, &service, &nft, &revenue, &deployer, &salt).is_err());
+    env.mock_auths(&[
+        MockAuth { address: &deployer, invoke: &invoke },
+        MockAuth { address: &governance, invoke: &invoke },
+    ]);
+    client.initialize(&governance, &settlement, &token, &service, &nft, &revenue, &deployer, &salt);
+    assert_eq!(client.governance(), governance);
 }
 
 #[test]

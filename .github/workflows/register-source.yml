@@ -1,0 +1,34 @@
+name: Register attested source with StellarExpert
+
+on:
+  push:
+    branches: ["stellar-native-review-cleanup"]
+    paths: [".github/workflows/register-source.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  attestations: read
+
+jobs:
+  register:
+    runs-on: ubuntu-24.04
+    env:
+      SOURCE_COMMIT: a4d5d1eb80bb000c5abb6a11d714783546707618
+      BUILD_RUN: "39325264354"
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify exact release provenance
+        run: node scripts/download-attested-native.mjs "$SOURCE_COMMIT" "$RUNNER_TEMP/attested-native"
+      - name: Register from the permitted GitHub Actions runner
+        run: node scripts/register-source-verification.mjs "$RUNNER_TEMP/attested-native/attested-build.json" "$BUILD_RUN"
+      - name: Preserve public verification responses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: explorer-source-registration
+          path: ${{ runner.temp }}/attested-native/*.json
