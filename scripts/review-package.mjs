@@ -9,6 +9,7 @@ export const CONTRACTS = ["campaign_escrow", "contributor_pool", "reputation_anc
 const SINGLE_FILES = [
   ".gitignore", ".github/workflows/test.yml", "LICENSE", "README.md", "Makefile",
   ".github/workflows/source-verification.yml",
+  ".github/workflows/register-source.yml",
   "contracts/campaign_escrow/Makefile",
   "contracts/contributor_pool/Makefile",
   "contracts/reputation_anchor/Makefile",
@@ -21,6 +22,7 @@ const SINGLE_FILES = [
   "docs/dependency-advisories.md",
   "docs/usdc-testnet-validation.md",
   "docs/source-verification-plan.md",
+  "docs/attested-usdc-testnet-evidence.md",
   "RELEASE.md",
   "evidence/testnet-escrow-v2/manifest.json",
   "evidence/testnet-escrow-v2/complete-campaign-1.xdr.txt",

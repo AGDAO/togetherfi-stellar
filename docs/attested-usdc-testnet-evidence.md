@@ -1,0 +1,71 @@
+# Attested native builds and fresh USDC testnet evidence
+
+## Confirmed build provenance, 19 October 2026
+
+Source commit:
+[`a4d5d1eb80bb000c5abb6a11d714783546707618`](https://github.com/AGDAO/togetherfi-stellar/commit/a4d5d1eb80bb000c5abb6a11d714783546707618).
+The three native build/test/attestation jobs
+[completed successfully](https://github.com/AGDAO/togetherfi-stellar/actions/runs/39325264354).
+They use Rust 1.81.0, wasm32-unknown-unknown and the SHA-pinned compatible
+StellarExpert reusable builder with Stellar CLI 22.0.1. Final artifacts contain
+source/build metadata; their hashes are not the historical deployment hashes.
+
+| Native package | Attested final WASM SHA-256 |
+|---|---|
+| Campaign Escrow | `6f1a3e10abd79b76cbb4101f5ea42da5e51ad0d45950093e0cacf602fd51b0ff` |
+| Contributor Pool | `0842b07ff7056fcfce1df0e0586bf1779de57d4c6e4c89014a0af220d976c14f` |
+| Reputation Anchor | `6e0757040318e728da1e60bcb0566ace3d02d14e456ddc25f124caa5ebe90d67` |
+
+The final release bytes were downloaded and cryptographically verified using
+GitHub CLI, enforcing repository `AGDAO/togetherfi-stellar`, the reusable signer
+workflow and its exact commit `4a554f0e75c245cf4d3ea5f98f3a653d51edcd18`,
+the exact source commit above and GitHub-hosted execution. Merely downloading
+an artifact or trusting a manifest's `attestation_verified` boolean is insufficient;
+the deployment runner reverifies the actual files.
+
+Release tags were explicitly bound to the source commit before publication;
+they are not inferred from a default-branch tag target.
+
+## Explorer registration, not yet a blanket verification claim
+
+The [registration job](https://github.com/AGDAO/togetherfi-stellar/actions/runs/39325998039)
+reverified all three artifacts and submitted their exact hashes and source/build
+inputs from a GitHub Actions runner. StellarExpert returned HTTP 200 `{"ok":1}`
+for each registration. Workspace-origin registration is rejected by the provider.
+
+Acceptance of registration is distinct from an indexed, verified explorer result.
+Confirm the new contract's explorer source status and RPC-retrieved WASM before
+describing a deployed instance as source-verified.
+
+## Fresh USDC lifecycle runner
+
+```sh
+node scripts/download-attested-native.mjs \
+  a4d5d1eb80bb000c5abb6a11d714783546707618 /path/to/new-artifact-directory
+node scripts/run-fresh-usdc-lifecycle.mjs --execute-testnet \
+  --attested-build /path/to/new-artifact-directory/attested-build.json
+```
+
+This creates new, separate escrow and two-pool instances with the official
+Circle testnet USDC SAC. It verifies every initializer binding and RPC WASM
+hash, creates disposable account trustlines, and requests human-completed
+free Circle faucet funding.
+
+Automated test signers exercise native 2-of-3 account authorization, exact
+82/10/5/2/1 payout deltas, seven-decimal rounding, early-refund rejection,
+completion replay rejection, pool allocation authorization and recipient claims.
+These are fixture signatures, never signatures attributed to team members.
+Only actual confirmed receipts and successful assertions count as completed tests.
+
+After these checks, the dedicated role accounts hand off to the designated
+Ayoub/Zyad/King public keys and disable the fixture signers. A frozen transaction
+then requires two designated members' own signing-only wallet signatures.
+Do not treat configuration, local auth mocks or automated fixture signatures as
+that final human-member release proof.
+
+Historical XLM deployments, member wallets and the original November expiry
+fixture remain unchanged. A fresh USDC expiry fixture has its own later expiry;
+the runner rejects early refunds rather than shortening the contract's 30-day
+expiry to manufacture a passing receipt. Attestation is not code-review approval,
+grant funding, a mainnet launch, or production acceptance. Building the Anchor
+does not commit an unapproved new Anchor deployment or free grant deliverable.
