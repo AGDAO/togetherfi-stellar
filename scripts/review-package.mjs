@@ -8,6 +8,10 @@ export const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 export const CONTRACTS = ["campaign_escrow", "contributor_pool", "reputation_anchor"];
 const SINGLE_FILES = [
   ".gitignore", ".github/workflows/test.yml", "LICENSE", "README.md", "Makefile",
+  ".github/workflows/source-verification.yml",
+  "contracts/campaign_escrow/Makefile",
+  "contracts/contributor_pool/Makefile",
+  "contracts/reputation_anchor/Makefile",
   "UPSTREAM_COMMIT", "package.json", "package-lock.json",
   "docs/proposed-ci-workflow.yml", "docs/testnet-acceptance.md",
   "docs/testnet-deployment-evidence.md", "docs/testnet-signing.md",
