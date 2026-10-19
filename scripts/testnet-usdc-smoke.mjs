@@ -12,14 +12,18 @@ import {
   CIRCLE_SOURCE, STELLAR_USDC, testnetUsdcAsset, assertUsdcTransferDeltas,
 } from './stellar-usdc.mjs';
 
-if (process.argv.length !== 3 || process.argv[2] !== '--execute-testnet') {
-  throw new Error('Only --execute-testnet is supported');
+const args = process.argv.slice(2);
+if (args[0] !== '--execute-testnet' || args.length > 2 ||
+    (args.length === 2 && args[1] !== '--new-fixture')) {
+  throw new Error('Use --execute-testnet [--new-fixture]');
 }
 const asset = testnetUsdcAsset(NETWORK);
 const network = await server.getNetwork();
 if (network.passphrase !== NETWORK) throw new Error('RPC is not Stellar Testnet');
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const PATH = resolve(ROOT, 'evidence/testnet-usdc-wallet/manifest.json');
+const PATH = resolve(ROOT, args.includes('--new-fixture')
+  ? `evidence/testnet-usdc-wallet/runs/${new Date().toISOString().replace(/[:.]/g, '-')}/manifest.json`
+  : 'evidence/testnet-usdc-wallet/manifest.json');
 try {
   await access(PATH);
   throw new Error('Existing test evidence must not be overwritten');
@@ -71,6 +75,7 @@ try {
   manifest.status = 'waiting_for_human_circle_faucet';
   await saveManifest(PATH, manifest);
   console.log('WAITING_FOR_CIRCLE_FAUCET');
+  console.log('Public evidence: ' + PATH);
   console.log('Network: Stellar Testnet; token: USDC; faucet: https://faucet.circle.com/');
   console.log('Send free testnet USDC to: ' + sponsor.publicKey());
   console.log('Both USDC trustlines are confirmed. No real money is required.');

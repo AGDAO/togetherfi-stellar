@@ -45,13 +45,39 @@ The other contributors' rates and the full grant total are not inferred here.
 - King: `96` total owner-confirmed hours.
 - Combined: `416 + 134 + 26 + 96 + 96 = 768`.
 
-The earlier operations cadence of 30 minutes each weekday plus one hour Sunday
-accounts for 91 hours per person. Five more hours per person must be mapped to
-named milestone activities. Five additional one-hour pilot/testing/support
-sessions per person are a proposed reconciliation, not a confirmed schedule.
-Record dated hours, the relevant Stellar work package, event/mission setup,
-test cases and results, reproducible bug reports, support/onboarding outcomes,
-and any separately requested signing-drill evidence.
+The owner has confirmed each person's 96 hours, role and $20 rate. No additional
+personal information is required to prepare the budget. The activity split below
+is a proposed future work plan, not a completed timesheet or a confirmed calendar.
+It replaces the earlier 91-hour cadence rather than adding unrelated hours.
+
+| Ace: proposed Stellar-attributable outputs | Hours | Acceptance evidence |
+|---|---:|---|
+| Coordinate two Stellar testnet pilot sessions with GameFi community testers; prepare scenarios and approved test data | 20 | Two session plans, admin-operation checklists and attendance/outcome records |
+| Execute non-code wallet/campaign workflow QA and retest reported issues | 24 | At least 12 scenario results covering onboarding, funding, receipt visibility, failed actions and retests; reproducible reports for issues actually found |
+| Help participants learn testnet wallets, trustlines and USDC receipts | 20 | Onboarding guide, dated support sessions and anonymized completion/blocker log |
+| Support the Stellar pilots on Discord and triage participant problems | 16 | Dated support/triage log and escalation outcomes |
+| Prepare Stellar pilot education for business Facebook/Instagram channels | 12 | Six draft guidance/update items and a distribution/outcome log, subject to eligibility approval |
+| Assemble milestone operations evidence and demonstrate admin workflows | 4 | Evidence index, permissions checklist and milestone walkthrough |
+| **Ace total** | **96** | **$1,920 at $20/hour** |
+
+| King: proposed Stellar-attributable outputs | Hours | Acceptance evidence |
+|---|---:|---|
+| Coordinate two Stellar testnet pilot sessions with SocialFi community testers; prepare scenarios and approved test data | 20 | Two session plans, mission/admin checklists and attendance/outcome records |
+| Execute non-code mission/campaign workflow QA and retest reported issues | 24 | At least 12 scenario results; reproducible reports for issues actually found |
+| Help participants learn testnet wallets, trustlines and USDC receipts | 20 | Onboarding guide, dated support sessions and anonymized completion/blocker log |
+| Support the Stellar pilots on Discord and triage participant problems | 16 | Dated support/triage log and escalation outcomes |
+| Prepare Stellar pilot education for X/Discord channels | 12 | Six draft guidance/update items and a distribution/outcome log, subject to eligibility approval |
+| Participate in separately requested testnet signer drills and assemble operations evidence | 4 | Signing-only drill records and evidence index; never code-review approval or disclosure of private keys |
+| **King total** | **96** | **$1,920 at $20/hour** |
+
+GameFi/SocialFi describe the source communities and existing scoped admin roles,
+not a promise to implement new sector-specific Stellar contracts or to grant
+CreatorFi/code permissions. Developers perform restricted setup where necessary.
+Pilot signups, bugs and adoption outcomes are not fabricated to meet an output
+target. Education/social work remains subject to the architecture team's cost
+eligibility decision; if excluded, reallocate within approved Stellar activities
+without increasing these confirmed hour totals. Record dates, actual time and
+deliverable references; do not double-charge overlapping work.
 
 ## Ownership, review and budget boundaries
 

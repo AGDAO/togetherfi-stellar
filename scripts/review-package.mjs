@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 export const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 export const CONTRACTS = ["campaign_escrow", "contributor_pool", "reputation_anchor"];
 const SINGLE_FILES = [
-  ".gitignore", ".github/workflows/test.yml", "LICENSE", "README.md",
+  ".gitignore", ".github/workflows/test.yml", "LICENSE", "README.md", "Makefile",
   "UPSTREAM_COMMIT", "package.json", "package-lock.json",
   "docs/proposed-ci-workflow.yml", "docs/testnet-acceptance.md",
   "docs/testnet-deployment-evidence.md", "docs/testnet-signing.md",
