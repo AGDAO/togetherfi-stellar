@@ -19,7 +19,7 @@ accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
 Mohammed Idmoussi is a technical reviewer, not a signer. His PR #1
-review was authored from and the PR #2 request was sent to
+review was authored from the GitHub account requested for PR #2:
 [@elastikchain-eth](https://github.com/elastikchain-eth).
 See the [new native-only review handoff](docs/review-handoff.md) for the cleanup
 boundary, requested reviews and remaining acceptance gates.
@@ -48,8 +48,10 @@ Ayoub is the CEO/Developer and Soroban technical owner:
 [personal GitHub](https://github.com/AGDAO/) and
 [GitHub](https://github.com/AGDAO).
 TogetherFi is built by a human development team that was building the platform
-before adopting AI tools. AI assists the team's engineering work; it is not the
-sole builder or a substitute for human review.
+before adopting AI tools. AI-assisted extensively; humans own architecture,
+review, testing and acceptance. AI is not a substitute for human review.
+Ayoub is the founder and technical lead of TogetherFi; there is no separate
+predecessor-product technical lead omitted from this application.
 The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
 allocation across work packages, not a separate allocation per package.
@@ -68,11 +70,16 @@ Production decisions are led by Ayoub; this does not authorize
 mainnet deployment or real-funds operations.
 King's community and operations role is described in the contributor allocation.
 
-The [proposed team allocation](docs/future-work-allocation.md) totals 758 hours
-over 26 weeks, approximately 29.2 aggregate hours/week: Ayoub 416, Zyad 134,
-Mohammed Idmoussi 26, Ace 91 and King 91. Named allocations must reflect each contributor's
-actual confirmed commitment; none are inferred from a review agreement.
+The [proposed team allocation](docs/future-work-allocation.md) totals 768 hours
+over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 416, Zyad 134,
+Mohammed Idmoussi 26, Ace 96 and King 96. Ace and King each have a proposed
+rate of $20/hour ($1,920 each; $3,840 combined). They use scoped GameFi and
+SocialFi admin panels, support users, manage events/missions and report bugs;
+neither has source-code access or an engineering role. Named allocations must reflect each
+contributor's actual confirmed commitment; none are inferred from a review agreement.
 Historical TogetherFi platform engineering hours are not Stellar Testnet hours.
+Reputation Anchor grant eligibility and any additional budget remain unresolved;
+this allocation does not promise its future work for free.
 
 ## Architecture-team acceptance evidence
 

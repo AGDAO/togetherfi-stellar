@@ -2,59 +2,77 @@
 
 ## Planning basis
 
-The owner-approved proposal allocates **758 hours across 26 weeks** to future
-Stellar delivery. The aggregate average is 29.1538 hours per week, rounded to
-**29.2 hours per week across the whole team**, not per reviewer or per review.
-Monday through Friday are the normal weekdays; Saturday is not allocated.
-
-These are proposed delivery hours, not hours already worked, a record of
-completed platform development, or confirmation of individual compensation terms.
-Each contributor's scope and availability should be confirmed before the final
-grant handoff. Any compensation arrangements are documented separately.
+The owner-confirmed allocation is **768 hours across 26 weeks**: an aggregate
+average of 29.5385 hours/week, rounded to **29.5 hours/week across the whole team**.
+These are proposed future hours, not a completed-work timesheet or a grant award.
+The revised operations hours and rate below supersede the earlier 91-hour
+allocations. Saturday is not allocated.
 
 ## Contributor allocation
 
-| Contributor | Stellar responsibilities | Proposed schedule | Total hours |
-|---|---|---|---:|
-| Ayoub | Main development, integration, testing and delivery coordination | 3 hours each weekday plus 1 hour Sunday | 416 |
-| Zyad | Development, testing and internal peer review | 4 hours across weekdays plus 1 hour Sunday, with four additional 1-hour milestone sessions during the project | 134 |
-| Mohammed Idmoussi | Scoped smart-contract review and follow-up, not transaction signing | Review blocks scheduled around milestones | 26 |
-| Ace | GameFi workflow testing, issue reporting, operational documentation and onboarding support | 30 minutes each weekday plus 1 hour Sunday | 91 |
-| King | SocialFi workflow testing, onboarding, operational checks and settlement review/signing | 30 minutes each weekday plus 1 hour Sunday | 91 |
-| **Total** | **Future Stellar delivery** | **Approximately 29.2 aggregate hours/week** | **758** |
+| Contributor | Responsibilities | Hours |
+|---|---|---:|
+| Ayoub | Founder, technical lead, main development, integration, testing and delivery coordination | 416 |
+| Zyad | Development, testing and internal peer review | 134 |
+| Mohammed Idmoussi | Scoped contract review and follow-up, not transaction signing | 26 |
+| Ace | Scoped GameFi administration, event setup, workflow testing, bug reporting, Discord support and onboarding; Facebook and Instagram operations | 96 |
+| King | Scoped SocialFi administration, mission setup, workflow testing, bug reporting, Discord support and onboarding; X and Discord operations; separately designated testnet co-signing | 96 |
+| **Total** | **Proposed future delivery, subject to eligible work packages** | **768** |
+
+Ace and King have access to the relevant platform admin panels, **not source
+code**. Neither is a contract engineer or code reviewer. Their broader platform
+social-media duties do not automatically become eligible Stellar grant costs:
+only documented work attributable to the agreed Stellar deliverables may be
+charged to this grant. Do not bill the same work to another grant.
+
+## Compensation
+
+| Operations contributor | Hours | Hourly rate | Proposed total |
+|---|---:|---:|---:|
+| Ace | 96 | $20 | $1,920 |
+| King | 96 | $20 | $1,920 |
+| **Combined** | **192** | **$40 per hour when both work** | **$3,840** |
+
+These rates apply to the two operations contributors, not all engineering hours.
+The other contributors' rates and the full grant total are not inferred here.
+
+## Hours and evidence
+
+- Ayoub: `(5 x 3 + 1) x 26 = 416`.
+- Zyad: `(4 + 1) x 26 + 4 = 134`.
+- Mohammed Idmoussi: `26` milestone-based review/follow-up hours.
+- Ace: `96` total owner-confirmed hours.
+- King: `96` total owner-confirmed hours.
+- Combined: `416 + 134 + 26 + 96 + 96 = 768`.
+
+The earlier operations cadence of 30 minutes each weekday plus one hour Sunday
+accounts for 91 hours per person. Five more hours per person must be mapped to
+named milestone activities. Five additional one-hour pilot/testing/support
+sessions per person are a proposed reconciliation, not a confirmed schedule.
+Record dated hours, the relevant Stellar work package, event/mission setup,
+test cases and results, reproducible bug reports, support/onboarding outcomes,
+and any separately requested signing-drill evidence.
+
+## Ownership, review and budget boundaries
+
+Ayoub is the founder and technical lead of TogetherFi. The owner confirms there
+is no separate predecessor-product technical lead omitted from this application.
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
-[Mohammed Idmoussi's PR review account](https://github.com/elastikchain-eth),
+[Mohammed Idmoussi's review account](https://github.com/elastikchain-eth),
 [Ace](https://github.com/devcryptoaceph).
 King is identified by his community handle in public repository materials.
 
-## Reconciliation
+The current testnet signing group is Ayoub, Zyad and King. Ace is not in that
+quorum. Reviewers are not signers merely because they review code. Final code
+reviews by Zyad and Mohammed Idmoussi remain pending on the head they review.
 
-- Ayoub: `(5 x 3 + 1) x 26 = 416` hours.
-- Zyad: `(4 + 1) x 26 + 4 = 134` hours.
-- Mohammed Idmoussi: `26` hours of milestone-based review and follow-up.
-- Ace: `(5 x 0.5 + 1) x 26 = 91` hours.
-- King: `(5 x 0.5 + 1) x 26 = 91` hours.
-- Combined: `416 + 134 + 26 + 91 + 91 = 758` hours.
+**Reputation Anchor budget is unresolved.** Ask the architecture team whether
+new, eligible Anchor work is required and fundable. Do not promise free future
+work or charge for historical work already delivered. If newly scoped work is
+approved, add an owner, hours, rate, acceptance evidence and tranche assignment;
+then recalculate the total without double-counting these 768 hours.
 
-The normal weekly aggregate is 29 hours, including an average one hour for
-Mohammed Idmoussi's milestone-based allocation. Four additional milestone hours over
-the project bring the total from 754 to 758. Review blocks need not occur
-every week.
-
-## Role and review boundaries
-
-Ace and King are community and operations contributors, not contract engineers
-or code reviewers. Their allocation covers the substantive Stellar work above,
-not simply the act of providing a signature or unrelated platform moderation.
-Final budget eligibility is subject to the agreed grant work packages.
-
-The confirmed testnet signing group is Ayoub, Zyad and King. Ace is not in this
-Stellar quorum. Zyad's internal code-review role is separate from his co-signing
-role. Mohammed Idmoussi is the external scoped technical reviewer, not a signer;
-his review is not a formal audit.
-
-The final code reviews by Zyad and Mohammed Idmoussi remain pending and must be recorded
-against the PR head they review. No review approval, grant award, mainnet launch
-or real-funds operation is asserted by this planning allocation.
+No review approval, formal audit, mainnet launch or real-funds authorization is
+asserted by this allocation.

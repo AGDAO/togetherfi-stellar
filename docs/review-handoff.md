@@ -9,7 +9,13 @@ funding. This changes the initialization ABI, not campaign economics or the
 reputation score-record schema. It is not yet deployed. Earlier receipts and
 approvals do not validate the new initializer.
 See [the exact changes and remaining evidence](initialization-hardening.md).
-The final review by Mohammed Idmoussi and Zyad's follow-up on the new head remain pending.
+The final review by Mohammed Idmoussi and Zyad's follow-up on the
+new head remain pending.
+
+The [dependency advisory disposition](dependency-advisories.md) now separates
+guest/code-generation, local host/test and Node-tooling exposure against the
+exact native lockfiles. It retains bounded testnet-only tooling risk and does
+not claim zero advisories, approval or validation of changed deployed bytes.
 
 ## Review status and scope
 
@@ -58,13 +64,17 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 
 ## Future delivery plan
 
-The owner-approved proposed allocation is **758 hours over 26 weeks**:
-Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 91 and King 91.
+The owner-approved proposed allocation is **768 hours over 26 weeks**:
+Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 96 and King 96.
 See the [full allocation, schedules and responsibilities](future-work-allocation.md).
-The approximately 29.2 hours/week is a combined team average, not a commitment
+The approximately 29.5 hours/week is a combined team average, not a commitment
 per reviewer. These are future delivery estimates; individual scope, availability
 and compensation arrangements are confirmed separately. Historical platform work
 is not included as newly completed Stellar delivery.
+Ace and King each have a proposed rate of $20/hour ($1,920 each; $3,840 combined).
+They administer scoped GameFi/SocialFi panels and support operations, not source
+code. Broader social-media work is not automatically a Stellar grant expense.
+Any additional Reputation Anchor budget and acceptance scope remain to be agreed.
 
 ## Prior review evidence
 
@@ -74,11 +84,11 @@ The prior review remains attached to its original commit in
 The review text identifies the reviewer as Mohammed Idmoussi.
 It covered a broader source tree and must not be represented as approval of this
 new snapshot or the now-confirmed signer configuration. A new review request was
-sent to Mohammed Idmoussi's @elastikchain-eth account against the PR #2 head. Zyad's review
-request was followed by his changes-requested review. His follow-up on the
-hardening commit and Mohammed Idmoussi's final review remain pending. Neither approval is
-claimed until each reviewer records it. A scoped technical review is not a
-formal audit.
+sent to Mohammed Idmoussi's @elastikchain-eth account against the PR #2 head.
+Zyad's review request was followed by his changes-requested review. His
+follow-up on the hardening commit and Mohammed Idmoussi's final review remain
+pending. Neither approval is claimed until each reviewer records it. A scoped
+technical review is not a formal audit.
 
 ## Signer transition and fresh release confirmed
 

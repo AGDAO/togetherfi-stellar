@@ -13,11 +13,17 @@ This follow-up is not deployed. Historical testnet evidence remains intact and
 does not prove execution of this new source. Final reviews remain pending.
 See [initialization hardening](docs/initialization-hardening.md).
 
+Dependency warnings have a separate
+[advisory disposition](docs/dependency-advisories.md), with exact lockfile
+identities, reachability, compiler/protocol compatibility constraints and
+remaining testnet-only Node HTTP risk. Dependencies and historical WASM evidence
+are unchanged. Final reviewers must assess these dispositions separately.
+
 This package awaits final code reviews on PR #2 before handoff to The Arch team.
 The review request for Mohammed Idmoussi was sent to
 [@elastikchain-eth](https://github.com/elastikchain-eth), the account that
-authored his PR #1 review. Zyad's collaborator
-changes-requested review is recorded; his follow-up on the patched head is pending.
+authored his PR #1 review. Zyad's collaborator changes-requested review is
+recorded; his follow-up on the patched head is pending.
 No final approval or merge is claimed.
 It is not a new contract deployment, audit or mainnet release.
 
@@ -41,7 +47,11 @@ exact 82/10/5/2/1 split. Actual fee: 0.1999542 free test XLM.
 The earlier completed campaign 3 and original expiry fixture remain unchanged.
 See [campaign 4 confirmation and public envelopes](docs/testnet-zyad-ayoub.md).
 
-The [future delivery allocation](docs/future-work-allocation.md) is 758 hours over
-26 weeks: Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 91 and King 91. This is a
-combined team average of approximately 29.2 hours/week, not per reviewer.
+The [future delivery allocation](docs/future-work-allocation.md) is 768 hours over
+26 weeks: Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 96 and King 96. This is a
+combined team average of approximately 29.5 hours/week, not per reviewer.
+Ace and King are scoped platform administrators and operations contributors,
+not developers or code reviewers. Their proposed compensation is $20/hour:
+$1,920 each and $3,840 combined. Reputation Anchor budget eligibility remains
+to be agreed; no free future delivery or completed-work payment is implied.
 The original real-expiry refund validation remains scheduled separately.
