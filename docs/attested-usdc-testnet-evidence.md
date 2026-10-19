@@ -81,3 +81,62 @@ the runner rejects early refunds rather than shortening the contract's 30-day
 expiry to manufacture a passing receipt. Attestation is not code-review approval,
 grant funding, a mainnet launch, or production acceptance. Building the Anchor
 does not commit an unapproved new Anchor deployment or free grant deliverable.
+
+## Confirmed automated USDC receipt checkpoint
+
+The fresh run completed successfully on 19 October 2026. Circle's faucet
+[delivered 20 free test USDC](https://stellar.expert/explorer/testnet/tx/78414116290321e7f6dcfd335f479feab6e52ea814551042e5bb4302cd7d5078).
+No mainnet funds were used.
+
+| New testnet instance | Address |
+|---|---|
+| Campaign Escrow | [`CCUYLTWIPHUMXGJNPQZZELDGJFQWXMLFW3JW3VAAYRNAMTVLADUWZS2U`](https://stellar.expert/explorer/testnet/contract/CCUYLTWIPHUMXGJNPQZZELDGJFQWXMLFW3JW3VAAYRNAMTVLADUWZS2U) |
+| NFT Contributor Pool | `CDSHQH4FICZ5RFJG677UP4XTECOAO6IIJTQWB7KN2PQJXGOENEJ6BENT` |
+| Revenue Contributor Pool | `CACX36IJNDCAZKXEP2DC2ZDJK4QF4R7BHFFXJTSZKJ77K74OP6HAGRQR` |
+
+RPC-retrieved WASM hashes match the attested final files for all three instances,
+and all thirteen initializer bindings passed.
+
+- Campaign 1: [funded](https://stellar.expert/explorer/testnet/tx/23e9c12b7166cb93b73b973a54c1909943c1dcee96d8a9f733034f0747e8870f),
+  [activated](https://stellar.expert/explorer/testnet/tx/09cbf87e2a7c3769d0e00be636198e8143d912a77e8756b9733ab90f6237b139),
+  then [completed by two disposable signers](https://stellar.expert/explorer/testnet/tx/0546c2ca59ca749ef8ff5a2bc44040241470449921ad2953de1d9eba42649f23).
+  Exact USDC deltas: creator 0.82, service 0.10, NFT pool 0.05, revenue pool 0.02,
+  referrer 0.01. Escrow liability fell to zero after this completion.
+- The one-disposable-signature attempt was rejected by RPC ingestion with
+  `txBadAuth`, with no balance changes. The same transaction body later succeeded
+  with two signatures. Transaction hashes exclude envelope signatures, so its
+  successful explorer receipt is not evidence that the one-signature attempt
+  was accepted. Retained signed envelopes and the RPC error distinguish them.
+- Both pools accepted their dual-authority allocations, then confirmed
+  recipient claims:
+  [NFT claim](https://stellar.expert/explorer/testnet/tx/65593b02c485fde3321a23257b73b25bfd6d798b69f415820112222031e38f52)
+  and [revenue claim](https://stellar.expert/explorer/testnet/tx/609da372ba47a8b199b8b0f17a52a333ff15c27ac1d4eab77313c2da7dd5319d).
+- The [101-base-unit rounding campaign](https://stellar.expert/explorer/testnet/tx/da71215756fa14730313833d93bfc333430397efdec45028ff2b749818d4436e)
+  reconciled exactly: creator 83, service 10, NFT pool 5, revenue pool 2,
+  referrer 1. No base units were lost.
+- Completed campaign and completed-manifest replay simulations rejected with
+  the expected contract errors. Both active and unactivated early refunds
+  rejected with `NotExpired`; these are simulation rejections, not ledger
+  refund transactions.
+- The [dedicated role-account handoff](https://stellar.expert/explorer/testnet/tx/b609409c66479088aa00cc5db971e20d828eb3dbdfef0a2d46c860b28f25e27f)
+  removed the disposable signers and installed Ayoub/Zyad/King. Both accounts
+  retain three weight-1 members, all thresholds 2 and disabled masters.
+
+At this checkpoint, 1.1 test USDC remains owed by escrow: campaign 2 holds
+1 test USDC for the designated-member completion, and campaign 3 holds
+0.1 test USDC for its real-expiry refund fixture. This exactly matches the
+RPC-read internal liability counter and escrow token balance.
+
+### Still not claimed complete
+
+The frozen campaign-2 transaction requires two actual designated members'
+wallet signatures. Disposable signatures above do not satisfy that requirement.
+The new USDC expiry refund and the original historical expiry proof remain
+time-gated; no expiry was shortened. Final independent source reviews remain
+pending.
+
+As checked at 21:41 UTC on 19 October 2026, StellarExpert's API returned matching
+WASM hashes but `validation.status = unverified` for all three new instances,
+despite accepting the three registration requests. The reason for the provider's
+unverified status has not been confirmed. GitHub attestations and deployed-byte
+identity are proven separately; no verified-explorer claim is made.
