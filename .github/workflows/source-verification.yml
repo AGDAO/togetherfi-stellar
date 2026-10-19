@@ -1,0 +1,41 @@
+name: Attested testnet candidates
+
+on:
+  push:
+    branches: ["stellar-native-review-cleanup"]
+    paths:
+      - ".github/workflows/source-verification.yml"
+      - "Makefile"
+      - "contracts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  native:
+    name: Attest ${{ matrix.package }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - path: contracts/campaign_escrow
+            package: campaign-escrow
+          - path: contracts/contributor_pool
+            package: contributor-pool
+          - path: contracts/reputation_anchor
+            package: reputation-anchor
+    # Last dockerless upstream builder using wasm32-unknown-unknown.
+    # Newer upstream builders require wasm32v1-none, incompatible with Rust 1.81.
+    uses: stellar-expert/soroban-build-workflow/.github/workflows/release.yml@4a554f0e75c245cf4d3ea5f98f3a653d51edcd18
+    with:
+      relative_path: ${{ matrix.path }}
+      package: ${{ matrix.package }}
+      make_target: "-f ../../Makefile ci-prepare"
+      home_domain: togetherfi.io
+      release_name: "testnet-candidate-${{ github.sha }}"
+      release_description: "Testnet validation candidate only. Human source reviews remain separate. No mainnet, real funds, grant award or production approval."
+    secrets:
+      release_token: ${{ secrets.GITHUB_TOKEN }}
