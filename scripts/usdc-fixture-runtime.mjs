@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { access, mkdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import {
-  Address, Contract, Keypair, Operation, authorizeEntry, scValToNative,
+  Address, Contract, Keypair, Operation, authorizeEntry, scValToNative, contract, xdr,
 } from '@stellar/stellar-sdk';
 import * as rpc from '@stellar/stellar-sdk/rpc';
 import {
@@ -14,7 +14,33 @@ import {
 import { STELLAR_USDC, testnetUsdcAsset } from './stellar-usdc.mjs';
 
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
-export const feeCap = 100_000_000n; // 10 free testnet XLM, not production policy.
+// Testnet storage-rent quotes observed at 13.75 XLM for upload and 66.20 XLM
+// for initialization. Friendbot supplies these fixture accounts; no real XLM.
+// Keep the hard limit below uint32 even after the 10,000-stroop inclusion fee.
+export const feeCap = 4_000_000_000n; // 400 free testnet XLM, never production policy.
+
+export const FIXTURE_ABI = {
+  campaign_escrow: {
+    initialize: ['governance', 'settlement', 'token', 'service_treasury', 'nft_pool', 'revenue_pool', 'deployer', 'deployment_salt'],
+    fund: ['campaign_id', 'sponsor', 'amount'],
+    activate: ['campaign_id', 'creator', 'referrer', 'terms_hash'],
+    complete: ['campaign_id', 'operation_version'],
+    refund_expired: ['campaign_id'], get_campaign: ['id'],
+  },
+  contributor_pool: {
+    initialize: ['governance', 'eligibility_authority', 'token', 'escrow', 'deployer', 'deployment_salt'],
+    publish_manifest: ['manifest_id', 'manifest_hash', 'policy_hash', 'expires_at', 'recipients', 'amounts'],
+    claim: ['manifest_id', 'allocation_index'], available_balance: [], total_liability: [],
+  },
+};
+export function assertFixtureAbi(specs) {
+  for (const [name, methods] of Object.entries(FIXTURE_ABI)) {
+    for (const [method, args] of Object.entries(methods)) {
+      const inputs = specs[name].getFunc(method).inputs().map(input => input.name().toString());
+      assert.deepEqual(inputs, args, `Unexpected native ABI ${name}.${method}`);
+    }
+  }
+}
 
 export function expectedUsdcSplit(total) {
   if (typeof total !== 'bigint' || total <= 0n) throw new Error('Positive base-unit amount required');
@@ -56,6 +82,10 @@ export async function createUsdcFixture(buildPath, outputPath) {
       stdio: ['ignore', 'pipe', 'pipe'], timeout: 120_000,
     });
   }
+  // Validate names and positional argument order from attested bytes before
+  // generating accounts, deploying, or requesting any faucet funds.
+  assertFixtureAbi(Object.fromEntries(Object.entries(binaries)
+    .map(([name, bytes]) => [name, contract.Spec.fromWasm(bytes)])));
   const path = resolve(outputPath);
   try { await access(path); throw new Error('Existing fixture evidence must not be overwritten'); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
@@ -113,7 +143,7 @@ export async function createUsdcFixture(buildPath, outputPath) {
       return authorizeEntry(entry, key, simulated.latestLedger + 200, NETWORK);
     }));
     const prepared = rpc.assembleTransaction(raw, simulated).build();
-    assert.ok(maximumFee > 0n && maximumFee <= 200_000_000n);
+    assert.ok(maximumFee > 0n && maximumFee <= feeCap);
     if (BigInt(prepared.fee) > maximumFee) {
       throw new Error(`Free-test-XLM quote ${prepared.fee} stroops exceeds cap ${maximumFee}`);
     }
@@ -150,6 +180,36 @@ export async function createUsdcFixture(buildPath, outputPath) {
     return Object.fromEntries(await Promise.all(Object.entries(destinations)
       .map(async ([name, id]) => [name, String(await usdcBalance(id))])));
   }
+  async function escrowLiability(id) {
+    // Campaign Escrow stores this counter in instance data; unlike the pool,
+    // it deliberately has no public total_liability function.
+    const key = xdr.LedgerKey.contractData(new xdr.LedgerKeyContractData({
+      contract: new Address(id).toScAddress(),
+      key: xdr.ScVal.scvLedgerKeyContractInstance(),
+      durability: xdr.ContractDataDurability.persistent(),
+    }));
+    const response = await server.getLedgerEntries(key);
+    assert.equal(response.entries.length, 1, 'Missing live escrow instance');
+    const entry = response.entries[0];
+    const matches = (entry.val.contractData().val().instance().storage() || [])
+      .filter(item => {
+        const decoded = scValToNative(item.key());
+        return Array.isArray(decoded) && decoded.length === 1 && decoded[0] === 'TotalLiability';
+      });
+    assert.equal(matches.length, 1, 'Missing or ambiguous escrow liability counter');
+    const amount = BigInt(scValToNative(matches[0].val()));
+    mLiabilityProof(amount);
+    await save();
+    return amount;
+    function mLiabilityProof(value) {
+      manifest.evidence.liability_storage_reads ??= [];
+      manifest.evidence.liability_storage_reads.push({
+        contract: id, ledger: response.latestLedger,
+        last_modified_ledger: entry.lastModifiedLedgerSeq, base_units: String(value),
+        source: 'RPC contract-instance storage, not an invented public getter',
+      });
+    }
+  }
   async function activateAccountsAndTrustlines() {
     for (const key of Object.values(keys)) await activate(key.publicKey());
     const trust = await basicTransaction(accounts.deployer, Object.values(keys).map(key =>
@@ -162,6 +222,6 @@ export async function createUsdcFixture(buildPath, outputPath) {
   return {
     build, binaries, manifest, accounts, keys, members, path, save, invoke, view,
     prepare, send, call, reject, balances, usdcBalance, activateAccountsAndTrustlines,
-    signingKeys, setAutomatedQuorum() { automatedQuorum = true; },
+    signingKeys, escrowLiability, setAutomatedQuorum() { automatedQuorum = true; },
   };
 }

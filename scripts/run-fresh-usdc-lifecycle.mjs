@@ -122,7 +122,7 @@ try {
   ], 'initialize_usdc_escrow');
   m.evidence.deployment_bindings = await verifyDeploymentBindings(m, f.view);
   await configureAutomation();
-  assert.equal(BigInt(await f.view(escrow, 'total_liability')), 0n);
+  assert.equal(await f.escrowLiability(escrow), 0n);
   for (const name of ['nft_pool', 'revenue_pool']) {
     assert.equal(BigInt(await f.view(m.contracts[name].id, 'available_balance')), 0n);
   }
@@ -157,7 +157,7 @@ try {
     signer_scope: 'Automated disposable fixtures, not designated members',
     same_transaction_hash_for_one_and_two_signature_attempts: single.hash().equals(unsigned.hash()),
   };
-  assert.equal(BigInt(await f.view(escrow, 'total_liability')), 0n);
+  assert.equal(await f.escrowLiability(escrow), 0n);
   await f.reject(a.settlement, escrow, 'complete', [u64(1), u32(1)], 6, 'completed_campaign_replay_rejected');
   await allocateAndClaim('nft_pool', 500_000n);
   await allocateAndClaim('revenue_pool', 200_000n);
@@ -176,7 +176,7 @@ try {
   await fund(3, 1_000_000n);
   await f.reject(a.sponsor, escrow, 'refund_expired', [u64(3)], 9, 'new_usdc_unactivated_early_refund_rejected');
   m.evidence.new_usdc_expiry_fixture = await f.view(escrow, 'get_campaign', [u64(3)]);
-  assert.equal(BigInt(await f.view(escrow, 'total_liability')), 11_000_000n);
+  assert.equal(await f.escrowLiability(escrow), 11_000_000n);
   const handoffOps = [];
   for (const role of ['governance', 'settlement']) {
     for (const publicKey of Object.values(m.designated_members)) handoffOps.push(Operation.setOptions({

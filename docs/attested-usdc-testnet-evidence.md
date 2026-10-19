@@ -23,6 +23,12 @@ the exact source commit above and GitHub-hosted execution. Merely downloading
 an artifact or trusting a manifest's `attestation_verified` boolean is insufficient;
 the deployment runner reverifies the actual files.
 
+Before creating any fresh accounts, the lifecycle runner reads the attested
+WASM's own contract specification and checks every used operation's name and
+positional parameter names. Escrow liability is read directly from its existing
+contract-instance storage; the pool's public liability getter is not invented
+on the Escrow ABI. No native source or attested bytes were modified to add it.
+
 Release tags were explicitly bound to the source commit before publication;
 they are not inferred from a default-branch tag target.
 
@@ -50,6 +56,12 @@ This creates new, separate escrow and two-pool instances with the official
 Circle testnet USDC SAC. It verifies every initializer binding and RPC WASM
 hash, creates disposable account trustlines, and requests human-completed
 free Circle faucet funding.
+
+Current testnet storage-rent simulation quotes exceed historical 10-XLM fixture
+caps (approximately 13.75 free XLM to upload and 66.20 free XLM to initialize).
+Uploads remain capped at 20 free XLM; other fixture operations have a hard
+400-free-XLM ceiling, below transaction uint32 limits. These are Friendbot-funded
+testnet fees only, not real spending authorization or a mainnet fee policy.
 
 Automated test signers exercise native 2-of-3 account authorization, exact
 82/10/5/2/1 payout deltas, seven-decimal rounding, early-refund rejection,

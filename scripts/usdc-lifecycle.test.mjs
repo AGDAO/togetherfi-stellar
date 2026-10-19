@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { expectedUsdcSplit } from './usdc-fixture-runtime.mjs';
+import { expectedUsdcSplit, feeCap, FIXTURE_ABI, assertFixtureAbi } from './usdc-fixture-runtime.mjs';
 
 test('one seven-decimal USDC reconciles to 82/10/5/2/1 without loss', () => {
   const parts = expectedUsdcSplit(10_000_000n);
@@ -20,6 +20,23 @@ test('integer remainder goes to creator and all base units reconcile', () => {
   assert.throws(() => expectedUsdcSplit(0n));
   assert.throws(() => expectedUsdcSplit(-1n));
 });
+test('test-only fee budget covers observed rent without uint32 overflow', () => {
+  assert.ok(feeCap >= 661_976_730n);
+  assert.ok(feeCap + 10_000n <= 4_294_967_295n);
+});
+test('ABI preflight checks method names and exact parameter order before funding', () => {
+  const fake = Object.fromEntries(Object.entries(FIXTURE_ABI).map(([name, methods]) => [
+    name, { getFunc(method) {
+      if (!(method in methods)) throw new Error('Missing function');
+      return { inputs: () => methods[method].map(name => ({ name: () => Buffer.from(name) })) };
+    } },
+  ]));
+  assertFixtureAbi(fake);
+  const wrong = { ...fake, contributor_pool: {
+    getFunc: () => ({ inputs: () => [{ name: () => Buffer.from('wrong_order') }] }),
+  } };
+  assert.throws(() => assertFixtureAbi(wrong), /Unexpected native ABI/);
+});
 test('fresh runner cannot overwrite old evidence or imply human fixture signatures', () => {
   const runner = readFileSync(new URL('./run-fresh-usdc-lifecycle.mjs', import.meta.url), 'utf8');
   const runtime = readFileSync(new URL('./usdc-fixture-runtime.mjs', import.meta.url), 'utf8');
@@ -31,4 +48,6 @@ test('fresh runner cannot overwrite old evidence or imply human fixture signatur
   assert.match(runtime, /server\.getNetwork/);
   assert.match(runtime, /No permitted fixture source/);
   assert.match(runtime, /Existing fixture evidence must not be overwritten/);
+  assert.doesNotMatch(runner, /f\.view\(escrow, 'total_liability'/);
+  assert.match(runtime, /getLedgerEntries/);
 });
