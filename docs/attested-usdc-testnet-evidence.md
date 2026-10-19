@@ -127,10 +127,11 @@ At this checkpoint, 1.1 test USDC remains owed by escrow: campaign 2 holds
 0.1 test USDC for its real-expiry refund fixture. This exactly matches the
 RPC-read internal liability counter and escrow token balance.
 
-### Still not claimed complete
+### Historical pending status at 21:41 UTC
 
-The frozen campaign-2 transaction requires two actual designated members'
-wallet signatures. Disposable signatures above do not satisfy that requirement.
+At that checkpoint the frozen campaign-2 transaction required two actual
+designated members' wallet signatures. Disposable signatures above did not
+satisfy that requirement.
 The new USDC expiry refund and the original historical expiry proof remain
 time-gated; no expiry was shortened. Final independent source reviews remain
 pending.
@@ -140,3 +141,32 @@ WASM hashes but `validation.status = unverified` for all three new instances,
 despite accepting the three registration requests. The reason for the provider's
 unverified status has not been confirmed. GitHub attestations and deployed-byte
 identity are proven separately; no verified-explorer claim is made.
+
+## Designated-member USDC completion confirmed
+
+On 19 October 2026, Ayoub and Zyad each supplied a separate public signed XDR.
+Each envelope's signature was cryptographically verified against that member's
+designated public key and the exact frozen transaction hash. Neither changed the
+transaction body. Their two signatures were combined without reassembly or
+re-simulation changes to the transaction.
+
+The [actual member-authorized release](https://stellar.expert/explorer/testnet/tx/d985a9c5fa5b8a6c1b59f6c77d5acc5bf2f0a7657c48e0c43004eb0c5e6a6b91)
+confirmed successfully in **ledger 5,284,609**.
+
+- Native account quorum and all thirteen live initializer bindings were checked
+  before submission. Both dedicated role accounts still had three weight-1
+  Ayoub/Zyad/King signers, thresholds 2 and disabled masters afterward.
+- Campaign 2 reached `Completed`. Exact 1-test-USDC release deltas were creator
+  0.82, service 0.10, NFT pool 0.05, revenue pool 0.02 and referrer 0.01.
+- Escrow token balance and its internal liability counter both fell from
+  1.1 to **0.1 test USDC**. Only the separate campaign-3 expiry refund remains
+  owed; no live campaign was swept or prematurely refunded.
+- Pool credit counters reconciled to 0.1000005 test USDC for the NFT pool
+  and 0.0400002 for the revenue pool, including the rounding fixture.
+  Prior recipient claims remain 0.05 and 0.02 respectively; no claim was paid twice.
+
+This closes the designated-member USDC release proof, not a source-review
+approval or mainnet launch. Final independent reviews and the actual expired
+refund proofs remain pending. At 21:51 UTC, StellarExpert still returned the
+matching Escrow WASM hash with `validation.status = unverified`; its provider
+verification outcome remains unresolved. No real USDC or XLM was used.
