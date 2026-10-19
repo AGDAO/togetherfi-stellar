@@ -33,7 +33,7 @@ jobs:
     with:
       relative_path: ${{ matrix.path }}
       package: ${{ matrix.package }}
-      make_target: "-f ../../Makefile ci-prepare"
+      make_target: "ci-prepare"
       home_domain: togetherfi.io
       release_name: "testnet-candidate-${{ github.sha }}"
       release_description: "Testnet validation candidate only. Human source reviews remain separate. No mainnet, real funds, grant award or production approval."
