@@ -1,32 +1,57 @@
-# TogetherFi Stellar and LayerZero public source release
+# Stellar-native final review candidate
 
-## Release scope
+## Follow-up: initialization hardening
 
-This repository is the public source release for TogetherFi's current, undeployed Stellar grant implementation. It contains:
+The current source binds each initializer to its actual deployer and deployment
+salt and requires deployer authorization in addition to the original authority
+checks. The deployment script verifies thirteen configuration bindings before
+handoff or funding. Strict native regressions and deployment-helper tests cover
+the new guards. The initialization ABI changes, and a treasury getter is added.
+No dependency versions, payout economics or score-record schema change.
 
-- Soroban Campaign Escrow v2, Contributor Pool, and Reputation Anchor source and tests;
-- Soroban LayerZero Funding Inbox and financially inert receipt adapter source, tests, pinned toolchains, and vendored upstream dependencies;
-- the reviewed EVM sponsor-funding, OFT-wrapper boundary, and receipt-receiver source, interfaces, tests, and build manifests under `evm-layerzero/`; and
-- `docs/stellar-grant-evidence-package.md`, versioned with this release.
+This follow-up is not deployed. Historical testnet evidence remains intact and
+does not prove execution of this new source. Final reviews remain pending.
+See [initialization hardening](docs/initialization-hardening.md).
 
-It intentionally excludes the private application repository, backend and database code, deployment credentials, private infrastructure, customer data, and unrelated proprietary application code. This source release is not a deployment, audit, production-readiness statement, or evidence of a live cross-chain route.
+Dependency warnings have a separate
+[advisory disposition](docs/dependency-advisories.md), with exact lockfile
+identities, reachability, compiler/protocol compatibility constraints and
+remaining testnet-only Node HTTP risk. Dependencies and historical WASM evidence
+are unchanged. Final reviewers must assess these dispositions separately.
 
-## Upstream baseline and provenance
+This package awaits final code reviews on PR #2 before handoff to The Arch team.
+The review request for Mohammed Idmoussi was sent to
+[@elastikchain-eth](https://github.com/elastikchain-eth), the account that
+authored his PR #1 review. Zyad's collaborator changes-requested review is
+recorded; his follow-up on the patched head is pending.
+No final approval or merge is claimed.
+It is not a new contract deployment, audit or mainnet release.
 
-The exact public upstream baseline is commit [`6fd30883bf8c305eb8dd8a8a8fabe7226171332b`](https://github.com/AGDAO/togetherfi-stellar/commit/6fd30883bf8c305eb8dd8a8a8fabe7226171332b). `UPSTREAM_COMMIT` records the same value. Current v2, Contributor Pool, Funding Inbox, receipt-adapter, and EVM LayerZero work was developed after that baseline. The immutable source snapshot is commit [`0493b2cee72f52d38872152d26bf320d1281ef78`](https://github.com/AGDAO/togetherfi-stellar/commit/0493b2cee72f52d38872152d26bf320d1281ef78); the release metadata commit versions this statement and the evidence package without changing that source tree.
+The public review snapshot contains only Campaign Escrow, Contributor Pool and
+Reputation Anchor, with their pinned lockfiles and the required SDK host patch.
+Optional bridge components and their vendored dependency trees are absent.
+Native sponsor funding, refund provenance, fixed payout economics and the
+historically deployed contract instances remain unchanged. The current source's
+initialization interface changes as described above.
 
-Vendored LayerZero provenance and versions are recorded in package lockfiles, Cargo lockfiles, vendored package metadata, and `evm-layerzero/contracts/vendor/layerzero-v2/PROVENANCE.md`. Vendored code remains subject to its upstream notices and licenses.
+See [review scope and acceptance status](docs/review-handoff.md). Both dedicated
+testnet accounts now have Ayoub, Zyad and King at 2-of-3. The fresh campaign 3
+release by Zyad and King is confirmed in ledger 5207647 after a Zyad-only
+`txBadAuth` rejection. The payout split and accounting were verified.
+No fresh human code-review approval is claimed.
 
-## License
+The additional Zyad and Ayoub release completed campaign 4 in ledger 5207852
+using one free test XLM on the same escrow. Ayoub's valid signature alone was
+correctly blocked with `txBadAuth`; together their signatures authorized the
+exact 82/10/5/2/1 split. Actual fee: 0.1999542 free test XLM.
+The earlier completed campaign 3 and original expiry fixture remain unchanged.
+See [campaign 4 confirmation and public envelopes](docs/testnet-zyad-ayoub.md).
 
-TogetherFi-authored source in this repository is released under the MIT License in `LICENSE`. Vendored dependencies retain their original licenses and notices.
-
-## Authorship, responsibility, and AI assistance
-
-TogetherFi and its founder are accountable for the architecture, implementation, testing, review, release approval, deployment decisions, maintenance, and operation of this code. Commit attribution records contributors to the source history but does not transfer that responsibility.
-
-AI-assisted development tools, including Replit Agent, were used in the engineering workflow. The founder approves the architecture, reviews delivered code and tests, controls deployment and release decisions, and remains responsible for the resulting system. AI assistance is not presented as independent security review or proof of correctness.
-
-## Verification
-
-Reviewers should use immutable commit URLs rather than `main`. A public release is source provenance only. Deployment claims additionally require reproducible builds, matching WASM or bytecode hashes, network-specific manifests, verified contract identities, and confirmed transaction evidence.
+The [future delivery allocation](docs/future-work-allocation.md) is 768 hours over
+26 weeks: Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 96 and King 96. This is a
+combined team average of approximately 29.5 hours/week, not per reviewer.
+Ace and King are scoped platform administrators and operations contributors,
+not developers or code reviewers. Their proposed compensation is $20/hour:
+$1,920 each and $3,840 combined. Reputation Anchor budget eligibility remains
+to be agreed; no free future delivery or completed-work payment is implied.
+The original real-expiry refund validation remains scheduled separately.

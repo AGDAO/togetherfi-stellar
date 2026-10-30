@@ -1,4 +1,4 @@
-# Escrow v2 testnet validation — 4 October 2026
+# Escrow v2 testnet validation: 4 October 2026
 
 ## Scope and current result
 
@@ -9,17 +9,29 @@ zero. The supplied wallets are testnet-only; mainnet requires different owner-
 provided addresses and separate authorization.
 
 **Quorum-authorized completion is confirmed with Ayoub and King's signatures.**
-The exact payout and authenticated pool credits are verified. No independent
-review, mainnet deployment, or production readiness is claimed.
-Ayoub is the implementation owner and sole reviewer.
-Ace and King are security co-signers only.
+The exact payout and authenticated pool credits are verified. Separate human
+peer review by Zyad (INKY), another team developer, is owner-confirmed;
+no external audit, mainnet deployment or production readiness is claimed.
+Ayoub is the technical lead and production decision owner. No separate human
+review report is attached to this deployment evidence.
+Ace and King were transaction co-signers for the historical deployment, not code reviewers.
+The current roster is Ayoub, Zyad and King after the confirmed replacement in
+ledger 5207471. See [rotation evidence](testnet-signer-rotation.md).
+The separate [fresh Zyad and King campaign](testnet-zyad-king.md) completed in
+ledger 5207647 with the new members' actual signatures, following the expected
+one-member RPC rejection. Its exact payout deltas and accounting were verified.
+
+The additional [Zyad and Ayoub campaign 4](testnet-zyad-ayoub.md) completed
+in ledger 5207852 after a valid Ayoub-only envelope was correctly blocked.
+Exact payout deltas and all liability/credit changes reconciled. Campaign 3
+and the original real-expiry campaign 2 were checked unchanged.
 
 ## Contracts and asset
 
 | Binding | Testnet address |
 |---|---|
 | Campaign Escrow v2 | `CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ` |
-| 5% MOFO contributor pool | `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76` |
+| 5% NFT contributor pool | `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76` |
 | 2% community contributor pool | `CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25` |
 | Governance account | `GA777UZBWGPK7KPKE5BSQWH7XWDXHXQ5XLYPPZ2KSQE2WEG7OL7LKLK3` |
 | Settlement account | `GDWWM5HXPY2BL4CUUJSWXPOJFGJ4RS5Y4EEVEOMJ24UB73V7QWAK5LJM` |
@@ -31,7 +43,7 @@ Sponsor, creator, referrer, treasury and eligibility accounts are isolated test
 fixtures, not production custody or verified real-world campaign participants.
 Individual member wallets' signer settings were not changed.
 
-## On-chain role-account configuration
+## Historical role-account configuration at deployment
 
 Both role accounts have low/medium/high thresholds **2/2/2**, the following
 signers with weight **1** each, and their dedicated master with weight **0**:
@@ -53,9 +65,9 @@ Open a hash at `https://stellar.expert/explorer/testnet/tx/<hash>`.
 | Action | Confirmed testnet transaction hash |
 |---|---|
 | Deploy escrow v2 | [86f5b65b…](https://stellar.expert/explorer/testnet/tx/86f5b65bfb589121aa44e207922c18ce3fcc7a0422cd7dbb68dc8c8d593b3114) |
-| Deploy MOFO pool | [140b64ee…](https://stellar.expert/explorer/testnet/tx/140b64ee659de374f19c88e54dcb883ead9abe9a74aad9eb389fead3b0e088bf) |
+| Deploy NFT contributor pool | [140b64ee…](https://stellar.expert/explorer/testnet/tx/140b64ee659de374f19c88e54dcb883ead9abe9a74aad9eb389fead3b0e088bf) |
 | Deploy community pool | [e42d4894…](https://stellar.expert/explorer/testnet/tx/e42d4894f2dd0d8d46cada7ca02c46f8bfce67ed61cd658c3ed5cbe923bff486) |
-| Initialize MOFO pool | [e53208a9…](https://stellar.expert/explorer/testnet/tx/e53208a969d7ae762c73e1c60aca1bd5da4743e46e8f263ba5b0714595d03774) |
+| Initialize NFT contributor pool | [e53208a9…](https://stellar.expert/explorer/testnet/tx/e53208a969d7ae762c73e1c60aca1bd5da4743e46e8f263ba5b0714595d03774) |
 | Initialize community pool | [b86f2491…](https://stellar.expert/explorer/testnet/tx/b86f2491b6e2f2b76f1fa252035f422ea730bd855246cf58aeaa8a551053bc39) |
 | Initialize escrow | [7baaf300…](https://stellar.expert/explorer/testnet/tx/7baaf300372e22014248f53a382767dc02d29642c6835be5118f557c76f2ed13) |
 | Handoff both roles to 2-of-3 | [9bb97971…](https://stellar.expert/explorer/testnet/tx/9bb97971a294acc396362834eefdcc1cb96c2fe8916be8e8294a4bc482451d29) |
@@ -93,7 +105,7 @@ An actual selected member's 1-of-3 envelope was rejected with `txBadAuth` at RPC
 ingestion, not recorded as a failed ledger transaction. The same transaction body
 with two independently verified member signatures was confirmed successfully.
 Campaign 1 is `Completed`; exact token balance deltas are 0.82 creator, 0.10 service,
-0.05 MOFO pool, 0.02 community pool, and 0.01 referrer, in test XLM.
+0.05 NFT contributor pool, 0.02 community pool, and 0.01 referrer, in test XLM.
 Pool `TotalCredited` counters match the 5% and 2% transfers. Escrow liability is
 exactly 1 test XLM, owed only to the still-funded expiry campaign.
 
@@ -102,7 +114,7 @@ deployed contract via RPC simulation. Both returned `InvalidState`
 (`Error(Contract, #6)`). These are non-mutating simulation checks, not
 ledger-confirmed failed transactions; their results are retained in the manifest.
 
-## Remaining acceptance gates
+## Completed checks, deferred validation and production planning
 
 1. Member signatures, 1-of-3 RPC rejection, 2-of-3 ledger confirmation, exact payout
    deltas and liability reconciliation are complete. Duplicate terminal-operation
@@ -112,11 +124,15 @@ ledger-confirmed failed transactions; their results are retained in the manifest
 2. Campaign 2 reaches its real 30-day expiry: **3 November 2026, 12:46:17 UTC**.
    Retain a confirmed refund to its original fixture sponsor then. Do not shorten
    expiry or relabel a shortened fixture as this deployed v2.
-3. Owner review is the only assigned review. If the architecture team requires
-   independent review, that separate condition remains unmet.
+   This extra live-ledger proof is deferred validation, not an established
+   grant-payment prerequisite; no direct request requiring that specific wait
+   is cited here.
+3. The owner confirms separate human peer review by team developer Zyad
+   (INKY). This is internal peer review, not an external audit.
 4. Expanded CI is installed using newly authorized workflow-write access;
    retain its successful run separately from on-chain acceptance evidence.
-5. Final production asset, mainnet signers, operational custody and production
-   launch require separate decisions; optional LayerZero components remain undeployed.
+5. Ayoub leads production asset, mainnet signer, custody and launch decisions.
+   Mainnet execution still requires separate authorization. The native-only
+   review snapshot contains no optional bridge components.
 
 See [wallet signing instructions](testnet-signing.md).

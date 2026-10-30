@@ -2,9 +2,9 @@
 
 use super::*;
 use soroban_sdk::{
-    testutils::{Address as _, Ledger},
+    testutils::{Address as _, Ledger, MockAuth, MockAuthInvoke},
     token::{StellarAssetClient, TokenClient},
-    Address, BytesN, Env, Vec,
+    Address, BytesN, Env, IntoVal, Vec,
 };
 
 struct Setup<'a> {
@@ -37,9 +37,11 @@ fn setup<'a>() -> Setup<'a> {
     let token_id = env.register_stellar_asset_contract(token_admin.clone());
     let token = TokenClient::new(&env, &token_id);
     StellarAssetClient::new(&env, &token_id).mint(&funder, &10_000_000);
-    let id = env.register_contract(None, ContributorPool);
+    let deployment_salt = BytesN::from_array(&env, &[1; 32]);
+    let id = env.deployer().with_address(governance.clone(), deployment_salt.clone()).deployed_address();
+    env.register_contract(Some(&id), ContributorPool);
     let client = ContributorPoolClient::new(&env, &id);
-    client.initialize(&governance, &eligibility, &token_id, &escrow);
+    client.initialize(&governance, &eligibility, &token_id, &escrow, &governance, &deployment_salt);
     Setup {
         env,
         id,
@@ -123,7 +125,9 @@ fn independent_authorities_cannot_be_collapsed_to_one_signer() {
     let governance = Address::generate(&env);
     let token_admin = Address::generate(&env);
     let token_id = env.register_stellar_asset_contract(token_admin);
-    let id = env.register_contract(None, ContributorPool);
+    let deployment_salt = BytesN::from_array(&env, &[1; 32]);
+    let id = env.deployer().with_address(governance.clone(), deployment_salt.clone()).deployed_address();
+    env.register_contract(Some(&id), ContributorPool);
     let client = ContributorPoolClient::new(&env, &id);
     assert_eq!(
         client.try_initialize(
@@ -131,6 +135,8 @@ fn independent_authorities_cannot_be_collapsed_to_one_signer() {
             &governance,
             &token_id,
             &Address::generate(&env),
+            &governance,
+            &deployment_salt,
         ),
         Err(Ok(PoolError::RolesMustDiffer))
     );
@@ -142,6 +148,55 @@ fn independent_authorities_cannot_be_collapsed_to_one_signer() {
         Err(Ok(PoolError::RolesMustDiffer))
     );
     assert_eq!(s.client.eligibility_authority(), s.eligibility);
+}
+
+#[test]
+fn first_initialization_requires_the_actual_deployment_authority() {
+    let env = Env::default();
+    let deployer = Address::generate(&env);
+    let attacker = Address::generate(&env);
+    let governance = Address::generate(&env);
+    let eligibility = Address::generate(&env);
+    let token = Address::generate(&env);
+    let escrow = Address::generate(&env);
+    let salt = BytesN::from_array(&env, &[7; 32]);
+    let id = env.deployer().with_address(deployer.clone(), salt.clone()).deployed_address();
+    env.register_contract(Some(&id), ContributorPool);
+    let client = ContributorPoolClient::new(&env, &id);
+    assert_eq!(client.try_initialize(&attacker, &eligibility, &token, &escrow, &attacker, &salt),
+        Err(Ok(PoolError::InvalidDeployment)));
+    assert_eq!(client.try_initialize(&governance, &eligibility, &token, &escrow, &deployer, &BytesN::from_array(&env, &[8; 32])),
+        Err(Ok(PoolError::InvalidDeployment)));
+    assert!(client.try_initialize(&attacker, &eligibility, &token, &escrow, &deployer, &salt).is_err());
+    let args = (governance.clone(), eligibility.clone(), token.clone(), escrow.clone(), deployer.clone(), salt.clone()).into_val(&env);
+    let invoke = MockAuthInvoke { contract: &id, fn_name: "initialize", args, sub_invokes: &[] };
+    env.mock_auths(&[MockAuth { address: &deployer, invoke: &invoke }]);
+    assert!(client.try_initialize(&governance, &eligibility, &token, &escrow, &deployer, &salt).is_err());
+    env.mock_auths(&[
+        MockAuth { address: &deployer, invoke: &invoke },
+        MockAuth { address: &governance, invoke: &invoke },
+    ]);
+    assert!(client.try_initialize(&governance, &eligibility, &token, &escrow, &deployer, &salt).is_err());
+    env.mock_auths(&[
+        MockAuth { address: &deployer, invoke: &invoke },
+        MockAuth { address: &governance, invoke: &invoke },
+        MockAuth { address: &eligibility, invoke: &invoke },
+    ]);
+    client.initialize(&governance, &eligibility, &token, &escrow, &deployer, &salt);
+    assert_eq!(client.governance(), governance);
+    assert_eq!(client.eligibility_authority(), eligibility);
+    // Deployment uses the deployer as the fixture eligibility authority.
+    // One authorization must satisfy both appearances of that same address.
+    let salt2 = BytesN::from_array(&env, &[9; 32]);
+    let id2 = env.deployer().with_address(deployer.clone(), salt2.clone()).deployed_address();
+    env.register_contract(Some(&id2), ContributorPool);
+    let args2 = (governance.clone(), deployer.clone(), token.clone(), escrow.clone(), deployer.clone(), salt2.clone()).into_val(&env);
+    let invoke2 = MockAuthInvoke { contract: &id2, fn_name: "initialize", args: args2, sub_invokes: &[] };
+    env.mock_auths(&[
+        MockAuth { address: &deployer, invoke: &invoke2 },
+        MockAuth { address: &governance, invoke: &invoke2 },
+    ]);
+    ContributorPoolClient::new(&env, &id2).initialize(&governance, &deployer, &token, &escrow, &deployer, &salt2);
 }
 
 #[test]
