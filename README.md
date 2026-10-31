@@ -52,7 +52,7 @@ The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
 [Zyad (INKY)](https://github.com/Zrehi), another team developer.
-Mohammed Idmoussi supplied a scoped review of PR #1 from
+Mohammed supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
 formal audit, and the earlier review is not approval of this updated snapshot.
 PR #2 was merged by @elastikchain-eth on 30 October 2026 at 16:53:58 UTC (merge commit 93d0bde62664aecd82c8c6c69ad2db8c72a93967). GitHub has no distinct formal approval event from this account.
@@ -65,7 +65,7 @@ King's community and operations role is described in the contributor allocation.
 
 The [proposed team allocation](docs/future-work-allocation.md) totals 768 hours
 over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 416, Zyad 134,
-Mohammed Idmoussi 26, Ace 96 and King 96. Ace and King each have a proposed
+Mohammed 26, Ace 96 and King 96. Ace and King each have a proposed
 rate of $40/hour ($3,840 each; $7,680 combined). They use scoped GameFi and
 SocialFi admin panels, support users, manage events/missions and report bugs;
 neither has source-code access or an engineering role. Named allocations must reflect each
