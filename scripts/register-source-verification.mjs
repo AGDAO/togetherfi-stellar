@@ -35,6 +35,29 @@ for (const [name, contractHash] of Object.entries(build.wasm_sha256)) {
 }
 console.log('REGISTRATION_ACCEPTED: verify explorer matching status separately.');
 
+// The upstream example targets public/mainnet. These deployments are testnet:
+// preserve the network-specific registry response rather than assuming that a
+// public-registry acknowledgement also registers a testnet contract.
+const testnetResponses = [];
+for (const { name, request } of responses) {
+  try {
+    const response = await fetch(
+      'https://api.stellar.expert/explorer/testnet/contract-validation/match',
+      {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request), signal: AbortSignal.timeout(30_000),
+      });
+    const body = await response.text();
+    testnetResponses.push({ name, status: response.status, request, response: body });
+    console.log('TESTNET_REGISTRATION', name, response.status, body);
+  } catch (error) {
+    testnetResponses.push({ name, status: null, request, error: error.message });
+    console.log('TESTNET_REGISTRATION', name, 'REQUEST_FAILED', error.message);
+  }
+}
+await writeFile(resolve(dirname(input), 'explorer-testnet-registration.json'),
+  JSON.stringify(testnetResponses, null, 2) + '\n');
+
 // Read the actual deployed instances from the same permitted runner.
 // Registration acknowledgement must never be mistaken for source verification.
 const instances = [
@@ -48,7 +71,10 @@ const instances = [
 const statuses = await Promise.all(instances.map(async ([name, contract]) => {
   const url = `https://api.stellar.expert/explorer/testnet/contract/${contract}`;
   try {
-    const response = await fetch(url, { signal: AbortSignal.timeout(20_000) });
+    const response = await fetch(url, {
+      headers: { 'Cache-Control': 'no-cache' },
+      signal: AbortSignal.timeout(20_000),
+    });
     const text = await response.text();
     let body;
     try { body = JSON.parse(text); } catch { body = text; }
