@@ -1,0 +1,47 @@
+[
+  {
+    "name": "campaign_escrow",
+    "status": 200,
+    "request": {
+      "repository": "https://github.com/AGDAO/togetherfi-stellar",
+      "commitHash": "a4d5d1eb80bb000c5abb6a11d714783546707618",
+      "jobId": "build",
+      "runId": "39325264354",
+      "contractHash": "6f1a3e10abd79b76cbb4101f5ea42da5e51ad0d45950093e0cacf602fd51b0ff",
+      "relativePath": "contracts/campaign_escrow",
+      "packageName": "campaign-escrow",
+      "makeTarget": "ci-prepare"
+    },
+    "response": "{\"ok\":1}"
+  },
+  {
+    "name": "contributor_pool",
+    "status": 200,
+    "request": {
+      "repository": "https://github.com/AGDAO/togetherfi-stellar",
+      "commitHash": "a4d5d1eb80bb000c5abb6a11d714783546707618",
+      "jobId": "build",
+      "runId": "39325264354",
+      "contractHash": "0842b07ff7056fcfce1df0e0586bf1779de57d4c6e4c89014a0af220d976c14f",
+      "relativePath": "contracts/contributor_pool",
+      "packageName": "contributor-pool",
+      "makeTarget": "ci-prepare"
+    },
+    "response": "{\"ok\":1}"
+  },
+  {
+    "name": "reputation_anchor",
+    "status": 200,
+    "request": {
+      "repository": "https://github.com/AGDAO/togetherfi-stellar",
+      "commitHash": "a4d5d1eb80bb000c5abb6a11d714783546707618",
+      "jobId": "build",
+      "runId": "39325264354",
+      "contractHash": "6e0757040318e728da1e60bcb0566ace3d02d14e456ddc25f124caa5ebe90d67",
+      "relativePath": "contracts/reputation_anchor",
+      "packageName": "reputation-anchor",
+      "makeTarget": "ci-prepare"
+    },
+    "response": "{\"ok\":1}"
+  }
+]

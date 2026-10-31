@@ -1,0 +1,133 @@
+{
+  "checkedAt": "2026-10-31T14:58:38.256Z",
+  "network": "testnet",
+  "run": "https://github.com/AGDAO/togetherfi-stellar/actions/runs/41212580007",
+  "instances": [
+    {
+      "name": "historical-xlm-escrow",
+      "contract": "CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CC7EVM46T45WMEXMDKGCVTJ6RHVTDG24WZU3WQEPU5IW7EBOJJD3LPOZ",
+        "created": 1791117932,
+        "creator": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C",
+        "wasm": "1cfbad51dc1932e81de857b4a22402f883584ba4c6b89388aff53929c2e6b0eb",
+        "invocations": 11,
+        "subinvocation": 0,
+        "events": 10,
+        "errors": 0,
+        "storage_entries": 8,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    },
+    {
+      "name": "historical-xlm-nft-pool",
+      "contract": "CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76",
+        "created": 1791117937,
+        "creator": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C",
+        "wasm": "2f24a684373cfb2683912b1a85be0b8e4ac859fb64c15b14a52050579e99a865",
+        "invocations": 1,
+        "subinvocation": 5,
+        "events": 4,
+        "errors": 0,
+        "storage_entries": 4,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    },
+    {
+      "name": "historical-xlm-revenue-pool",
+      "contract": "CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25",
+        "created": 1791117942,
+        "creator": "GDRQ5D7NVEBBLFRTJDRIH3JIRQ3UCNPKMICZGWPSUAGA5MNGVC737A2C",
+        "wasm": "2f24a684373cfb2683912b1a85be0b8e4ac859fb64c15b14a52050579e99a865",
+        "invocations": 1,
+        "subinvocation": 5,
+        "events": 4,
+        "errors": 0,
+        "storage_entries": 4,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    },
+    {
+      "name": "attested-usdc-escrow",
+      "contract": "CCUYLTWIPHUMXGJNPQZZELDGJFQWXMLFW3JW3VAAYRNAMTVLADUWZS2U",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CCUYLTWIPHUMXGJNPQZZELDGJFQWXMLFW3JW3VAAYRNAMTVLADUWZS2U",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CCUYLTWIPHUMXGJNPQZZELDGJFQWXMLFW3JW3VAAYRNAMTVLADUWZS2U",
+        "created": 1792445552,
+        "creator": "GBCG6HY33V4HLWZW4SLC7MOTEIEEL54TNB7LNOAEGWMFAIXZQVFCHML6",
+        "wasm": "6f1a3e10abd79b76cbb4101f5ea42da5e51ad0d45950093e0cacf602fd51b0ff",
+        "invocations": 11,
+        "subinvocation": 0,
+        "events": 10,
+        "errors": 0,
+        "storage_entries": 8,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    },
+    {
+      "name": "attested-usdc-nft-pool",
+      "contract": "CDSHQH4FICZ5RFJG677UP4XTECOAO6IIJTQWB7KN2PQJXGOENEJ6BENT",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CDSHQH4FICZ5RFJG677UP4XTECOAO6IIJTQWB7KN2PQJXGOENEJ6BENT",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CDSHQH4FICZ5RFJG677UP4XTECOAO6IIJTQWB7KN2PQJXGOENEJ6BENT",
+        "created": 1792445562,
+        "creator": "GBCG6HY33V4HLWZW4SLC7MOTEIEEL54TNB7LNOAEGWMFAIXZQVFCHML6",
+        "wasm": "0842b07ff7056fcfce1df0e0586bf1779de57d4c6e4c89014a0af220d976c14f",
+        "invocations": 3,
+        "subinvocation": 5,
+        "events": 6,
+        "errors": 0,
+        "storage_entries": 6,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    },
+    {
+      "name": "attested-usdc-revenue-pool",
+      "contract": "CACX36IJNDCAZKXEP2DC2ZDJK4QF4R7BHFFXJTSZKJ77K74OP6HAGRQR",
+      "url": "https://api.stellar.expert/explorer/testnet/contract/CACX36IJNDCAZKXEP2DC2ZDJK4QF4R7BHFFXJTSZKJ77K74OP6HAGRQR",
+      "httpStatus": 200,
+      "validationStatus": "unverified",
+      "body": {
+        "contract": "CACX36IJNDCAZKXEP2DC2ZDJK4QF4R7BHFFXJTSZKJ77K74OP6HAGRQR",
+        "created": 1792445567,
+        "creator": "GBCG6HY33V4HLWZW4SLC7MOTEIEEL54TNB7LNOAEGWMFAIXZQVFCHML6",
+        "wasm": "0842b07ff7056fcfce1df0e0586bf1779de57d4c6e4c89014a0af220d976c14f",
+        "invocations": 3,
+        "subinvocation": 5,
+        "events": 6,
+        "errors": 0,
+        "storage_entries": 6,
+        "validation": {
+          "status": "unverified"
+        }
+      }
+    }
+  ]
+}

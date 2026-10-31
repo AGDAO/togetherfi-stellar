@@ -103,14 +103,34 @@ deployments and the independently signed release.
 
 ## Explorer verification
 
-The 19 October runner registration received HTTP 200 acknowledgements.
-Acknowledgement is not an explorer source-match result. Workspace requests
-receive HTTP 403, which does not establish whether a contract is verified.
+The [31 October registration run](https://github.com/AGDAO/togetherfi-stellar/actions/runs/41212580007)
+completed successfully. It cryptographically reverified all three newer
+attested artifacts and received HTTP 200 `{"ok":1}` acknowledgements for their
+registrations. It did not register the historical raw-Cargo artifacts as if
+they were those later attested builds.
 
-The registration script now preserves the actual explorer responses for all
-six deployed instances in `explorer-deployed-status.json` in the public
-registration workflow artifact. Only an explicit successful explorer response
-with `validation.status` equal to `verified` supports a verified-source claim.
+The same runner then received HTTP 200 for all six deployed-contract status
+requests. Every response explicitly reported `validation.status: "unverified"`.
+The API returned no further explanation for the unverified state.
+
+Preserved evidence:
+
+- [Registration requests and acknowledgements](historical-build/explorer-registration.json).
+- [All six actual explorer responses](historical-build/explorer-deployed-status.json).
+- [GitHub Actions run and downloadable verification artifacts](https://github.com/AGDAO/togetherfi-stellar/actions/runs/41212580007).
+
+The initial retry failed before reaching StellarExpert because the downloader
+ignored the runner's standard `GH_TOKEN`. The downloader now accepts that
+standard variable as well as the existing local credential variable. This
+fix does not weaken artifact attestation checks or modify workflow permissions.
+The successful retry establishes registration acceptance and readable explorer
+status, not source-match completion.
+
+Only an explicit successful explorer response with `validation.status` equal
+to `verified` supports a verified-source claim. No verified-source link is
+available from the observed results; the explorer's source-match process
+remains an open acceptance item. It must not be reported as complete merely
+because the workflow passed.
 
 Recovering the original invocation resolves the missing build-description
 evidence. It does not retroactively attest the old build or manufacture an
