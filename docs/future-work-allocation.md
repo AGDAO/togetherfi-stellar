@@ -14,7 +14,7 @@ allocations. Saturday is not allocated.
 |---|---|---:|
 | Ayoub | Founder, technical lead, main development, integration, testing and delivery coordination | 416 |
 | Zyad | Development, testing and internal peer review | 134 |
-| Mohammed Idmoussi | Scoped contract review and follow-up, not transaction signing | 26 |
+| Mohammed | Scoped contract review and follow-up, not transaction signing | 26 |
 | Ace | Scoped GameFi administration, event setup, workflow testing, bug reporting, Discord support and onboarding; Facebook and Instagram operations | 96 |
 | King | Scoped SocialFi administration, mission setup, workflow testing, bug reporting, Discord support and onboarding; X and Discord operations; separately designated testnet co-signing | 96 |
 | **Total** | **Proposed future delivery, subject to eligible work packages** | **768** |
@@ -41,12 +41,12 @@ $95/hour ($54,720) plus 192 operations/testing hours at $40/hour ($7,680).
 
 - Ayoub: `(5 x 3 + 1) x 26 = 416`.
 - Zyad: `(4 + 1) x 26 + 4 = 134`.
-- Mohammed Idmoussi: `26` milestone-based review/follow-up hours.
+- Mohammed: `26` milestone-based review/follow-up hours.
 - Ace: `96` total owner-confirmed hours.
 - King: `96` total owner-confirmed hours.
 - Combined: `416 + 134 + 26 + 96 + 96 = 768`.
 
-The owner has confirmed each person's 96 hours, role and $20 rate. No additional
+The owner has confirmed each person's 96 hours, role and $40 rate. No additional
 personal information is required to prepare the budget. The activity split below
 is a proposed future work plan, not a completed timesheet or a confirmed calendar.
 It replaces the earlier 91-hour cadence rather than adding unrelated hours.
@@ -59,7 +59,7 @@ It replaces the earlier 91-hour cadence rather than adding unrelated hours.
 | Support the Stellar pilots on Discord and triage participant problems | 16 | Dated support/triage log and escalation outcomes |
 | Prepare Stellar pilot education for business Facebook/Instagram channels | 12 | Six draft guidance/update items and a distribution/outcome log, subject to eligibility approval |
 | Assemble milestone operations evidence and demonstrate admin workflows | 4 | Evidence index, permissions checklist and milestone walkthrough |
-| **Ace total** | **96** | **$1,920 at $20/hour** |
+| **Ace total** | **96** | **$3,840 at $40/hour** |
 
 | King: proposed Stellar-attributable outputs | Hours | Acceptance evidence |
 |---|---:|---|
@@ -69,7 +69,7 @@ It replaces the earlier 91-hour cadence rather than adding unrelated hours.
 | Support the Stellar pilots on Discord and triage participant problems | 16 | Dated support/triage log and escalation outcomes |
 | Prepare Stellar pilot education for X/Discord channels | 12 | Six draft guidance/update items and a distribution/outcome log, subject to eligibility approval |
 | Participate in separately requested testnet signer drills and assemble operations evidence | 4 | Signing-only drill records and evidence index; never code-review approval or disclosure of private keys |
-| **King total** | **96** | **$1,920 at $20/hour** |
+| **King total** | **96** | **$3,840 at $40/hour** |
 
 GameFi/SocialFi describe the source communities and existing scoped admin roles,
 not a promise to implement new sector-specific Stellar contracts or to grant
@@ -82,18 +82,17 @@ deliverable references; do not double-charge overlapping work.
 
 ## Ownership, review and budget boundaries
 
-Ayoub is the founder and technical lead of TogetherFi. The owner confirms there
-is no separate predecessor-product technical lead omitted from this application.
+Ayoub is the founder, technical lead and developer writing TogetherFi's Soroban
+code. He co-founded HYPEit.io and continued building TogetherFi independently.
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
-[Mohammed Idmoussi's review account](https://github.com/elastikchain-eth),
+[Mohammed's review account](https://github.com/elastikchain-eth),
 [Ace](https://github.com/devcryptoaceph).
 King is identified by his community handle in public repository materials.
 
 The current testnet signing group is Ayoub, Zyad and King. Ace is not in that
-quorum. Reviewers are not signers merely because they review code. Final code
-reviews by Zyad and Mohammed Idmoussi remain pending on the head they review.
+quorum. Reviewers are not signers merely because they review code. Mohammed's @elastikchain-eth account merged PR #2 on 30 October 2026. GitHub records no separate formal approval event from that account. Zyad's follow-up covers an earlier commit, not the final merged head.
 
 **Reputation Anchor budget is unresolved.** Ask the architecture team whether
 new, eligible Anchor work is required and fundable. Do not promise free future
