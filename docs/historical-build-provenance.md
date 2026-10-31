@@ -4,6 +4,17 @@ Evidence recovered on 31 October 2026. This note distinguishes recorded local
 build evidence, deployed-byte identity, later CI attestation and explorer
 source verification. None authorizes a deployment or a real-funds operation.
 
+## Requested reviewer evidence
+
+The review request was: "StellarExpert: the contracts still show as
+unverified. Send us the exact commit and build command used for the deployed
+WASM."
+
+This note supplies that requested commit and build evidence. The review
+wording observes the unverified explorer status; it does not require changing
+that badge before supplying the evidence. Explorer status remains explicitly
+unverified and must not be described as verified.
+
 ## Historical XLM deployment
 
 The original build invocation was preserved. Earlier statements that it was
@@ -101,6 +112,29 @@ They must not be substituted for the older XLM artifacts.
 See [attested USDC evidence](attested-usdc-testnet-evidence.md) for these
 deployments and the independently signed release.
 
+The exact command arguments in the pinned builder for the Escrow package are:
+
+```sh
+# Working directory: contracts/campaign_escrow
+# Stellar CLI: 22.0.1; Rust: 1.81.0; target: wasm32-unknown-unknown
+make ci-prepare
+BUILD_INFO='{"package":"campaign-escrow","make_target":"ci-prepare","relative_path":"contracts/campaign_escrow"}'
+stellar contract build --package campaign-escrow --out-dir "$OUTPUT" \
+  --meta source_repo=AGDAO/togetherfi-stellar \
+  --meta home_domain=togetherfi.io \
+  --meta build_info="$BUILD_INFO"
+# The builder copies the output to its versioned release filename, then runs:
+stellar contract optimize --wasm "$WASM_FILE_NAME" --wasm-out "$WASM_FILE_NAME"
+```
+
+`OUTPUT` and `WASM_FILE_NAME` are the original workflow's generated output
+directory and versioned filename. The pinned workflow linked above records
+their construction and the exact copy operation. For the Contributor Pool
+job, the directory is `contracts/contributor_pool`, the package is
+`contributor-pool`, and `BUILD_INFO` is
+`{"package":"contributor-pool","make_target":"ci-prepare","relative_path":"contracts/contributor_pool"}`.
+Both source commits, build generations and final hashes remain distinct.
+
 ## Explorer verification
 
 The [31 October registration run](https://github.com/AGDAO/togetherfi-stellar/actions/runs/41212580007)
@@ -129,8 +163,20 @@ status, not source-match completion.
 Only an explicit successful explorer response with `validation.status` equal
 to `verified` supports a verified-source claim. No verified-source link is
 available from the observed results; the explorer's source-match process
-remains an open acceptance item. It must not be reported as complete merely
-because the workflow passed.
+remains unverified. It must not be reported as complete merely because the
+workflow passed, nor added as a new condition to the quoted commit/build request.
+
+A [network-specific follow-on check](https://github.com/AGDAO/togetherfi-stellar/actions/runs/41213314702)
+also submitted the three attested registrations to the testnet endpoint, not
+only the public/mainnet endpoint used in the upstream example. All three
+testnet registrations returned HTTP 200 `{"ok":1}`. Subsequent testnet contract
+requests with a no-cache header still returned `unverified` for all six
+instances. The run preserves `explorer-testnet-registration.json` alongside
+the actual status responses. Changing the registration network did not change
+the observed verification result.
+
+The requested commit/build evidence is supplied above; the separate explorer
+badge is not represented as a missing deliverable in the quoted review item.
 
 Recovering the original invocation resolves the missing build-description
 evidence. It does not retroactively attest the old build or manufacture an
