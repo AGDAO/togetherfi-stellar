@@ -18,7 +18,7 @@ Historical v1 IDs remain separately labeled below.
 accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
-Mohammed (@elastikchain-eth) is a technical reviewer, not a signer. The owner confirms he reviewed and merged PR #2 on 30 October 2026. GitHub records the merge but no separate formal approval review event for PR #2. This is not an independent security audit. See the [current dossier clarification](docs/dossier-clarification.md) for remaining evidence gates.
+Mohammed (@elastikchain-eth) is a technical reviewer, not a signer. GitHub confirms he merged PR #2 on 30 October 2026. GitHub records the merge but no separate formal approval review event for PR #2. This is not an independent security audit. See the [current dossier clarification](docs/dossier-clarification.md) for remaining evidence gates.
 
 Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
 transactions, deployed WASM verification and pending acceptance gates.
@@ -55,7 +55,7 @@ The owner confirms separate human peer review by
 Mohammed Idmoussi supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
 formal audit, and the earlier review is not approval of this updated snapshot.
-PR #2 was merged by @elastikchain-eth on 30 October 2026 at 16:53:58 UTC (merge commit 93d0bde62664aecd82c8c6c69ad2db8c72a93967). The owner confirms Mohammed reviewed the changes before merging. GitHub has no distinct formal approval event from this account.
+PR #2 was merged by @elastikchain-eth on 30 October 2026 at 16:53:58 UTC (merge commit 93d0bde62664aecd82c8c6c69ad2db8c72a93967). GitHub has no distinct formal approval event from this account.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
 testnet role accounts in confirmed ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
