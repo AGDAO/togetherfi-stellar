@@ -52,6 +52,19 @@ original manifest, for:
 - NFT pool: `CAUPWNNQLQLURIJJTFW7LURJRD2OLGV4R5E6LNSUJXKSESRVGO54YP76`
 - Revenue pool: `CD6TNSBSLAPXE4JXDBNTNEMMXH7DAWGUA3TR5HMP4QQIHCYM7544ED25`
 
+A fresh read-only RPC check on 31 October retrieved the actual WASM bytes for
+all three historical instances and all three later USDC instances. All six
+hashes match their respective recorded artifacts. The
+[machine-readable results](historical-build/live-rpc-check.json) include the
+timestamp, instance IDs, expected and retrieved hashes, and byte lengths.
+This is a fresh deployed-byte check, not a fresh compilation.
+
+The check can be repeated from an application checkout with the Stellar SDK:
+
+```sh
+node scripts/check-deployed-wasm.mjs /path/to/new-live-rpc-check.json
+```
+
 On 31 October, the public GitHub contents API was used to retrieve the files
 at that exact commit. Their SHA-256 values match the original transcript:
 

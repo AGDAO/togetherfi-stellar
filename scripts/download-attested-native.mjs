@@ -13,16 +13,19 @@ const REPO = 'AGDAO/togetherfi-stellar';
 const BUILDER = '4a554f0e75c245cf4d3ea5f98f3a653d51edcd18';
 const WORKFLOW = 'stellar-expert/soroban-build-workflow/.github/workflows/release.yml';
 await mkdir(OUT, { recursive: true });
+const githubToken = process.env.GH_TOKEN || process.env.GITHUB_WORKFLOW_TOKEN;
 const headers = {
   Accept: 'application/vnd.github+json',
-  ...(process.env.GITHUB_WORKFLOW_TOKEN
-    ? { Authorization: `Bearer ${process.env.GITHUB_WORKFLOW_TOKEN}` } : {}),
+  ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
 };
 async function api(path) {
   const response = await fetch(`https://api.github.com/repos/${REPO}${path}`, {
     headers, signal: AbortSignal.timeout(30_000),
   });
-  if (!response.ok) throw new Error(`GitHub ${response.status}: ${path}`);
+  if (!response.ok) {
+    const detail = await response.json().catch(() => ({}));
+    throw new Error(`GitHub ${response.status}: ${path}: ${detail.message || 'Request rejected'}`);
+  }
   return response.json();
 }
 const result = {
@@ -55,8 +58,7 @@ for (const name of ['campaign_escrow', 'contributor_pool', 'reputation_anchor'])
     '--signer-workflow', WORKFLOW, '--signer-digest', BUILDER,
     '--source-digest', sha, '--deny-self-hosted-runners', '--format', 'json',
   ], {
-    env: { ...process.env, ...(process.env.GITHUB_WORKFLOW_TOKEN
-      ? { GH_TOKEN: process.env.GITHUB_WORKFLOW_TOKEN } : {}) },
+    env: { ...process.env, ...(githubToken ? { GH_TOKEN: githubToken } : {}) },
     encoding: 'utf8', timeout: 120_000, maxBuffer: 4_000_000,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
