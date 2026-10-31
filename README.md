@@ -18,11 +18,7 @@ Historical v1 IDs remain separately labeled below.
 accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
-Mohammed Idmoussi is a technical reviewer, not a signer. His PR #1
-review was authored from the GitHub account requested for PR #2:
-[@elastikchain-eth](https://github.com/elastikchain-eth).
-See the [new native-only review handoff](docs/review-handoff.md) for the cleanup
-boundary, requested reviews and remaining acceptance gates.
+Mohammed (@elastikchain-eth) is a technical reviewer, not a signer. The owner confirms he reviewed and merged PR #2 on 30 October 2026. GitHub records the merge but no separate formal approval review event for PR #2. This is not an independent security audit. See the [current dossier clarification](docs/dossier-clarification.md) for remaining evidence gates.
 
 Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
 transactions, deployed WASM verification and pending acceptance gates.
@@ -50,8 +46,7 @@ Ayoub is the CEO/Developer and Soroban technical owner:
 TogetherFi is built by a human development team that was building the platform
 before adopting AI tools. AI-assisted extensively; humans own architecture,
 review, testing and acceptance. AI is not a substitute for human review.
-Ayoub is the founder and technical lead of TogetherFi; there is no separate
-predecessor-product technical lead omitted from this application.
+Ayoub is the founder, technical lead and developer writing TogetherFi's Soroban code. He co-founded HYPEit.io and continued building TogetherFi independently.
 The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
 allocation across work packages, not a separate allocation per package.
@@ -60,9 +55,7 @@ The owner confirms separate human peer review by
 Mohammed Idmoussi supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
 formal audit, and the earlier review is not approval of this updated snapshot.
-A fresh review has been requested from his @elastikchain-eth account on PR #2.
-Zyad's follow-up is still pending against the initialization-hardening and
-real-pool integration snapshot.
+PR #2 was merged by @elastikchain-eth on 30 October 2026 at 16:53:58 UTC (merge commit 93d0bde62664aecd82c8c6c69ad2db8c72a93967). The owner confirms Mohammed reviewed the changes before merging. GitHub has no distinct formal approval event from this account.
 King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
 testnet role accounts in confirmed ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
@@ -73,7 +66,7 @@ King's community and operations role is described in the contributor allocation.
 The [proposed team allocation](docs/future-work-allocation.md) totals 768 hours
 over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 416, Zyad 134,
 Mohammed Idmoussi 26, Ace 96 and King 96. Ace and King each have a proposed
-rate of $20/hour ($1,920 each; $3,840 combined). They use scoped GameFi and
+rate of $40/hour ($3,840 each; $7,680 combined). They use scoped GameFi and
 SocialFi admin panels, support users, manage events/missions and report bugs;
 neither has source-code access or an engineering role. Named allocations must reflect each
 contributor's actual confirmed commitment; none are inferred from a review agreement.
