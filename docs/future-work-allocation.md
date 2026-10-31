@@ -29,12 +29,13 @@ charged to this grant. Do not bill the same work to another grant.
 
 | Operations contributor | Hours | Hourly rate | Proposed total |
 |---|---:|---:|---:|
-| Ace | 96 | $20 | $1,920 |
-| King | 96 | $20 | $1,920 |
-| **Combined** | **192** | **$40 per hour when both work** | **$3,840** |
+| Ace | 96 | $40 | $3,840 |
+| King | 96 | $40 | $3,840 |
+| **Combined** | **192** | **$40 per hour each** | **$7,680** |
 
-These rates apply to the two operations contributors, not all engineering hours.
-The other contributors' rates and the full grant total are not inferred here.
+These rates apply to the two operations/testing contributors, not the engineering
+hours. The proposed grant ask remains **$62,400**: 576 engineering hours at
+$95/hour ($54,720) plus 192 operations/testing hours at $40/hour ($7,680).
 
 ## Hours and evidence
 
