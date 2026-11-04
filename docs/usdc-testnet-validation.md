@@ -38,7 +38,9 @@ must never be described as a confirmed USDC payment.
 1. Finish the current source reviews and use the exact reviewed WASM hashes.
 2. Produce CI-attested builds and compare their hashes with deployment inputs.
 3. Deploy separate USDC escrow and two pool instances; preserve all historical
-   XLM instances, pending refund campaign and their original evidence.
+   XLM instances and their original evidence. The original 30-day XLM refund
+   [confirmed on 4 November 2026](original-30-day-xlm-refund.md), after its
+   3 November eligibility; this does not confirm a USDC refund.
 4. Configure every instance with this testnet USDC SAC. Confirm bindings and
    independently controlled governance/settlement quorum.
 5. Establish account trustlines and obtain free testnet USDC.

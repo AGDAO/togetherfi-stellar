@@ -170,3 +170,17 @@ approval or mainnet launch. Final independent reviews and the actual expired
 refund proofs remain pending. At 21:51 UTC, StellarExpert still returned the
 matching Escrow WASM hash with `validation.status = unverified`; its provider
 verification outcome remains unresolved. No real USDC or XLM was used.
+
+## Original 30-day XLM refund confirmed, 4 November 2026
+
+The original Campaign 2 became eligible on **3 November 2026 at 12:46:17 UTC**.
+Its actual [refund transaction](https://stellar.expert/explorer/testnet/tx/34c53fb8d518c9a0f520be450c2178003c17a25a383bb779d0cb7f2a2923b5b6)
+confirmed on **4 November 2026 at 20:22:30 UTC**, ledger **5,560,022**.
+The original sponsor received exactly **1 test XLM**. Campaign status is
+`Refunded`; escrow token balance and internal liability both decreased from
+1 test XLM to zero. Other campaigns and escrow configuration were unchanged.
+This uses the original contract and unchanged 30-day period, not the accelerated
+test version. [Full receipt and reconciliation](original-30-day-xlm-refund.md).
+The separate original USDC campaign-3 refund remains pending until its own
+18 November expiry and confirmed transaction.
+

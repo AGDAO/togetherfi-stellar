@@ -52,11 +52,14 @@ proposed target requiring owner acceptance, not a completed metric.
   source `a4d5d1eb80bb000c5abb6a11d714783546707618`, build provenance and WASM
   hashes. Registration acceptance is not explorer source verification. The last
   recorded explorer status is unverified; do not report verification complete.
-- The original XLM expiry refund becomes eligible on **3 November 2026 at
-  12:46:17 UTC**. Its transaction cannot be supplied before execution is
-  eligible and confirmed. The original USDC fixture expires separately on
-  18 November. The accelerated 24-hour fixtures are separate test builds,
-  never replacements for those original proofs.
+- The original XLM 30-day refund became eligible on **3 November 2026 at
+  12:46:17 UTC** and was **confirmed on 4 November 2026 at 20:22:30 UTC**:
+  [transaction 34c53fb8…](https://stellar.expert/explorer/testnet/tx/34c53fb8d518c9a0f520be450c2178003c17a25a383bb779d0cb7f2a2923b5b6),
+  ledger **5,560,022**. The original sponsor received exactly 1 test XLM;
+  campaign status is Refunded, with zero escrow balance and liability.
+  See [the full proof](original-30-day-xlm-refund.md). The original USDC fixture
+  expires separately on 18 November; the accelerated 24-hour fixtures remain
+  separate test builds, not replacements for either original proof.
 - Zyad's co-developer classification still needs genuine development evidence
   elsewhere, or an owner-approved change to internal reviewer/co-signer with
   rebalanced hours. Existing review and signing records alone do not establish

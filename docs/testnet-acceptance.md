@@ -2,7 +2,8 @@
 
 V2 and both contributor pools are deployed and initialized on testnet. Role-account
 configuration, disabled setup-key rejections and quorum completion are verified.
-Real expiry refund is not yet claimed. Separate internal human peer review by
+The original 30-day XLM refund is confirmed in ledger 5,560,022; see
+[refund reconciliation](original-30-day-xlm-refund.md). Separate internal human peer review by
 Zyad (INKY) is owner-confirmed, not an external audit. Historical v1 IDs
 remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
@@ -56,7 +57,7 @@ The historical baseline below is supplemented by the current-roster
 [Zyad and Ayoub release](testnet-zyad-ayoub.md), ledger 5207852.
 Both had a valid single-member envelope blocked with `txBadAuth`, followed by
 confirmed two-member completion and exact payout/accounting reconciliation.
-These confirmations do not close the real-expiry refund gate below.
+The separate original Campaign 2 refund subsequently confirmed on 4 November 2026.
 
 | Evidence | Current status |
 |---|---|
@@ -69,9 +70,9 @@ These confirmations do not close the real-expiry refund gate below.
 | Quorum-authorized completion succeeds with fixed 82/10/5/2/1 payout | Confirmed in ledger 5019829 with Ayoub and King signatures; exact deltas verified |
 | Sponsor funding and sponsor activation (approval) | Campaign 1 funded with 1 test XLM and activated; confirmed hashes recorded |
 | Admin alternative split and destination attempts rejected | Local tests/CI; retain any testnet rejection evidence |
-| Expiry/timeout boundary and refund to original sponsor | Campaign 2 funded; real expiry 3 November 2026 12:46:17 UTC; refund pending |
-| No double completion/refund and campaign liability reconciled | Native tests and deployed-contract RPC simulations reject repeat completion/refund after completion with InvalidState; not failed ledger transactions. Remaining escrow liability exactly 1 test XLM |
-| README v2 ID and StellarExpert links for each accepted transaction | Deploy/init/handoff/fund/activate/complete links published; real expiry refund pending |
+| Expiry/timeout boundary and refund to original sponsor | Campaign 2 eligible 3 November 2026 12:46:17 UTC; [refund confirmed](https://stellar.expert/explorer/testnet/tx/34c53fb8d518c9a0f520be450c2178003c17a25a383bb779d0cb7f2a2923b5b6) 4 November 2026 20:22:30 UTC, ledger 5,560,022; original sponsor received exactly 1 test XLM |
+| No double completion/refund and campaign liability reconciled | Native tests and deployed-contract RPC simulations reject repeat completion/refund after completion with InvalidState; not failed ledger transactions. Campaign 2 is Refunded; escrow balance and liability are zero |
+| README v2 ID and StellarExpert links for each accepted transaction | Deploy/init/handoff/fund/activate/complete and original 30-day refund links published |
 
 Map the team's `approve` to sponsor-authorized `activate`, `release` to `complete`,
 and `timeout` to the expiry condition exercised by `refund_expired`. There is no
@@ -79,7 +80,7 @@ separate `approve`, `release`, or `timeout` entry point. Preserve the production
 30-day expiry rather than changing it just to produce an immediate timeout proof.
 Plan the actual expiry evidence window or agree an explicitly separate test fixture
 with the team; a shortened fixture must not be described as the deployed v2 code.
-The additional 30-day live-ledger refund proof is deferred technical validation,
+The additional 30-day live-ledger refund proof is now confirmed technical validation,
 not an established grant-payment prerequisite. No direct architecture-team or
 Stellar instruction requiring that specific wait is cited in this checklist.
 Confirm actual acceptance criteria rather than treating this document as proof

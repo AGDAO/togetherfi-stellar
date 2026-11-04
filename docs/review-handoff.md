@@ -151,8 +151,11 @@ commit they reviewed. Source review and transaction signatures are distinct.
 
 ## Remaining boundaries
 
-The real-expiry refund fixture remains due on 3 November 2026 at 12:46:17 UTC;
-this cleanup does not shorten that expiry or claim a refund has happened.
+The original 30-day XLM fixture became eligible on 3 November 2026 at 12:46:17 UTC.
+Its [refund confirmed](original-30-day-xlm-refund.md) on 4 November 2026 at
+20:22:30 UTC, ledger 5,560,022. The sponsor received exactly 1 test XLM;
+campaign status is Refunded and escrow balance and liability are zero.
+No expiry or reviewed contract source was changed.
 Historical test transcripts and earlier CI runs do not prove this new PR passed.
 New CI must be checked separately. Source parity alone does not prove CI WASM
 bytes match the previously deployed locally built binaries.

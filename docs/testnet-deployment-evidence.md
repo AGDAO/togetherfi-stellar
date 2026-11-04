@@ -74,6 +74,7 @@ Open a hash at `https://stellar.expert/explorer/testnet/tx/<hash>`.
 | Fund campaign 1 with 1 test XLM | [53c2e5ed…](https://stellar.expert/explorer/testnet/tx/53c2e5ed884c8575507760640ed1d05749f22388418468ee28cafa6d674bc0e3) |
 | Sponsor activation of campaign 1 | [8ecd3906…](https://stellar.expert/explorer/testnet/tx/8ecd390622067c25610596b0ce78101c5db6d956293119109b176225dc76b729) |
 | Fund campaign 2 for real expiry proof | [e59cb68a…](https://stellar.expert/explorer/testnet/tx/e59cb68ac17dbd2845d2fd452a28d05cf0b7df6604849bc8d18b5872113a5e98) |
+| Original campaign 2 real 30-day refund, 4 November 2026 | [34c53fb8…](https://stellar.expert/explorer/testnet/tx/34c53fb8d518c9a0f520be450c2178003c17a25a383bb779d0cb7f2a2923b5b6), ledger 5,560,022 |
 | Two-member campaign 1 completion | [ec8ca3af…](https://stellar.expert/explorer/testnet/tx/ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404) |
 
 Detailed public signed envelopes, ledger records, account configuration and
@@ -107,7 +108,9 @@ with two independently verified member signatures was confirmed successfully.
 Campaign 1 is `Completed`; exact token balance deltas are 0.82 creator, 0.10 service,
 0.05 NFT contributor pool, 0.02 community pool, and 0.01 referrer, in test XLM.
 Pool `TotalCredited` counters match the 5% and 2% transfers. Escrow liability is
-exactly 1 test XLM, owed only to the still-funded expiry campaign.
+exactly 1 test XLM at that historical checkpoint, owed only to the expiry campaign.
+The [4 November refund](original-30-day-xlm-refund.md) subsequently returned
+that 1 test XLM to the original sponsor; current escrow balance and liability are zero.
 
 Repeat completion and refund-after-completion were also checked against the
 deployed contract via RPC simulation. Both returned `InvalidState`
@@ -121,10 +124,12 @@ ledger-confirmed failed transactions; their results are retained in the manifest
    protections are covered by native contract tests and deployed-contract RPC
    simulations; no extra ledger-confirmed
    duplicate-operation transaction is claimed.
-2. Campaign 2 reaches its real 30-day expiry: **3 November 2026, 12:46:17 UTC**.
-   Retain a confirmed refund to its original fixture sponsor then. Do not shorten
-   expiry or relabel a shortened fixture as this deployed v2.
-   This extra live-ledger proof is deferred validation, not an established
+2. Campaign 2 reached its unmodified 30-day expiry on **3 November 2026,
+   12:46:17 UTC**. Its **1 test XLM refund confirmed on 4 November 2026,
+   20:22:30 UTC**, ledger **5,560,022**. The [receipt and reconciliation](original-30-day-xlm-refund.md)
+   verify the original sponsor received the full amount and escrow balance and
+   liability are zero. No expiry was shortened.
+   This extra live-ledger proof is confirmed validation, not an established
    grant-payment prerequisite; no direct request requiring that specific wait
    is cited here.
 3. The owner confirms separate human peer review by team developer Zyad

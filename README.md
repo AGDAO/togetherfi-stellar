@@ -31,7 +31,10 @@ Confirmed lifecycle proofs:
 [sponsor activation/approval](https://stellar.expert/explorer/testnet/tx/8ecd390622067c25610596b0ce78101c5db6d956293119109b176225dc76b729).
 [Quorum-authorized release](https://stellar.expert/explorer/testnet/tx/ec8ca3af04c870739b201d6746faf4fb7ded540f1cf5e8336215908803518404)
 is confirmed with exact 82/10/5/2/1 payout deltas and reconciled liability.
-The real 30-day timeout/refund proof remains pending.
+The original real 30-day timeout/refund is now confirmed: [Campaign 2 refund](https://stellar.expert/explorer/testnet/tx/34c53fb8d518c9a0f520be450c2178003c17a25a383bb779d0cb7f2a2923b5b6),
+ledger **5,560,022**, **4 November 2026 at 20:22:30 UTC**. Eligibility began
+3 November at 12:46:17 UTC. The original sponsor received exactly 1 test XLM;
+escrow balance and liability are zero. See [refund reconciliation](docs/original-30-day-xlm-refund.md).
 
 This working tree is pinned to upstream baseline commit
 `6fd30883bf8c305eb8dd8a8a8fabe7226171332b` in `UPSTREAM_COMMIT`.
