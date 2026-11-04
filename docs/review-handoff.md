@@ -2,15 +2,15 @@
 
 ## Current initialization-hardening delta
 
-Zyad recorded a changes-requested review of the earlier snapshot. The follow-up
+Zyad first recorded a changes-requested review of an earlier snapshot. The follow-up
 source binds initialization to the actual deployer and contract-ID salt, adds
 strict authorization regressions and checks all deployment configuration before
 funding. This changes the initialization ABI, not campaign economics or the
-reputation score-record schema. It is not yet deployed. Earlier receipts and
-approvals do not validate the new initializer.
+reputation score-record schema. It is not yet deployed. The formal approvals
+below apply to the reviewed merged head; historical receipts do not validate
+execution of the new initializer.
 See [the exact changes and remaining evidence](initialization-hardening.md).
-The final review by Mohammed Idmoussi and Zyad's follow-up on the
-new head remain pending.
+Mohammed and Zyad later submitted formal approvals on the final merged head.
 
 The [dependency advisory disposition](dependency-advisories.md) now separates
 guest/code-generation, local host/test and Node-tooling exposure against the
@@ -19,14 +19,13 @@ not claim zero advisories, approval or validation of changed deployed bytes.
 
 ## Review status and scope
 
-**Final code reviews remain outstanding on
-[PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2).** A review request
-has been sent to the GitHub review account for Mohammed Idmoussi,
-[@elastikchain-eth](https://github.com/elastikchain-eth). Zyad's collaborator
-changes-requested review is recorded; his follow-up on this patched head is pending.
-Neither final approval is recorded or claimed by this handoff.
-The PR must remain unmerged until both reviews and the required checks are
-resolved, before the owner sends the package to The Arch team.
+**PR #2 is merged** at `93d0bde62664aecd82c8c6c69ad2db8c72a93967`.
+GitHub records two formal **APPROVED** reviews against final head
+`233a2f5f6c1d15e8d9a0058642ac0fdf60e76d32`:
+[Mohammed](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5691188641)
+and [Zyad](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5724217283).
+These reviews are not a formal security audit and do not prove that the changed
+source has been deployed.
 
 The public review package is limited to three native Soroban packages:
 `campaign_escrow`, `contributor_pool` and `reputation_anchor`.
@@ -50,30 +49,35 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 
 ## Review ownership and prior evidence
 
-- Ayoub is the implementation owner.
-- Mohammed Idmoussi is the external scoped technical reviewer, not
+- Ayoub is TogetherFi's founder, sole developer and technical owner.
+- Mohammed is the external scoped technical reviewer, not
   an implementation owner or transaction signer. His PR #1 review was authored
   from [@elastikchain-eth](https://github.com/elastikchain-eth), the account
   requested for his PR #2 review.
-- [Zyad](https://github.com/Zrehi) is an internal developer/peer reviewer and a confirmed testnet
-  co-signer.
+- [Zyad](https://github.com/Zrehi) is an internal peer reviewer/tester and a
+  confirmed testnet co-signer, not an additional implementation author.
 - Ace supports GameFi testing and operations, not contract review or the
   current Stellar signing quorum.
-- King supports SocialFi testing and operations and is a
-  co-signer, not a code reviewer.
+- King supports SocialFi testing and operations and is one of the three
+  designated testnet validators. He can co-sign as one member of the 2-of-3
+  quorum, but is not a developer or code reviewer and has no source-code access.
 
 ## Future delivery plan
 
 The owner-approved proposed allocation is **768 hours over 26 weeks**:
-Ayoub 416, Zyad 134, Mohammed Idmoussi 26, Ace 96 and King 96.
+Ayoub 416, Zyad 134 proposed, Mohammed 26, Ace 96 and King 96.
 See the [full allocation, schedules and responsibilities](future-work-allocation.md).
 The approximately 29.5 hours/week is a combined team average, not a commitment
 per reviewer. These are future delivery estimates; individual scope, availability
 and compensation arrangements are confirmed separately. Historical platform work
 is not included as newly completed Stellar delivery.
-Ace and King each have a proposed rate of $20/hour ($1,920 each; $3,840 combined).
+Ace and King each have a proposed rate of $40/hour ($3,840 each; $7,680 combined).
 They administer scoped GameFi/SocialFi panels and support operations, not source
-code. Broader social-media work is not automatically a Stellar grant expense.
+code. King is also a validator who may co-sign with another signer under the
+2-of-3 threshold; he cannot release funds alone. Broader social-media work is
+not automatically a Stellar grant expense. The updated grant ask is **$62,400**:
+576 engineering hours at $95/hour ($54,720) and 192 operations/testing hours at
+$40/hour ($7,680).
 Any additional Reputation Anchor budget and acceptance scope remain to be agreed.
 
 ## Prior review evidence
@@ -81,14 +85,14 @@ Any additional Reputation Anchor budget and acceptance scope remain to be agreed
 The prior review remains attached to its original commit in
 [PR #1](https://github.com/AGDAO/togetherfi-stellar/pull/1), under the
 [@elastikchain-eth account](https://github.com/AGDAO/togetherfi-stellar/pull/1#pullrequestreview-5527032908).
-The review text identifies the reviewer as Mohammed Idmoussi.
+The review text identifies the reviewer as Mohammed.
 It covered a broader source tree and must not be represented as approval of this
 new snapshot or the now-confirmed signer configuration. A new review request was
-sent to Mohammed Idmoussi's @elastikchain-eth account against the PR #2 head.
-Zyad's review request was followed by his changes-requested review. His
-follow-up on the hardening commit and Mohammed Idmoussi's final review remain
-pending. Neither approval is claimed until each reviewer records it. A scoped
-technical review is not a formal audit.
+sent to Mohammed's @elastikchain-eth account against the PR #2 head.
+Both Mohammed and Zyad formally approved the final source head
+`233a2f5f6c1d15e8d9a0058642ac0fdf60e76d32`, using the review links above.
+Zyad's earlier changes-requested snapshot does not override that final-head
+approval. These scoped reviews are not a formal audit or deployment proof.
 
 ## Signer transition and fresh release confirmed
 
@@ -113,7 +117,7 @@ The exact 82/10/5/2/1 payout deltas, authenticated pool credits and escrow
 liability reduction were verified. The original expiry campaign remains unchanged.
 See [the fresh release evidence](testnet-zyad-king.md).
 
-Mohammed Idmoussi has no signature task. Zyad's internal code review and transaction
+Mohammed has no signature task. Zyad's internal code review and transaction
 signature are different roles; neither signature is an independent audit.
 No signer private keys or recovery phrases should be shared.
 

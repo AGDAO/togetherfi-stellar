@@ -8,7 +8,7 @@ The v2 receipts below remain historical evidence for the earlier WASM, not
 proof of the patched initializer. See [hardening and validation boundaries](docs/initialization-hardening.md).
 
 Campaign Escrow v2 and both dedicated contributor pools are **deployed and
-initialized on Stellar Testnet** for the architecture team's requested validation.
+initialized on Stellar Testnet** for the requested validation.
 Both role accounts have verified 2-of-3 configurations and disabled setup masters.
 Quorum-authorized completion is confirmed with two verified member signatures; no production readiness,
 mainnet deployment or real-funds activity is claimed or authorized.
@@ -18,7 +18,12 @@ Historical v1 IDs remain separately labeled below.
 accounts in ledger 5207471, retaining 2-of-3. Zyad and King completed campaign 3;
 Zyad and Ayoub completed campaign 4. See the
 [confirmed signer rotation](docs/testnet-signer-rotation.md).
-Mohammed (@elastikchain-eth) is a technical reviewer, not a signer. GitHub confirms he merged PR #2 on 30 October 2026. GitHub records the merge but no separate formal approval review event for PR #2. This is not an independent security audit. See the [current dossier clarification](docs/dossier-clarification.md) for remaining evidence gates.
+Mohammed is a technical reviewer, not a signer. His PR #1
+review was authored from the GitHub account requested for PR #2:
+[@elastikchain-eth](https://github.com/elastikchain-eth).
+His final PR #2 approval and Zyad's are linked below.
+See the [native-only review handoff](docs/review-handoff.md) for the review
+boundary and remaining acceptance gates.
 
 Current [testnet evidence](docs/testnet-deployment-evidence.md) includes the v2 ID,
 transactions, deployed WASM verification and pending acceptance gates.
@@ -46,21 +51,30 @@ This working tree is pinned to upstream baseline commit
 Ayoub is the CEO/Developer and Soroban technical owner:
 [personal GitHub](https://github.com/AGDAO/) and
 [GitHub](https://github.com/AGDAO).
-TogetherFi is built by a human development team that was building the platform
-before adopting AI tools. AI-assisted extensively; humans own architecture,
-review, testing and acceptance. AI is not a substitute for human review.
-Ayoub is the founder, technical lead and developer writing TogetherFi's Soroban code. He co-founded HYPEit.io and continued building TogetherFi independently.
+Ayoub is TogetherFi's founder, sole developer and technical owner. He writes the
+application and its Soroban code and is accountable for implementation, testing
+and delivery. AI tools assist his work; they do not replace human responsibility
+or the separate scoped human reviews.
+See the [current dossier clarification](docs/dossier-clarification.md).
 The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
 3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
 allocation across work packages, not a separate allocation per package.
 The owner confirms separate human peer review by
-[Zyad (INKY)](https://github.com/Zrehi), another team developer.
+[Zyad (INKY)](https://github.com/Zrehi), an internal peer reviewer and testnet
+co-signer, not an additional implementation author.
 Mohammed supplied a scoped review of PR #1 from
 [@elastikchain-eth](https://github.com/elastikchain-eth). Neither review is a
 formal audit, and the earlier review is not approval of this updated snapshot.
-PR #2 was merged by @elastikchain-eth on 30 October 2026 at 16:53:58 UTC (merge commit 93d0bde62664aecd82c8c6c69ad2db8c72a93967). GitHub has no distinct formal approval event from this account.
-King is a co-signer, not a code reviewer. Zyad replaced Ace on both dedicated
-testnet role accounts in confirmed ledger 5207471. Zyad and King completed
+PR #2 merged on 30 October 2026 at 16:53:58 UTC. On 31 October, GitHub recorded
+formal **APPROVED** reviews from [Mohammed](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5691188641)
+and [Zyad](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5724217283),
+both against the exact final head `233a2f5f6c1d15e8d9a0058642ac0fdf60e76d32`.
+These reviews are not a formal security audit and do not prove that the updated
+source has been deployed.
+King is one of three testnet validators and a transaction co-signer, not a code
+reviewer. Any two of the three signers may authorize a release; King cannot act
+alone. Zyad replaced Ace on both dedicated testnet role accounts in confirmed
+ledger 5207471. Zyad and King completed
 campaign 3; Zyad and Ayoub completed campaign 4 with exact payout checks.
 Production decisions are led by Ayoub; this does not authorize
 mainnet deployment or real-funds operations.
@@ -68,11 +82,17 @@ King's community and operations role is described in the contributor allocation.
 
 The [proposed team allocation](docs/future-work-allocation.md) totals 768 hours
 over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 416, Zyad 134,
-Mohammed 26, Ace 96 and King 96. Ace and King each have a proposed
-rate of $40/hour ($3,840 each; $7,680 combined). They use scoped GameFi and
-SocialFi admin panels, support users, manage events/missions and report bugs;
-neither has source-code access or an engineering role. Named allocations must reflect each
-contributor's actual confirmed commitment; none are inferred from a review agreement.
+Mohammed 26, Ace 96 and King 96. Zyad's final role and 134-hour planning figure
+remain provisional pending reviewer confirmation. The grant ask is **$62,400**:
+576 engineering hours at $95/hour ($54,720) and 192 operations/testing hours at
+$40/hour ($7,680). Ace and King each have a proposed rate of $40/hour
+($3,840 each; $7,680 combined). They use scoped GameFi and SocialFi admin panels,
+support users, manage events/missions and report bugs; neither has source-code
+access or an engineering role. King is separately one of the three testnet
+validators and may co-sign a transaction with another signer under the 2-of-3
+threshold; that does not grant him code access or code-review authority. Named
+allocations must reflect each contributor's actual confirmed commitment; none
+are inferred from a review agreement.
 Historical TogetherFi platform engineering hours are not Stellar Testnet hours.
 Reputation Anchor grant eligibility and any additional budget remain unresolved;
 this allocation does not promise its future work for free.

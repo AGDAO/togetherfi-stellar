@@ -129,12 +129,82 @@ signatures, or a formal audit. Current-head CI records the test/build result.
 ## Other review items
 
 The native real escrow/two-pool integration recommendation now has the coverage
-above. Dependency-advisory disposition and Med Amine's final review remain
-separate acceptance gates. No formal audit or mainnet readiness is claimed.
+above. Dependency findings now
+have a separate [usage, reachability and fix disposition](dependency-advisories.md),
+including residual testnet-only Node tooling risk, not a clean-scan claim.
+Formal **APPROVED** reviews by Mohammed and Zyad are recorded against PR #2's
+final merged head `233a2f5f6c1d15e8d9a0058642ac0fdf60e76d32`:
+[Mohammed](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5691188641)
+and [Zyad](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5724217283).
+These approvals are not a formal audit and do not prove deployment of the updated
+source or mainnet readiness.
 
-For storage operations, persistent/instance TTL expiry means archival rather
-than deletion. The operator must monitor TTL and pay extension/restoration fees.
-Clients must simulate transactions and include required restores on supported
-protocols, or explicitly restore before retrying. A failed read must not be
-treated as zero balance or permission to reinitialize. End-to-end restoration
-exercises and assignment of the production fee-paying operator remain pending.
+## Reputation Anchor storage recovery review
+
+The Reputation Anchor has no public TTL-extension function. The reviewed
+procedure is **external Soroban TTL maintenance**, not an Anchor ABI change:
+adding a contract method would require a separately reviewed and deployed WASM,
+while protocol-level restoration and TTL-extension transactions do not require
+the contract to expose such a method.
+
+On Protocol 23 and later, simulate an invocation that touches the archived
+entry and submit the resulting restoration preamble with the invocation. Where
+that automatic restoration path is unavailable, explicitly restore the required
+footprint before retrying. After restoration, extend the instance, contract
+code, and affected persistent score entries as needed. Verify the ledger-entry
+TTLs and read the restored score records; do not reinitialize the contract or
+interpret a failed read as a zero score. Track profile IDs so maintenance can
+cover persistent score entries, rather than only the instance entry.
+Stellar documents that TTL extension is a protocol operation and does not
+require an Anchor method; extension itself is permissionless, while the
+transaction's fee-paying account still needs its own signing authority. See
+[State Archival](https://developers.stellar.org/docs/learn/fundamentals/contract-development/storage/state-archival)
+and [Storage Strategies](https://developers.stellar.org/docs/build/guides/storage/storage-strategies).
+
+**Owner-approved operations policy (31 October 2026):** Ayoub is the authorized
+accountable payer for production restoration/extension fees. Check TTLs weekly;
+begin renewal when a tracked entry has 60 days or less remaining. Target
+3,000,000 ledgers (about 174 days at five seconds per ledger) where the target
+network's maximum permits it. Testnet's current `maxEntryTtl` is 3,110,400;
+check the actual production network limit before setting a mainnet target. The
+mainnet fee-paying account/address is not yet designated, so this approval does
+not authorize a mainnet transaction.
+
+## Testnet archive, restore and extension exercise
+
+The exercise used the existing historical Anchor
+`CBJVDSS6VUWNORYG2W7ZMHPGMCBXQN5A2CKK5OSS7L2WFR6RSFLGQILC`, not a new
+deployment. StellarExpert records one `ScoreAnchored` event for `profile_id=1`
+on 16 July 2026 (event `015624811850031105-0000`). Before restoration, the
+Testnet RPC returned the persistent score entry with `lastModifiedLedgerSeq`
+3,637,935 and `liveUntilLedgerSeq=0`, confirming it was archived.
+
+| Step | Testnet evidence |
+|---|---|
+| Restore archived score via a simulated and submitted public `get_score(1)` invocation | [Confirmed transaction](https://stellar.expert/explorer/testnet/tx/a36a657d25642c2bdd1f02d1865de4e4a74606b2e783cd246a19a45fefcf3437), ledger 5,486,811; returned score `750`, tier `gold`, timestamp `1784206548` |
+| Verify restored entry and code/instance became live | Score entry `liveUntilLedgerSeq=5,607,770` immediately after restore; subsequent read returned the same record |
+| Extend score entry, Anchor instance, and WASM code externally | [Confirmed TTL-extension transaction](https://stellar.expert/explorer/testnet/tx/a33c8b96337845837ec35e8596d08a52c7c0ec969a3c1a632a34e4055fdbf189), ledger 5,486,856 |
+| Verify extension | All three entries have `liveUntilLedgerSeq=8,486,856`, exactly 3,000,000 ledgers beyond the extension ledger; the score remained `750` / `gold` |
+
+The network was Stellar Testnet, Protocol 29. The extension transaction used
+`ExtendFootprintTTLOp` with a read-only footprint containing `Score(1)`, the
+contract instance and WASM code. The restore transaction paid 1.4139099 testnet
+XLM; the extension transaction paid 33.5838852 testnet XLM. Both transactions
+used one-use Friendbot-funded Testnet accounts generated in memory: restore
+fee source `GDQJ7XRD3MTSIV32TWGBLU4BKQ2DPTLNMO5ANLF2ZHRNFQCSPOAQGKFU`; extension
+fee source `GDI4XQDTTB45FDLP7FBHROVP45VHSIJ4DYYCDCBR2KEEW4G6YXUJYTJ4`. No Ayoub
+wallet, member secret or mainnet account was used. No private key was retained.
+
+An initial attempt to extend exactly to Testnet's configured maximum of
+3,110,400 ledgers returned `EXTEND_FOOTPRINT_TTL_MALFORMED`; a later read
+confirmed the score TTL had not changed. The RPC failure response reported
+34.8712272 testnet XLM charged, but its transaction hash was not retained, so
+this failed attempt is recorded as a diagnostic, not successful evidence. The
+confirmed 3,000,000-ledger target keeps headroom below that boundary. The
+successful restore and extension are confirmed network evidence; local Soroban
+tests are not being substituted for them.
+
+**Mainnet gate:** this exercise validates the recovery mechanics only. It does
+not authorize mainnet deployment, production fee spending, or a readiness
+claim. The owner-designated production fee account/address and any separate
+deployment authorization remain prerequisites.

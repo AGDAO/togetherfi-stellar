@@ -1,16 +1,23 @@
 # TogetherFi: current dossier clarification
 
-Status checked on 31 October 2026. Documentation and evidence only; no new
-features, contract redeployment, mainnet activity or real-funds authorization.
+Documentation and evidence updated on 4 November 2026. This update adds no app
+feature, contract redeployment, mainnet activity or real-funds authorization.
+The owner confirms that no new Stellar features were developed after the
+requested pause. Subsequent product work was on Arbitrum, not Stellar.
+Requested review fixes, existing-testnet validation and documentation are
+separate from new grant-funded feature development. This is a Stellar-scope
+confirmation, not a claim that the entire TogetherFi app stopped changing.
 
-## Founder history and current engineering ownership
+## Current engineering ownership
 
-Ayoub (Alpha) was a co-founder of HYPEit.io and continued independently building
-TogetherFi after leaving it. Ayoub is TogetherFi's founder, technical owner and
-the developer writing its Soroban code.
+Ayoub (Alpha) is TogetherFi's founder, sole developer and technical owner. He
+writes TogetherFi's application and Soroban code. There is no additional
+technical lead or undisclosed implementation contributor to TogetherFi.
+Other named contributors provide scoped review, testing, operations or
+transaction co-signing; those roles do not imply code authorship.
 
 The [later Arbitrum proposal](https://arbitrum.questbook.app/dashboard/?grantId=67d8033d46da2f90cc326ac9&chainId=10&isRenderingProposalBody=true&role=community&proposalId=6981068596f32ac6cef9994c)
-documents TogetherFi.io as the later product. Historical Arbitrum deliverables
+documents TogetherFi.io. Historical Arbitrum deliverables
 remain separate from the proposed Stellar work and are not billed twice.
 
 ## Human review and merge evidence
@@ -18,18 +25,17 @@ remain separate from the proposed Stellar work and are not billed twice.
 - Ayoub owns implementation, testing and acceptance. AI assistance is disclosed
   and does not substitute for human responsibility.
 - Mohammed (@elastikchain-eth) supplied the earlier scoped PR #1 review.
-- [PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2) was merged by
-  @elastikchain-eth on 30 October 2026 at 16:53:58 UTC. The merged head is
+- [PR #2](https://github.com/AGDAO/togetherfi-stellar/pull/2) merged on
+  30 October 2026 at 16:53:58 UTC. The merged head is
   `233a2f5f6c1d15e8d9a0058642ac0fdf60e76d32`; the merge commit is
   `93d0bde62664aecd82c8c6c69ad2db8c72a93967`.
-- GitHub's formal review API returned Zyad's changes-requested review and no
-  separate formal approval from Mohammed. The merge is confirmed; the absence
-  of a separate approval record does not establish that he did not read the code.
-- [Zyad's follow-up comment](https://github.com/AGDAO/togetherfi-stellar/pull/2#issuecomment-6196327755)
-  addresses `65bbc02`, not the final merged head. Do not backdate or invent
-  approval of later changes.
-- None of these records constitutes an independent security audit. Merge does
-  not establish deployment of the merged contract bytes.
+- On 31 October, GitHub recorded formal **APPROVED** reviews against that exact
+  head from [Mohammed](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5691188641)
+  and [Zyad](https://github.com/AGDAO/togetherfi-stellar/pull/2#pullrequestreview-5724217283).
+- Zyad's earlier changes-requested review and follow-up comment concern earlier
+  snapshots; the separate approval above is on the final merged head.
+- These reviews are not an independent security audit. The merge and approvals
+  do not establish deployment of the merged contract bytes.
 
 ## Allocation and metrics
 
@@ -40,8 +46,8 @@ See [the allocation](future-work-allocation.md).
 
 Use **585 registered users** and **at least 272 active users in the preceding
 six months** as the dossier's stated baseline, not as a newly measured live count.
-The requested $1,500 USDC released during the first 90 days after mainnet is a
-proposed target requiring owner acceptance, not a completed metric.
+The requested $1,500 USDC release target during the first 90 days after mainnet
+is owner-confirmed as a planning target, not a completed metric.
 
 ## Existing evidence and unresolved items
 
@@ -60,20 +66,34 @@ proposed target requiring owner acceptance, not a completed metric.
   See [the full proof](original-30-day-xlm-refund.md). The original USDC fixture
   expires separately on 18 November; the accelerated 24-hour fixtures remain
   separate test builds, not replacements for either original proof.
-- Zyad's co-developer classification still needs genuine development evidence
-  elsewhere, or an owner-approved change to internal reviewer/co-signer with
-  rebalanced hours. Existing review and signing records alone do not establish
-  code authorship.
-- Remaining dossier inputs: demo video URL, requested personal profile/contact
-  completion, confirmation of the historical @med-amiine account attribution,
-  the proposed $1,500 metric acceptance, and final-head review evidence if the
-  architecture team requires it separately from the confirmed merge.
-- The private Build sheet was not edited or verified through public access.
-  Its nine requested rate updates must be checked in the editable sheet.
+- Zyad is an internal reviewer/tester and confirmed testnet co-signer, not an
+  additional developer of TogetherFi. Reviewers will confirm his final proposed
+  allocation. Existing review and signing records do not establish code authorship.
+- Remaining external inputs: demo video URL and Mohammed's public GitHub bio.
+  The earlier @med-amiine attribution referred to Mohammed, whose confirmed
+  review account is [@elastikchain-eth](https://github.com/elastikchain-eth);
+  it does not identify a separate contributor.
+- The connected Build sheet was refreshed on 4 November with the original
+  refund, both final-head reviews, sole-developer ownership and the same proposed
+  budget. Ace and King remain at $40/hour; no grant hours or totals were changed.
+  Its Excel copy is a separate reviewer attachment, not public repository data.
+- The Reputation Anchor has no public TTL-extension method. The selected design
+  is external Soroban restoration/TTL-extension transactions, avoiding a
+  contract ABI change. Ayoub is the owner-approved accountable payer for
+  production restoration fees. The approved cadence is a weekly TTL check and
+  renewal at 60 days or less remaining, targeting 3,000,000 ledgers (about 174
+  days) where the target network permits; Testnet's current maximum is
+  3,110,400 ledgers. The existing archived score record was restored and its
+  score, instance and code TTLs were verified on Testnet.
+  The mainnet fee-paying address remains undesignated; no mainnet or production
+  readiness claim is authorized. See
+  [the storage recovery review](initialization-hardening.md#reputation-anchor-storage-recovery-review).
 
-Privy and Soroswap remain future grant work. The proposed documented wallet
-flow uses Privy for an authenticated session and a user-controlled Stellar
-wallet through Stellar Wallets Kit/Freighter for explicit envelope signing.
-It does not claim a shipped Privy-native Stellar embedded signer. Weekly
-Soroswap conversion concerns platform fees only, with USDC rebates to eligible
-wallets generating campaign volume, not conversion of sponsor principal.
+Privy and Soroswap remain future grant work and are not implemented. The proposed
+creator/referrer flow uses Privy `raw_sign` for explicitly authorized signing
+with a user-owned embedded Stellar wallet. Freighter remains available for user
+wallets and independent quorum signing. Soroban authorization payloads require
+their own signatures when applicable. This matches the documented architecture
+and is not a claim of a shipped Privy integration. Soroswap conversion concerns
+platform fees only, with USDC rebates to eligible wallets generating campaign
+volume, not conversion of sponsor principal.

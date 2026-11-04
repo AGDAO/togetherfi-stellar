@@ -4,16 +4,11 @@ Evidence recovered on 31 October 2026. This note distinguishes recorded local
 build evidence, deployed-byte identity, later CI attestation and explorer
 source verification. None authorizes a deployment or a real-funds operation.
 
-## Requested reviewer evidence
+## Requested source/build evidence
 
-The review request was: "StellarExpert: the contracts still show as
-unverified. Send us the exact commit and build command used for the deployed
-WASM."
-
-This note supplies that requested commit and build evidence. The review
-wording observes the unverified explorer status; it does not require changing
-that badge before supplying the evidence. Explorer status remains explicitly
-unverified and must not be described as verified.
+The requested evidence was the exact source commit and build command used for
+the deployed WASM. This note supplies that historical evidence. StellarExpert
+status remains explicitly unverified and must not be described as verified.
 
 ## Historical XLM deployment
 
