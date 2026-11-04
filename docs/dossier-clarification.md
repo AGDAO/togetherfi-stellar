@@ -44,8 +44,11 @@ The proposed ask remains **$62,400**: 576 engineering hours at $95/hour
 Ace and King each have 96 hours at $40/hour, or $3,840 each.
 See [the allocation](future-work-allocation.md).
 
-Use **585 registered users** and **at least 272 active users in the preceding
-six months** as the dossier's stated baseline, not as a newly measured live count.
+For the updated dossier and video, use **622+ registered profiles** and
+**at least 300 active users in the preceding six months**, as supplied by the
+owner on 4 November 2026. These are owner-reported product-wide figures, not
+Stellar mainnet adoption or a fresh independently audited activity count.
+Earlier dated reporting snapshots remain historical records.
 The requested $1,500 USDC release target during the first 90 days after mainnet
 is owner-confirmed as a planning target, not a completed metric.
 
@@ -69,7 +72,9 @@ is owner-confirmed as a planning target, not a completed metric.
 - Zyad is an internal reviewer/tester and confirmed testnet co-signer, not an
   additional developer of TogetherFi. Reviewers will confirm his final proposed
   allocation. Existing review and signing records do not establish code authorship.
-- Remaining external inputs: demo video URL and Mohammed's public GitHub bio.
+- Remaining external inputs: demo video URL and reviewer confirmation of
+  Zyad's final allocation. Mohammed's public GitHub bio is now visible on
+  [@elastikchain-eth](https://github.com/elastikchain-eth), checked on 4 November.
   The earlier @med-amiine attribution referred to Mohammed, whose confirmed
   review account is [@elastikchain-eth](https://github.com/elastikchain-eth);
   it does not identify a separate contributor.
