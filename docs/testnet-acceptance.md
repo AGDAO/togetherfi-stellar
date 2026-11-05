@@ -4,12 +4,12 @@ V2 and both contributor pools are deployed and initialized on testnet. Role-acco
 configuration, disabled setup-key rejections and quorum completion are verified.
 The original 30-day XLM refund is confirmed in ledger 5,560,022; see
 [refund reconciliation](original-30-day-xlm-refund.md). Separate internal human peer review by
-Zyad (INKY) is owner-confirmed, not an external audit. Historical v1 IDs
+Zyad (INKY) is confirmed by Ayoub, not an external audit. Historical v1 IDs
 remain historical only. See [current evidence](testnet-deployment-evidence.md).
 
-The owner permits the architecture team's requested testnet validation. This is
+Ayoub authorized the requested testnet validation. This is
 testnet-only authorization, not mainnet or real-funds approval. Supplied signing
-wallets are strictly testnet-only; mainnet requires different owner-provided wallets.
+wallets are strictly testnet-only; mainnet requires different wallets supplied by Ayoub.
 
 ## Selected signer policy
 
@@ -21,7 +21,7 @@ Both dedicated role accounts were confirmed rotated in ledger 5207471 on
 The [fresh Zyad and King release test](testnet-zyad-king.md) completed in ledger
 5207647 after a Zyad-only RPC rejection. Exact payout deltas and pool credits
 were verified; this is separate from the historical completion evidence.
-Zyad is also a developer/peer reviewer; King is a co-signer, not a code reviewer.
+Zyad is an internal reviewer and testnet co-signer; King is a co-signer, not a code reviewer.
 Mohammed Idmoussi is a technical reviewer, not a signer. All three members must have independently
 held Stellar signing keys; none may be a placeholder or an extra backend-held key.
 
@@ -32,7 +32,7 @@ this quorum. No private keys should be provided in chat.
 
 ## Required decisions
 
-- Retain the owner's testnet-only authorization and identify the exact validation
+- Retain Ayoub's testnet-only authorization and identify the exact validation
   deployment in its manifest. Do not treat this as mainnet authorization.
 - Validation uses free native testnet XLM with seven decimals. The production
   asset/issuer remains undecided; this fixture is not a USDC liquidity claim.
@@ -45,8 +45,8 @@ this quorum. No private keys should be provided in chat.
   that role using its own new key. Test insufficient-quorum role rotation as well as
   insufficient-quorum settlement. No backend-held key combination may control either
   required quorum, account reconfiguration, or recovery by itself.
-- Record Ayoub's owner review and the owner-confirmed separate human peer review
-  by Zyad (INKY), another team developer. Internal peer review is not an
+- Record Ayoub's implementation review and the separate human peer review
+  by internal reviewer Zyad (INKY), as confirmed by Ayoub. Internal peer review is not an
   external audit; no separate review report is attached here. Do not nominate Ace
   or King as code reviewers or treat transaction signatures as review evidence.
 

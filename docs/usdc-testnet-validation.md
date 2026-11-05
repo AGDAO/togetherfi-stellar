@@ -1,6 +1,6 @@
 # Circle USDC validation, Stellar Testnet only
 
-The owner authorized a Circle USDC test on Stellar Testnet. No mainnet operation,
+Ayoub authorized a Circle USDC test on Stellar Testnet. No mainnet operation,
 real funds, production wallet configuration or automatic replacement of historical
 XLM fixtures is authorized.
 

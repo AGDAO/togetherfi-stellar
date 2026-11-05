@@ -52,7 +52,7 @@ on 4 November 2026, as recorded below.
 See [campaign 4 confirmation and public envelopes](docs/testnet-zyad-ayoub.md).
 
 The [future delivery allocation](docs/future-work-allocation.md) is 768 hours over
-26 weeks: Ayoub 416, Zyad 134, Mohammed 26, Ace 96 and King 96. This is a
+26 weeks: Ayoub 498, Zyad 52, Mohammed 26, Ace 96 and King 96. This is a
 combined team average of approximately 29.5 hours/week, not per reviewer. The
 updated grant ask is **$62,400**: 576 engineering hours at $95/hour ($54,720)
 and 192 operations/testing hours at $40/hour ($7,680).
@@ -63,10 +63,9 @@ the three designated testnet validators and may co-sign a release with another
 signer under the 2-of-3 threshold; this is signing authority, not development or
 code-review access. Reputation Anchor budget eligibility remains to be agreed;
 no free future delivery or completed-work payment is implied.
-Ayoub is TogetherFi's founder and sole developer. Zyad's proposed hours are for
-review/testing, not implementation authorship; his final role and allocation
-remain subject to the reviewers' confirmation. No hours or totals are changed
-by this clarification.
+Ayoub is TogetherFi's founder and sole developer. Zyad's 52 hours are for
+internal review and testing, not implementation authorship. The revised
+individual allocations preserve the 768-hour total and the $62,400 grant ask.
 
 The original 30-day XLM refund [confirmed on 4 November 2026 at 20:22:30 UTC](docs/original-30-day-xlm-refund.md),
 ledger 5,560,022, after eligibility began on 3 November at 12:46:17 UTC.

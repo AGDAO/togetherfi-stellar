@@ -1,6 +1,6 @@
 # Queued explorer source-verification acceptance
 
-The owner requested this work. A passing build or a matching local hash alone
+Ayoub requested this work. A passing build or a matching local hash alone
 is not StellarExpert source verification.
 
 1. Freeze the exact source reviewed by Zyad and Mohammed Idmoussi, including

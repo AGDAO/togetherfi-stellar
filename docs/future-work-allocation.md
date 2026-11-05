@@ -2,7 +2,7 @@
 
 ## Planning basis
 
-The owner-confirmed allocation is **768 hours across 26 weeks**: an aggregate
+The allocation confirmed by Ayoub is **768 hours across 26 weeks**: an aggregate
 average of 29.5385 hours/week, rounded to **29.5 hours/week across the whole team**.
 These are proposed future hours, not a completed-work timesheet or a grant award.
 The revised operations hours and rate below supersede the earlier 91-hour
@@ -12,8 +12,8 @@ allocations. Saturday is not allocated.
 
 | Contributor | Responsibilities | Hours |
 |---|---|---:|
-| Ayoub | Founder and sole developer; implementation, integration, testing and delivery coordination | 416 |
-| Zyad | Internal peer review and testing; final role/allocation subject to reviewer confirmation, not code authorship | 134 proposed |
+| Ayoub | Founder and sole developer; implementation, integration, testing and delivery coordination | 498 |
+| Zyad | Internal reviewer; peer review and testing, not code authorship | 52 |
 | Mohammed | Scoped contract review and follow-up, not transaction signing | 26 |
 | Ace | Scoped GameFi administration, event setup, workflow testing, bug reporting, Discord support and onboarding; Facebook and Instagram operations | 96 |
 | King | Scoped SocialFi administration, mission setup, workflow testing, bug reporting, Discord support and onboarding; X and Discord operations; separately designated testnet validator and 2-of-3 co-signing | 96 |
@@ -42,14 +42,14 @@ $95/hour ($54,720) plus 192 operations/testing hours at $40/hour ($7,680).
 
 ## Hours and evidence
 
-- Ayoub: `(5 x 3 + 1) x 26 = 416`.
-- Zyad: `(4 + 1) x 26 + 4 = 134`.
+- Ayoub: `498` hours over 26 weeks, averaging approximately `19.15` hours/week.
+- Zyad: `2 x 26 = 52` hours for internal review and testing.
 - Mohammed: `26` milestone-based review/follow-up hours.
-- Ace: `96` total owner-confirmed hours.
-- King: `96` total owner-confirmed hours.
-- Combined: `416 + 134 + 26 + 96 + 96 = 768`.
+- Ace: `96` total hours confirmed by Ayoub.
+- King: `96` total hours confirmed by Ayoub.
+- Combined: `498 + 52 + 26 + 96 + 96 = 768`.
 
-The owner has confirmed each person's 96 hours, role and $40 rate. No additional
+Ayoub has confirmed each person's 96 hours, role and $40 rate. No additional
 personal information is required to prepare the budget. The activity split below
 is a proposed future work plan, not a completed timesheet or a confirmed calendar.
 It replaces the earlier 91-hour cadence rather than adding unrelated hours.
@@ -85,12 +85,12 @@ deliverable references; do not double-charge overlapping work.
 
 ## Ownership, review and budget boundaries
 
-Ayoub is TogetherFi's founder, sole developer and technical owner. He writes the
+Ayoub is TogetherFi's founder, sole developer and technical lead. He writes the
 application and Soroban code. Review, testing, operations and transaction
 co-signing are separate roles, not implementation authorship.
-Zyad's 134 hours remain the existing proposed allocation pending the reviewers'
-confirmation; this ownership clarification does not change the budget or
-represent those hours as an approved development allocation.
+Zyad's 52 hours cover internal review and testing, not development. Ayoub's
+498 hours cover implementation and delivery. These allocations preserve the
+768-hour total and the $62,400 grant ask; they are not completed-work claims.
 
 Profiles: [Ayoub](https://github.com/AGDAO/),
 [Zyad](https://github.com/Zrehi),
@@ -111,7 +111,7 @@ The approvals are not an audit or proof of deployment.
 **Reputation Anchor budget is unresolved.** Ask grant reviewers whether
 new, eligible Anchor work is required and fundable. Do not promise free future
 work or charge for historical work already delivered. If newly scoped work is
-approved, add an owner, hours, rate, acceptance evidence and tranche assignment;
+approved, assign a responsible contributor, hours, rate, acceptance evidence and tranche assignment;
 then recalculate the total without double-counting these 768 hours.
 
 The linked scoped review approvals are established records, not a formal audit,

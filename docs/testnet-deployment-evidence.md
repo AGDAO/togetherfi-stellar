@@ -5,14 +5,13 @@
 Escrow v2 and its two dedicated contributor-pool instances are deployed and
 initialized on **Stellar Testnet**. Governance and settlement have independently
 held **2-of-3** signer configurations. Their temporary setup masters have weight
-zero. The supplied wallets are testnet-only; mainnet requires different owner-
-provided addresses and separate authorization.
+zero. The supplied wallets are testnet-only; mainnet requires different addresses supplied by Ayoub and separate authorization.
 
 **Quorum-authorized completion is confirmed with Ayoub and King's signatures.**
 The exact payout and authenticated pool credits are verified. Separate human
-peer review by Zyad (INKY), another team developer, is owner-confirmed;
+peer review by internal reviewer Zyad (INKY) is confirmed by Ayoub;
 no external audit, mainnet deployment or production readiness is claimed.
-Ayoub is the technical lead and production decision owner. No separate human
+Ayoub is the technical lead and is responsible for production decisions. No separate human
 review report is attached to this deployment evidence.
 Ace and King were transaction co-signers for the historical deployment, not code reviewers.
 The current roster is Ayoub, Zyad and King after the confirmed replacement in
@@ -132,7 +131,7 @@ ledger-confirmed failed transactions; their results are retained in the manifest
    This extra live-ledger proof is confirmed validation, not an established
    grant-payment prerequisite; no direct request requiring that specific wait
    is cited here.
-3. The owner confirms separate human peer review by team developer Zyad
+3. Ayoub confirms separate human peer review by internal reviewer Zyad
    (INKY). This is internal peer review, not an external audit.
 4. Expanded CI is installed using newly authorized workflow-write access;
    retain its successful run separately from on-chain acceptance evidence.

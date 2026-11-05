@@ -48,18 +48,17 @@ This working tree is pinned to upstream baseline commit
 
 ## Engineering ownership and AI assistance
 
-Ayoub is the CEO/Developer and Soroban technical owner:
+Ayoub is the founder and developer of TogetherFi and its Soroban technical lead:
 [personal GitHub](https://github.com/AGDAO/) and
 [GitHub](https://github.com/AGDAO).
-Ayoub is TogetherFi's founder, sole developer and technical owner. He writes the
+Ayoub is TogetherFi's founder, sole developer and technical lead. He writes the
 application and its Soroban code and is accountable for implementation, testing
 and delivery. AI tools assist his work; they do not replace human responsibility
 or the separate scoped human reviews.
-See the [current dossier clarification](docs/dossier-clarification.md).
-The owner's proposed future Stellar allocation is 416 hours over 26 weeks:
-3 hours each weekday plus 1 hour Sunday, or 16 hours/week. This is one shared
-allocation across work packages, not a separate allocation per package.
-The owner confirms separate human peer review by
+Ayoub's future Stellar allocation is 498 hours over 26 weeks, averaging
+approximately 19.15 hours/week. This is one shared allocation across work
+packages, not a separate allocation per package.
+Ayoub confirms separate human peer review by
 [Zyad (INKY)](https://github.com/Zrehi), an internal peer reviewer and testnet
 co-signer, not an additional implementation author.
 Mohammed supplied a scoped review of PR #1 from
@@ -81,9 +80,9 @@ mainnet deployment or real-funds operations.
 King's community and operations role is described in the contributor allocation.
 
 The [proposed team allocation](docs/future-work-allocation.md) totals 768 hours
-over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 416, Zyad 134,
-Mohammed 26, Ace 96 and King 96. Zyad's final role and 134-hour planning figure
-remain provisional pending reviewer confirmation. The grant ask is **$62,400**:
+over 26 weeks, approximately 29.5 aggregate hours/week: Ayoub 498, Zyad 52,
+Mohammed 26, Ace 96 and King 96. Zyad's allocation covers internal review and
+testing, not development. The grant ask is **$62,400**:
 576 engineering hours at $95/hour ($54,720) and 192 operations/testing hours at
 $40/hour ($7,680). Ace and King each have a proposed rate of $40/hour
 ($3,840 each; $7,680 combined). They use scoped GameFi and SocialFi admin panels,
@@ -142,7 +141,7 @@ The additional [Zyad and Ayoub pair test](docs/testnet-zyad-ayoub.md) completed
 campaign 4 in ledger 5207852 after Ayoub alone was correctly blocked.
 Both signatures were verified; the exact split and accounting reconciled.
 Its consumed envelope needs no further signatures or submission.
-Mainnet needs different owner-provided wallets.
+Mainnet needs different wallets supplied by Ayoub.
 Governance custody must also be independently threshold-controlled so the backend
 cannot bypass settlement quorum by rotating the settlement role to its own key.
 See [testnet acceptance checklist](docs/testnet-acceptance.md).

@@ -161,7 +161,7 @@ transaction's fee-paying account still needs its own signing authority. See
 [State Archival](https://developers.stellar.org/docs/learn/fundamentals/contract-development/storage/state-archival)
 and [Storage Strategies](https://developers.stellar.org/docs/build/guides/storage/storage-strategies).
 
-**Owner-approved operations policy (31 October 2026):** Ayoub is the authorized
+**Operations policy confirmed by Ayoub (31 October 2026):** Ayoub is the authorized
 accountable payer for production restoration/extension fees. Check TTLs weekly;
 begin renewal when a tracked entry has 60 days or less remaining. Target
 3,000,000 ledgers (about 174 days at five seconds per ledger) where the target
@@ -206,5 +206,5 @@ tests are not being substituted for them.
 
 **Mainnet gate:** this exercise validates the recovery mechanics only. It does
 not authorize mainnet deployment, production fee spending, or a readiness
-claim. The owner-designated production fee account/address and any separate
+claim. The production fee account/address designated by Ayoub and any separate
 deployment authorization remain prerequisites.

@@ -49,9 +49,9 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 
 ## Review ownership and prior evidence
 
-- Ayoub is TogetherFi's founder, sole developer and technical owner.
+- Ayoub is TogetherFi's founder, sole developer and technical lead.
 - Mohammed is the external scoped technical reviewer, not
-  an implementation owner or transaction signer. His PR #1 review was authored
+  an implementation author or transaction signer. His PR #1 review was authored
   from [@elastikchain-eth](https://github.com/elastikchain-eth), the account
   requested for his PR #2 review.
 - [Zyad](https://github.com/Zrehi) is an internal peer reviewer/tester and a
@@ -64,8 +64,8 @@ generated outputs. CI is reduced to the three retained contracts plus Node guard
 
 ## Future delivery plan
 
-The owner-approved proposed allocation is **768 hours over 26 weeks**:
-Ayoub 416, Zyad 134 proposed, Mohammed 26, Ace 96 and King 96.
+The team's future delivery allocation is **768 hours over 26 weeks**:
+Ayoub 498, Zyad 52, Mohammed 26, Ace 96 and King 96.
 See the [full allocation, schedules and responsibilities](future-work-allocation.md).
 The approximately 29.5 hours/week is a combined team average, not a commitment
 per reviewer. These are future delivery estimates; individual scope, availability

@@ -14,7 +14,7 @@ in ledger 5207647. Neither consumed envelope needs further signatures.
 The [additional Zyad and Ayoub release](testnet-zyad-ayoub.md) completed in
 ledger 5207852; it is also consumed and needs no further signing.
 
-The owner requested replacing Ace with Zyad on the dedicated governance and
+Ayoub requested replacing Ace with Zyad on the dedicated governance and
 settlement accounts. The intended roster is Ayoub, Zyad and King, with weight 1
 each, thresholds 2/2/2 and the dedicated setup masters remaining weight 0.
 Mohammed Idmoussi is a reviewer, not a signer.
