@@ -80,11 +80,8 @@ separate `approve`, `release`, or `timeout` entry point. Preserve the production
 30-day expiry rather than changing it just to produce an immediate timeout proof.
 Plan the actual expiry evidence window or agree an explicitly separate test fixture
 with the team; a shortened fixture must not be described as the deployed v2 code.
-The additional 30-day live-ledger refund proof is now confirmed technical validation,
-not an established grant-payment prerequisite. No direct architecture-team or
-Stellar instruction requiring that specific wait is cited in this checklist.
-Confirm actual acceptance criteria rather than treating this document as proof
-of an externally imposed funding condition.
+The original 30-day live-ledger refund is confirmed technical evidence for the
+actual expiry and original-sponsor refund path.
 
 Record network, contract IDs, transaction hashes, ledger times, sponsor/recipient
 balances, and StellarExpert testnet links. Failed simulation/local mock output is

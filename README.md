@@ -96,7 +96,7 @@ Historical TogetherFi platform engineering hours are not Stellar Testnet hours.
 Reputation Anchor grant eligibility and any additional budget remain unresolved;
 this allocation does not promise its future work for free.
 
-## Architecture-team acceptance evidence
+## Testnet acceptance evidence
 
 The fixed policy is **82/10/5/2/1**. `complete(campaign_id, operation_version)`
 has no split or destination argument, and there is no split setter.
